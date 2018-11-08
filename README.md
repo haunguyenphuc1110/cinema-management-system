@@ -1,2 +1,2 @@
-# cinema-management-system
-Final project for Software Engineering Suject
+# README #
+This is project using Java for Cinema Management System in Software Engineering Subject
