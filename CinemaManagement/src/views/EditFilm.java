@@ -5,18 +5,25 @@
  */
 package views;
 
-import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.sql.Connection;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import model.Film;
+import model.FilmFormat;
 
 /**
  *
@@ -30,10 +37,60 @@ public class EditFilm extends javax.swing.JFrame {
     ArrayList<String> parameters;
     MyExcuteQuery myExcuteQuery;
     String path;
-    public EditFilm() {
+    DefaultTableModel dftable;
+
+    public EditFilm(Film film) {
         initComponents();
         parameters = new ArrayList<>();
         myExcuteQuery = new MyExcuteQuery();
+        dftable = (DefaultTableModel) jTable.getModel();
+        loadSelectedRowOnForm(film);
+        loadAllFormatFilm();
+    }
+
+    private EditFilm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void loadSelectedRowOnForm(Film film) {
+        try {
+            String query = "select anh_dai_dien from phim where ma_phim='" + film.getMaPhim() + "' ";
+            byte[] imgData = null;
+            Blob img = myExcuteQuery.getImageByID(query);
+            imgData = img.getBytes(1, (int) img.length());
+            BufferedImage imag = ImageIO.read(new ByteArrayInputStream(imgData));
+            ImageIcon jkl = new ImageIcon(imag);
+            jLabelPicture.setIcon(reImage(jkl));
+
+            jTextFieldIDFilm.setText(film.getMaPhim());
+            jTextAreaTenPhim.setText(film.getTenPhim());
+            jTextFieldTheLoai.setText(film.getTheLoai());
+            jComboBoxQuocGia.setSelectedItem(film.getQuocGia());
+            jTextFieldThoiLuong.setText(film.getThoiLuong());
+            jDateChooser.setDate(film.getKhoiChieu());
+            jComboBoxNgonNgu.setSelectedItem(film.getNgonNgu());
+            jTextFieldDaoDien.setText(film.getDaoDien());
+            jComboBoxNhaSanXuat.setSelectedItem(film.getNhaSanXuat());
+            jTextAreaDienVienChinh.setText(film.getDienVienChinh());
+            jTextAreaNoiDung.setText(film.getNoiDung());
+            jComboBoxNhan.setSelectedItem(film.getMaNhan());
+            jComboBoxTinhTrang.setSelectedItem(film.getTinhTrang());
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(EditFilm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void loadAllFormatFilm(){
+        dftable.setNumRows(0);
+        ArrayList<FilmFormat> list = myExcuteQuery.loadAllFilmFormat();
+        for(int i = 0 ; i < list.size() ; i++){
+            String idFilm = list.get(i).getIdFilm();
+            String nameFilm = list.get(i).getName();
+            String idFormat = list.get(i).getIdFormat();
+            
+            Object[] obj = {idFilm, nameFilm, idFormat};
+            dftable.addRow(obj);           
+        }
     }
 
     /**
@@ -63,11 +120,11 @@ public class EditFilm extends javax.swing.JFrame {
         jLabelQuocGia = new javax.swing.JLabel();
         jComboBoxQuocGia = new javax.swing.JComboBox<>();
         jLabelNgayChieu = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabelThoiLuong = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
+        jLabelNhan = new javax.swing.JLabel();
+        jComboBoxNhan = new javax.swing.JComboBox<>();
         jLabelNgonNgu = new javax.swing.JLabel();
-        jTextFieldNgonNgu = new javax.swing.JTextField();
+        jComboBoxNgonNgu = new javax.swing.JComboBox<>();
         jLabelDaoDien = new javax.swing.JLabel();
         jTextFieldDaoDien = new javax.swing.JTextField();
         jLabelNhaSanXuat = new javax.swing.JLabel();
@@ -75,17 +132,28 @@ public class EditFilm extends javax.swing.JFrame {
         jLabelDienVienChinh = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDienVienChinh = new javax.swing.JTextArea();
+        jLabelThoiLuong = new javax.swing.JLabel();
+        jTextFieldThoiLuong = new javax.swing.JTextField();
+        jLabelTinhTrang = new javax.swing.JLabel();
         jLabelNoiDung = new javax.swing.JLabel();
-        jLabelNhan = new javax.swing.JLabel();
-        jComboBoxNhan = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaNoiDung = new javax.swing.JTextArea();
-        jLabelTinhTrang = new javax.swing.JLabel();
-        jTextFieldTinhTrang = new javax.swing.JTextField();
+        jComboBoxTinhTrang = new javax.swing.JComboBox<>();
         jButtonEdit = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jComboBoxDinhDang = new javax.swing.JComboBox<>();
+        jButtonThem = new javax.swing.JButton();
+        jButtonXoa = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        jButtonClose1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sửa phim");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,7 +194,7 @@ public class EditFilm extends javax.swing.JFrame {
         jLabelName.setText("Tên phim");
 
         jTextAreaTenPhim.setColumns(20);
-        jTextAreaTenPhim.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaTenPhim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaTenPhim.setRows(5);
         jScrollPane5.setViewportView(jTextAreaTenPhim);
 
@@ -144,18 +212,20 @@ public class EditFilm extends javax.swing.JFrame {
         jLabelNgayChieu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNgayChieu.setText("Ngày chiếu");
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDateChooser.setDateFormatString("dd/MM/yyyy");
+        jDateChooser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabelThoiLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelThoiLuong.setText("Thời lượng");
+        jLabelNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelNhan.setText("Nhãn");
 
-        jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "C13", "C16", "C18" }));
 
         jLabelNgonNgu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNgonNgu.setText("Ngôn ngữ");
 
-        jTextFieldNgonNgu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNgonNgu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNgonNgu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiếng Anh có phụ đề Tiếng Việt", "Tiếng Việt có phụ đề Tiếng Anh", "Tiếng Thái có phụ đề Tiếng Việt", "Tiếng Nhật có phụ đề Tiếng Việt", "Tiếng Hàn có phụ đề Tiếng Việt", "Tiếng Trung có phụ đề Tiếng Việt" }));
 
         jLabelDaoDien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDaoDien.setText("Đạo diễn");
@@ -172,30 +242,50 @@ public class EditFilm extends javax.swing.JFrame {
         jLabelDienVienChinh.setText("Diễn viên chính");
 
         jTextAreaDienVienChinh.setColumns(20);
-        jTextAreaDienVienChinh.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaDienVienChinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaDienVienChinh.setRows(5);
         jTextAreaDienVienChinh.setText("\n\n\n");
         jScrollPane2.setViewportView(jTextAreaDienVienChinh);
 
-        jLabelNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelNoiDung.setText("Nội dung");
+        jLabelThoiLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelThoiLuong.setText("Thời lượng");
 
-        jLabelNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelNhan.setText("Nhãn");
-
-        jComboBoxNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxNhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "C13", "C16", "C18" }));
-
-        jTextAreaNoiDung.setColumns(20);
-        jTextAreaNoiDung.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jTextAreaNoiDung.setRows(5);
-        jTextAreaNoiDung.setText("\n\n\n");
-        jScrollPane3.setViewportView(jTextAreaNoiDung);
+        jTextFieldThoiLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabelTinhTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelTinhTrang.setText("Tình trạng");
 
-        jTextFieldTinhTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelNoiDung.setText("Nội dung");
+
+        jTextAreaNoiDung.setColumns(20);
+        jTextAreaNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaNoiDung.setRows(5);
+        jTextAreaNoiDung.setText("\n\n\n");
+        jScrollPane3.setViewportView(jTextAreaNoiDung);
+
+        jComboBoxTinhTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxTinhTrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Công chiếu", "Sắp chiếu", "Đã chiếu" }));
+
+        jButtonEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_document_text_add_103511.png"))); // NOI18N
+        jButtonEdit.setText("Sửa");
+        jButtonEdit.setBorder(null);
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
+
+        jButtonClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.PNG"))); // NOI18N
+        jButtonClose.setText("Hủy bỏ");
+        jButtonClose.setBorder(null);
+        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,23 +304,7 @@ public class EditFilm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldIDFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
-                        .addComponent(jLabelNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jTextFieldNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNhan)
-                            .addComponent(jLabelNoiDung))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabelTinhTrang)
-                                .addGap(47, 47, 47)
-                                .addComponent(jTextFieldTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,11 +313,9 @@ public class EditFilm extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabelNgayChieu)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
-                                .addComponent(jLabelThoiLuong)
-                                .addGap(45, 45, 45)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabelThoiLuong))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -264,12 +336,33 @@ public class EditFilm extends javax.swing.JFrame {
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldDaoDien, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxNhaSanXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jComboBoxNhaSanXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(jLabelDienVienChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNhan)
+                                    .addComponent(jLabelNoiDung))
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabelTinhTrang)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -288,10 +381,11 @@ public class EditFilm extends javax.swing.JFrame {
                         .addComponent(jLabelIDFilm))
                     .addComponent(jTextFieldIDFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabelNgonNgu))
-                    .addComponent(jTextFieldNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNgonNgu)
+                            .addComponent(jComboBoxNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
@@ -320,33 +414,194 @@ public class EditFilm extends javax.swing.JFrame {
                             .addComponent(jComboBoxQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelQuocGia)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNgayChieu)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelThoiLuong))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNgayChieu)
+                    .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelNhan))
-                    .addComponent(jTextFieldTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelThoiLuong)
+                        .addComponent(jTextFieldThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelNhan))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabelTinhTrang)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelTinhTrang)))
+                        .addComponent(jComboBoxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabelNoiDung))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Phim", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jComboBoxDinhDang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxDinhDang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2D", "3D", "4D" }));
+
+        jButtonThem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_sign-add_299068.png"))); // NOI18N
+        jButtonThem.setText("Thêm");
+        jButtonThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonThemActionPerformed(evt);
+            }
+        });
+        jButtonThem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonThemKeyPressed(evt);
+            }
+        });
+
+        jButtonXoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_minus_1645995.png"))); // NOI18N
+        jButtonXoa.setText("Xóa");
+        jButtonXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonXoaActionPerformed(evt);
+            }
+        });
+        jButtonXoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonXoaKeyPressed(evt);
+            }
+        });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_cinema_61819.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel5.setText("Thêm suất phim");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Mỗi phim sẽ có một hoặc nhiều định dạng");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jButtonThem)
+                                .addGap(32, 32, 32)
+                                .addComponent(jButtonXoa)
+                                .addGap(194, 194, 194))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jComboBoxDinhDang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(183, 183, 183))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addContainerGap())))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jComboBoxDinhDang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel5)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jButtonThem)
+                            .addComponent(jButtonXoa))))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        jTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã phim", "Tên phim", "Mã định dạng"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable.setRowHeight(30);
+        jTable.setRowMargin(2);
+        jScrollPane1.setViewportView(jTable);
+
+        jButtonClose1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.PNG"))); // NOI18N
+        jButtonClose1.setText("Hủy bỏ");
+        jButtonClose1.setBorder(null);
+        jButtonClose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClose1ActionPerformed(evt);
+            }
+        });
+        jButtonClose1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonClose1KeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonClose1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonClose1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+
+        jTabbedPane1.addTab("Suất phim", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -376,57 +631,25 @@ public class EditFilm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
-
-        jButtonEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_document_text_add_103511.png"))); // NOI18N
-        jButtonEdit.setText("Thêm");
-        jButtonEdit.setBorder(null);
-        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditActionPerformed(evt);
-            }
-        });
-
-        jButtonClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.PNG"))); // NOI18N
-        jButtonClose.setText("Hủy bỏ");
-        jButtonClose.setBorder(null);
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCloseActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(761, 761, 761)
-                .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void jButtonLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new File("H:\\MyProject\\cinema-management-system\\CinemaManagement\\src\\pictures"));
@@ -445,27 +668,66 @@ public class EditFilm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
-        Connection con = MyConnection.getConnection();
-        String query = "insert into phim values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Film film = new Film();
-        film.setMaPhim("P" + generateID());
-        jTextFieldIDFilm.setText("P" + generateID());
+        film.setMaPhim(jTextFieldIDFilm.getText());
         film.setTenPhim(jTextAreaTenPhim.getText());
         film.setTheLoai(jTextFieldTheLoai.getText());
         film.setQuocGia(jComboBoxQuocGia.getSelectedItem().toString());
-        film.setThoiLuong(jSpinner1.getValue().toString());
-        film.setKhoiChieu(jDateChooser1.getDate());
-        film.setNgonNgu(jTextFieldNgonNgu.getText());
+        film.setThoiLuong(jTextFieldThoiLuong.getText());
+        film.setKhoiChieu(jDateChooser.getDate());
+        film.setNgonNgu(jComboBoxNgonNgu.getSelectedItem().toString());
         film.setDaoDien(jTextFieldDaoDien.getText());
         film.setNhaSanXuat(jComboBoxNhaSanXuat.getSelectedItem().toString());
         film.setDienVienChinh(jTextAreaDienVienChinh.getText());
         film.setNoiDung(jTextAreaNoiDung.getText());
         film.setMaNhan(jComboBoxNhan.getSelectedItem().toString());
-        film.setTinhTrang(jTextFieldTinhTrang.getText());
-        
-        myExcuteQuery.insertPhim(con, query, film, path);
-        JOptionPane.showMessageDialog(null, "Create film successfully!!!");
+        film.setTinhTrang(jComboBoxTinhTrang.getSelectedItem().toString());
+
+        if (path == null) {
+            myExcuteQuery.updatePhim(film);
+        } else {
+            myExcuteQuery.updatePhim(film, path);
+        }
+        JOptionPane.showMessageDialog(null, "Update film successfully!!!");
     }//GEN-LAST:event_jButtonEditActionPerformed
+
+    private void jButtonClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClose1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonClose1ActionPerformed
+
+    private void jButtonClose1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonClose1KeyPressed
+        this.dispose();
+    }//GEN-LAST:event_jButtonClose1KeyPressed
+
+    private void jButtonThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThemActionPerformed
+        if(myExcuteQuery.checkFormat(jTextFieldIDFilm.getText(), jComboBoxDinhDang.getSelectedItem().toString())){
+            JOptionPane.showMessageDialog(null, "ID film and id format have had already!!!");
+            jComboBoxDinhDang.requestFocus();
+            return;
+        }
+        myExcuteQuery.insertFormatFilm(jTextFieldIDFilm.getText(), jComboBoxDinhDang.getSelectedItem().toString());
+        loadAllFormatFilm();
+    }//GEN-LAST:event_jButtonThemActionPerformed
+
+    private void jButtonThemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonThemKeyPressed
+        if(myExcuteQuery.checkFormat(jTextFieldIDFilm.getText(), jComboBoxDinhDang.getSelectedItem().toString())){
+            JOptionPane.showMessageDialog(null, "ID film and id format have had already!!!");
+            jComboBoxDinhDang.requestFocus();
+            return;
+        }
+        myExcuteQuery.insertFormatFilm(jTextFieldIDFilm.getText(), jComboBoxDinhDang.getSelectedItem().toString());
+        loadAllFormatFilm();
+    }//GEN-LAST:event_jButtonThemKeyPressed
+
+    private void jButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaActionPerformed
+        myExcuteQuery.deleteFormatFilm(jTextFieldIDFilm.getText(), jComboBoxDinhDang.getSelectedItem().toString());
+        loadAllFormatFilm();
+    }//GEN-LAST:event_jButtonXoaActionPerformed
+
+    private void jButtonXoaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonXoaKeyPressed
+        myExcuteQuery.deleteFormatFilm(jTextFieldIDFilm.getText(), jComboBoxDinhDang.getSelectedItem().toString());
+        loadAllFormatFilm();
+    }//GEN-LAST:event_jButtonXoaKeyPressed
 
     private ImageIcon resizeImage(String Imagepath) {
         ImageIcon myimage = new ImageIcon(Imagepath);
@@ -474,21 +736,12 @@ public class EditFilm extends javax.swing.JFrame {
         ImageIcon image = new ImageIcon(newimg);
         return image;
     }
-    
-    private ImageIcon reImage(ImageIcon Imagepath) {      
-       Image img=Imagepath.getImage();
-       Image newimg=img.getScaledInstance(jLabelPicture.getWidth(),jLabelPicture.getHeight(), Image.SCALE_SMOOTH);
-       ImageIcon image=new ImageIcon(newimg);
-       return image;
-    }
-    
-    private String generateID(){
-        Random rd = new Random();
-        String id = "";
-        for(int i = 0 ; i < 9 ; i++){
-            id += rd.nextInt(10);
-        }
-        return id;
+
+    private ImageIcon reImage(ImageIcon Imagepath) {
+        Image img = Imagepath.getImage();
+        Image newimg = img.getScaledInstance(jLabelPicture.getWidth(), jLabelPicture.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newimg);
+        return image;
     }
 
     /**
@@ -531,15 +784,24 @@ public class EditFilm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClose;
+    private javax.swing.JButton jButtonClose1;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonLoad;
+    private javax.swing.JButton jButtonThem;
+    private javax.swing.JButton jButtonXoa;
+    private javax.swing.JComboBox<String> jComboBoxDinhDang;
+    private javax.swing.JComboBox<String> jComboBoxNgonNgu;
     private javax.swing.JComboBox<String> jComboBoxNhaSanXuat;
     private javax.swing.JComboBox<String> jComboBoxNhan;
     private javax.swing.JComboBox<String> jComboBoxQuocGia;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> jComboBoxTinhTrang;
+    private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelDaoDien;
     private javax.swing.JLabel jLabelDienVienChinh;
     private javax.swing.JLabel jLabelIDFilm;
@@ -556,18 +818,20 @@ public class EditFilm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTinhTrang;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable;
     private javax.swing.JTextArea jTextAreaDienVienChinh;
     private javax.swing.JTextArea jTextAreaNoiDung;
     private javax.swing.JTextArea jTextAreaTenPhim;
     private javax.swing.JTextField jTextFieldDaoDien;
     private javax.swing.JTextField jTextFieldIDFilm;
-    private javax.swing.JTextField jTextFieldNgonNgu;
     private javax.swing.JTextField jTextFieldTheLoai;
-    private javax.swing.JTextField jTextFieldTinhTrang;
+    private javax.swing.JTextField jTextFieldThoiLuong;
     // End of variables declaration//GEN-END:variables
 }

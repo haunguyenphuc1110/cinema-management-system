@@ -5,11 +5,14 @@
  */
 package views;
 
-import control.MyConnection;
 import control.MyExcuteQuery;
-import java.sql.Connection;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Film;
 
@@ -25,6 +28,7 @@ public class PhimManagement extends javax.swing.JInternalFrame {
     MyExcuteQuery myExcuteQuery;
     ArrayList<Film> lstFilm;
     DefaultTableModel dftable;
+
     public PhimManagement() {
         initComponents();
         myExcuteQuery = new MyExcuteQuery();
@@ -47,9 +51,9 @@ public class PhimManagement extends javax.swing.JInternalFrame {
         jButtonLoadAll = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBoxFilm = new javax.swing.JCheckBox();
         jTextFieldFind = new javax.swing.JTextField();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBoxTime = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
@@ -72,11 +76,26 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                 jButtonAddActionPerformed(evt);
             }
         });
+        jButtonAdd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAddKeyPressed(evt);
+            }
+        });
 
         jButtonEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_edit_173002.png"))); // NOI18N
         jButtonEdit.setText("Sửa");
         jButtonEdit.setBorder(null);
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
+        jButtonEdit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonEditKeyPressed(evt);
+            }
+        });
 
         jButtonLoadAll.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLoadAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_ic_find_replace_48px_352364.png"))); // NOI18N
@@ -87,6 +106,11 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                 jButtonLoadAllActionPerformed(evt);
             }
         });
+        jButtonLoadAll.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonLoadAllKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -94,22 +118,22 @@ public class PhimManagement extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(0, 153, 51));
         jLabel1.setText("Tra cứu");
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setText("Theo tên phim");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxFilm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBoxFilm.setText("Theo tên phim");
+        jCheckBoxFilm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                jCheckBoxFilmActionPerformed(evt);
             }
         });
 
         jTextFieldFind.setEditable(false);
         jTextFieldFind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox2.setText("Theo khoảng thời gian");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxTime.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBoxTime.setText("Theo khoảng thời gian");
+        jCheckBoxTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                jCheckBoxTimeActionPerformed(evt);
             }
         });
 
@@ -134,6 +158,11 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                 jButtonFindActionPerformed(evt);
             }
         });
+        jButtonFind.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonFindKeyPressed(evt);
+            }
+        });
 
         jButtonReset.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_refresh_59198.png"))); // NOI18N
@@ -142,6 +171,11 @@ public class PhimManagement extends javax.swing.JInternalFrame {
         jButtonReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonResetActionPerformed(evt);
+            }
+        });
+        jButtonReset.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonResetKeyPressed(evt);
             }
         });
 
@@ -161,18 +195,18 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonFind, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
                         .addGap(42, 42, 42))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox1))
+                            .addComponent(jCheckBoxTime)
+                            .addComponent(jCheckBoxFilm))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -183,11 +217,11 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(35, 35, 35)
-                        .addComponent(jCheckBox1)
+                        .addComponent(jCheckBoxFilm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldFind, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jCheckBox2)
+                        .addComponent(jCheckBoxTime)
                         .addGap(32, 32, 32)
                         .addComponent(jLabel2))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,33 +290,31 @@ public class PhimManagement extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadAllFilmOnTable(){
+    private void loadAllFilmOnTable() {
         dftable.setRowCount(0);
-        Connection con = MyConnection.getConnection();
         String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim";
-        lstFilm = myExcuteQuery.loadAllPhim(con, query);
+        lstFilm = myExcuteQuery.loadAllPhim(query);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        for(int i = 0 ; i < lstFilm.size() ; i++){
-                String maPhim = lstFilm.get(i).getMaPhim();
-                String tenPhim = lstFilm.get(i).getTenPhim();
-                String theLoai = lstFilm.get(i).getTheLoai();
-                String quocGia = lstFilm.get(i).getQuocGia();
-                String thoiLuong = lstFilm.get(i).getThoiLuong();
-                String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
-                String ngonNgu = lstFilm.get(i).getNgonNgu();
-                String daoDien = lstFilm.get(i).getDaoDien();
-                String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
-                String dienVienChinh = lstFilm.get(i).getDienVienChinh();
-                String noiDung = lstFilm.get(i).getNoiDung();
-                String maNhan = lstFilm.get(i).getMaNhan();
-                String tinhTrang = lstFilm.get(i).getTinhTrang();
-                
+        for (int i = 0; i < lstFilm.size(); i++) {
+            String maPhim = lstFilm.get(i).getMaPhim();
+            String tenPhim = lstFilm.get(i).getTenPhim();
+            String theLoai = lstFilm.get(i).getTheLoai();
+            String quocGia = lstFilm.get(i).getQuocGia();
+            String thoiLuong = lstFilm.get(i).getThoiLuong();
+            String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
+            String ngonNgu = lstFilm.get(i).getNgonNgu();
+            String daoDien = lstFilm.get(i).getDaoDien();
+            String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
+            String dienVienChinh = lstFilm.get(i).getDienVienChinh();
+            String noiDung = lstFilm.get(i).getNoiDung();
+            String maNhan = lstFilm.get(i).getMaNhan();
+            String tinhTrang = lstFilm.get(i).getTinhTrang();
 
-                Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
-                dftable.addRow(ojb);
+            Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+            dftable.addRow(ojb);
         }
     }
-    
+
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         NewFilm frm = new NewFilm();
         frm.setVisible(true);
@@ -293,26 +325,207 @@ public class PhimManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLoadAllActionPerformed
 
     private void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFindActionPerformed
-        // TODO add your handling code here:
+        dftable.setNumRows(0);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String name;
+        if (jCheckBoxFilm.isSelected() == true) {
+            name = jTextFieldFind.getText().trim();
+            name = name.replaceAll("\\s+", " ");
+            name = name.toLowerCase();
+
+            for (int i = 0; i < lstFilm.size(); i++) {
+                if (lstFilm.get(i).getTenPhim().toLowerCase().contains(name)) {
+                    String maPhim = lstFilm.get(i).getMaPhim();
+                    String tenPhim = lstFilm.get(i).getTenPhim();
+                    String theLoai = lstFilm.get(i).getTheLoai();
+                    String quocGia = lstFilm.get(i).getQuocGia();
+                    String thoiLuong = lstFilm.get(i).getThoiLuong();
+                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
+                    String ngonNgu = lstFilm.get(i).getNgonNgu();
+                    String daoDien = lstFilm.get(i).getDaoDien();
+                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
+                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
+                    String noiDung = lstFilm.get(i).getNoiDung();
+                    String maNhan = lstFilm.get(i).getMaNhan();
+                    String tinhTrang = lstFilm.get(i).getTinhTrang();
+
+                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+                    dftable.addRow(ojb);
+                }
+            }
+        } else if (jCheckBoxTime.isSelected() == true) {
+            for (int i = 0; i < lstFilm.size(); i++) {
+                Date date = lstFilm.get(i).getKhoiChieu();
+                if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {
+                    String maPhim = lstFilm.get(i).getMaPhim();
+                    String tenPhim = lstFilm.get(i).getTenPhim();
+                    String theLoai = lstFilm.get(i).getTheLoai();
+                    String quocGia = lstFilm.get(i).getQuocGia();
+                    String thoiLuong = lstFilm.get(i).getThoiLuong();
+                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
+                    String ngonNgu = lstFilm.get(i).getNgonNgu();
+                    String daoDien = lstFilm.get(i).getDaoDien();
+                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
+                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
+                    String noiDung = lstFilm.get(i).getNoiDung();
+                    String maNhan = lstFilm.get(i).getMaNhan();
+                    String tinhTrang = lstFilm.get(i).getTinhTrang();
+
+                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+                    dftable.addRow(ojb);
+                }
+            }
+        }
     }//GEN-LAST:event_jButtonFindActionPerformed
 
     private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
-        // TODO add your handling code here:
+        jTextFieldFind.setText("");
+        jTextFieldFind.requestFocus();
     }//GEN-LAST:event_jButtonResetActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jCheckBoxFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFilmActionPerformed
         jTextFieldFind.setEditable(true);
-        jCheckBox2.setSelected(false);
+        jCheckBoxTime.setSelected(false);
         jDateChooser1.setEnabled(false);
         jDateChooser2.setEnabled(false);
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_jCheckBoxFilmActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        jCheckBox1.setSelected(false);
+    private void jCheckBoxTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTimeActionPerformed
+        jCheckBoxFilm.setSelected(false);
         jTextFieldFind.setEditable(false);
         jDateChooser1.setEnabled(true);
         jDateChooser2.setEnabled(true);
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_jCheckBoxTimeActionPerformed
+
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        try {
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+            int selectedIndexRow = jTableListFilm.getSelectedRow();
+            if (selectedIndexRow == -1) {
+                JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+                return;
+            }
+            Film film = new Film();
+
+            film.setMaPhim(dftable.getValueAt(selectedIndexRow, 0).toString());
+            film.setTenPhim(dftable.getValueAt(selectedIndexRow, 1).toString());
+            film.setTheLoai(dftable.getValueAt(selectedIndexRow, 2).toString());
+            film.setQuocGia(dftable.getValueAt(selectedIndexRow, 3).toString());
+            film.setThoiLuong(dftable.getValueAt(selectedIndexRow, 4).toString());
+            film.setKhoiChieu(formater.parse(dftable.getValueAt(selectedIndexRow, 5).toString()));
+            film.setNgonNgu(dftable.getValueAt(selectedIndexRow, 6).toString());
+            film.setDaoDien(dftable.getValueAt(selectedIndexRow, 7).toString());
+            film.setNhaSanXuat(dftable.getValueAt(selectedIndexRow, 8).toString());
+            film.setDienVienChinh(dftable.getValueAt(selectedIndexRow, 9).toString());
+            film.setNoiDung(dftable.getValueAt(selectedIndexRow, 10).toString());
+            film.setMaNhan(dftable.getValueAt(selectedIndexRow, 11).toString());
+            film.setTinhTrang(dftable.getValueAt(selectedIndexRow, 12).toString());
+            EditFilm frm = new EditFilm(film);
+
+            frm.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(PhimManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonEditActionPerformed
+
+    private void jButtonFindKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonFindKeyPressed
+        dftable.setNumRows(0);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String name;
+        if (jCheckBoxFilm.isSelected() == true) {
+            name = jTextFieldFind.getText().trim();
+            name = name.replaceAll("\\s+", " ");
+            name = name.toLowerCase();
+
+            for (int i = 0; i < lstFilm.size(); i++) {
+                if (lstFilm.get(i).getTenPhim().toLowerCase().contains(name)) {
+                    String maPhim = lstFilm.get(i).getMaPhim();
+                    String tenPhim = lstFilm.get(i).getTenPhim();
+                    String theLoai = lstFilm.get(i).getTheLoai();
+                    String quocGia = lstFilm.get(i).getQuocGia();
+                    String thoiLuong = lstFilm.get(i).getThoiLuong();
+                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
+                    String ngonNgu = lstFilm.get(i).getNgonNgu();
+                    String daoDien = lstFilm.get(i).getDaoDien();
+                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
+                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
+                    String noiDung = lstFilm.get(i).getNoiDung();
+                    String maNhan = lstFilm.get(i).getMaNhan();
+                    String tinhTrang = lstFilm.get(i).getTinhTrang();
+
+                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+                    dftable.addRow(ojb);
+                }
+            }
+        } else if (jCheckBoxTime.isSelected() == true) {
+            for (int i = 0; i < lstFilm.size(); i++) {
+                Date date = lstFilm.get(i).getKhoiChieu();
+                if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {
+                    String maPhim = lstFilm.get(i).getMaPhim();
+                    String tenPhim = lstFilm.get(i).getTenPhim();
+                    String theLoai = lstFilm.get(i).getTheLoai();
+                    String quocGia = lstFilm.get(i).getQuocGia();
+                    String thoiLuong = lstFilm.get(i).getThoiLuong();
+                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
+                    String ngonNgu = lstFilm.get(i).getNgonNgu();
+                    String daoDien = lstFilm.get(i).getDaoDien();
+                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
+                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
+                    String noiDung = lstFilm.get(i).getNoiDung();
+                    String maNhan = lstFilm.get(i).getMaNhan();
+                    String tinhTrang = lstFilm.get(i).getTinhTrang();
+
+                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+                    dftable.addRow(ojb);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonFindKeyPressed
+
+    private void jButtonResetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonResetKeyPressed
+        jTextFieldFind.setText("");
+        jTextFieldFind.requestFocus();
+    }//GEN-LAST:event_jButtonResetKeyPressed
+
+    private void jButtonAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAddKeyPressed
+        NewFilm frm = new NewFilm();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jButtonAddKeyPressed
+
+    private void jButtonEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonEditKeyPressed
+        try {
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+            int selectedIndexRow = jTableListFilm.getSelectedRow();
+            if (selectedIndexRow == -1) {
+                JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+                return;
+            }
+            Film film = new Film();
+
+            film.setMaPhim(dftable.getValueAt(selectedIndexRow, 0).toString());
+            film.setTenPhim(dftable.getValueAt(selectedIndexRow, 1).toString());
+            film.setTheLoai(dftable.getValueAt(selectedIndexRow, 2).toString());
+            film.setQuocGia(dftable.getValueAt(selectedIndexRow, 3).toString());
+            film.setThoiLuong(dftable.getValueAt(selectedIndexRow, 4).toString());
+            film.setKhoiChieu(formater.parse(dftable.getValueAt(selectedIndexRow, 5).toString()));
+            film.setNgonNgu(dftable.getValueAt(selectedIndexRow, 6).toString());
+            film.setDaoDien(dftable.getValueAt(selectedIndexRow, 7).toString());
+            film.setNhaSanXuat(dftable.getValueAt(selectedIndexRow, 8).toString());
+            film.setDienVienChinh(dftable.getValueAt(selectedIndexRow, 9).toString());
+            film.setNoiDung(dftable.getValueAt(selectedIndexRow, 10).toString());
+            film.setMaNhan(dftable.getValueAt(selectedIndexRow, 11).toString());
+            film.setTinhTrang(dftable.getValueAt(selectedIndexRow, 12).toString());
+            EditFilm frm = new EditFilm(film);
+
+            frm.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(PhimManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonEditKeyPressed
+
+    private void jButtonLoadAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonLoadAllKeyPressed
+        loadAllFilmOnTable();
+    }//GEN-LAST:event_jButtonLoadAllKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -321,8 +534,8 @@ public class PhimManagement extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonFind;
     private javax.swing.JButton jButtonLoadAll;
     private javax.swing.JButton jButtonReset;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBoxFilm;
+    private javax.swing.JCheckBox jCheckBoxTime;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;

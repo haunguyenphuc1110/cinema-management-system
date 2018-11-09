@@ -437,11 +437,10 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLogoutMouseClicked
-        Connection con = MyConnection.getConnection();
         String queryUpdate = "Update account set trang_thai = 0 where username =? and user_password =?";
         parameters.add(x.getUser());
         parameters.add(x.getPassword());
-        myExcuteQuery.updateStatus(con, queryUpdate, parameters);
+        myExcuteQuery.updateStatus(queryUpdate, parameters);
         x.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabelLogoutMouseClicked

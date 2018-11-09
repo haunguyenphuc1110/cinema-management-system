@@ -5,12 +5,11 @@
  */
 package views;
 
-import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Image;
 import java.io.File;
-import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -34,6 +33,7 @@ public class NewFilm extends javax.swing.JFrame {
         initComponents();
         parameters = new ArrayList<>();
         myExcuteQuery = new MyExcuteQuery();
+        jTextAreaTenPhim.requestFocus();
     }
 
     /**
@@ -63,11 +63,11 @@ public class NewFilm extends javax.swing.JFrame {
         jLabelQuocGia = new javax.swing.JLabel();
         jComboBoxQuocGia = new javax.swing.JComboBox<>();
         jLabelNgayChieu = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabelThoiLuong = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        jDateChooser = new com.toedter.calendar.JDateChooser();
+        jLabelNhan = new javax.swing.JLabel();
+        jComboBoxNhan = new javax.swing.JComboBox<>();
         jLabelNgonNgu = new javax.swing.JLabel();
-        jTextFieldNgonNgu = new javax.swing.JTextField();
+        jComboBoxNgonNgu = new javax.swing.JComboBox<>();
         jLabelDaoDien = new javax.swing.JLabel();
         jTextFieldDaoDien = new javax.swing.JTextField();
         jLabelNhaSanXuat = new javax.swing.JLabel();
@@ -75,18 +75,17 @@ public class NewFilm extends javax.swing.JFrame {
         jLabelDienVienChinh = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDienVienChinh = new javax.swing.JTextArea();
+        jLabelThoiLuong = new javax.swing.JLabel();
+        jTextFieldThoiLuong = new javax.swing.JTextField();
+        jLabelTinhTrang = new javax.swing.JLabel();
+        jComboBoxTinhTrang = new javax.swing.JComboBox<>();
         jLabelNoiDung = new javax.swing.JLabel();
-        jLabelNhan = new javax.swing.JLabel();
-        jComboBoxNhan = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaNoiDung = new javax.swing.JTextArea();
-        jLabelTinhTrang = new javax.swing.JLabel();
-        jTextFieldTinhTrang = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Thêm phim");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -127,7 +126,7 @@ public class NewFilm extends javax.swing.JFrame {
         jLabelName.setText("Tên phim");
 
         jTextAreaTenPhim.setColumns(20);
-        jTextAreaTenPhim.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaTenPhim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaTenPhim.setRows(5);
         jScrollPane5.setViewportView(jTextAreaTenPhim);
 
@@ -145,18 +144,20 @@ public class NewFilm extends javax.swing.JFrame {
         jLabelNgayChieu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNgayChieu.setText("Ngày chiếu");
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jDateChooser.setDateFormatString("dd/MM/yyyy");
+        jDateChooser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabelThoiLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelThoiLuong.setText("Thời lượng");
+        jLabelNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelNhan.setText("Nhãn");
 
-        jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "C13", "C16", "C18" }));
 
         jLabelNgonNgu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNgonNgu.setText("Ngôn ngữ");
 
-        jTextFieldNgonNgu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNgonNgu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNgonNgu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiếng Anh có phụ đề Tiếng Việt", "Tiếng Việt có phụ đề Tiếng Anh", "Tiếng Thái có phụ đề Tiếng Việt", "Tiếng Nhật có phụ đề Tiếng Việt", "Tiếng Hàn có phụ đề Tiếng Việt", "Tiếng Trung có phụ đề Tiếng Việt" }));
 
         jLabelDaoDien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDaoDien.setText("Đạo diễn");
@@ -173,35 +174,70 @@ public class NewFilm extends javax.swing.JFrame {
         jLabelDienVienChinh.setText("Diễn viên chính");
 
         jTextAreaDienVienChinh.setColumns(20);
-        jTextAreaDienVienChinh.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaDienVienChinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaDienVienChinh.setRows(5);
         jTextAreaDienVienChinh.setText("\n\n\n");
         jScrollPane2.setViewportView(jTextAreaDienVienChinh);
 
-        jLabelNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelNoiDung.setText("Nội dung");
+        jLabelThoiLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelThoiLuong.setText("Thời lượng");
 
-        jLabelNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelNhan.setText("Nhãn");
-
-        jComboBoxNhan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxNhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "C13", "C16", "C18" }));
-
-        jTextAreaNoiDung.setColumns(20);
-        jTextAreaNoiDung.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jTextAreaNoiDung.setRows(5);
-        jTextAreaNoiDung.setText("\n\n\n");
-        jScrollPane3.setViewportView(jTextAreaNoiDung);
+        jTextFieldThoiLuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabelTinhTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelTinhTrang.setText("Tình trạng");
 
-        jTextFieldTinhTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxTinhTrang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxTinhTrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Công chiếu", "Sắp chiếu", "Đã chiếu" }));
+
+        jLabelNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelNoiDung.setText("Nội dung");
+
+        jTextAreaNoiDung.setColumns(20);
+        jTextAreaNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaNoiDung.setRows(5);
+        jTextAreaNoiDung.setText("\n\n\n");
+        jScrollPane3.setViewportView(jTextAreaNoiDung);
+
+        jButtonAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_document_text_add_103511.png"))); // NOI18N
+        jButtonAdd.setText("Thêm");
+        jButtonAdd.setBorder(null);
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
+        jButtonAdd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAddKeyPressed(evt);
+            }
+        });
+
+        jButtonClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.PNG"))); // NOI18N
+        jButtonClose.setText("Hủy bỏ");
+        jButtonClose.setBorder(null);
+        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCloseActionPerformed(evt);
+            }
+        });
+        jButtonClose.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonCloseKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -210,68 +246,69 @@ public class NewFilm extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jButtonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabelIDFilm)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldIDFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabelNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jTextFieldNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNhan)
-                            .addComponent(jLabelNoiDung))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelNhan)
+                                .addGap(48, 48, 48)
                                 .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
                                 .addComponent(jLabelTinhTrang)
-                                .addGap(47, 47, 47)
-                                .addComponent(jTextFieldTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelNoiDung)
+                                .addGap(25, 25, 25)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelQuocGia)
-                            .addComponent(jLabelTheLoai)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabelNgayChieu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabelThoiLuong)
-                                .addGap(45, 45, 45)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
                                 .addComponent(jLabelName)
                                 .addGap(29, 29, 29)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBoxQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelDaoDien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
-                                        .addComponent(jLabelNhaSanXuat)))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldDaoDien, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxNhaSanXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabelNhaSanXuat))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabelDienVienChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabelIDFilm)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldIDFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabelNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDaoDien, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxNhaSanXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelTheLoai)
+                                    .addComponent(jLabelQuocGia))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabelDienVienChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelNgayChieu)
+                                .addGap(12, 12, 12)
+                                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabelThoiLuong)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,10 +326,11 @@ public class NewFilm extends javax.swing.JFrame {
                         .addComponent(jLabelIDFilm))
                     .addComponent(jTextFieldIDFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabelNgonNgu))
-                    .addComponent(jTextFieldNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNgonNgu)
+                            .addComponent(jComboBoxNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
@@ -308,61 +346,62 @@ public class NewFilm extends javax.swing.JFrame {
                         .addComponent(jTextFieldDaoDien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(jComboBoxNhaSanXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTheLoai))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelDienVienChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelQuocGia)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabelTheLoai)
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabelQuocGia))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabelDienVienChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNgayChieu)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelThoiLuong))))
-                .addGap(18, 18, 18)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTextFieldTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(jComboBoxQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNgayChieu)
+                    .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelNhan))
-                    .addComponent(jTextFieldTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelTinhTrang)))
-                .addGap(10, 10, 10)
+                        .addComponent(jLabelThoiLuong)
+                        .addComponent(jTextFieldThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabelNoiDung))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabelNhan))
+                            .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabelTinhTrang))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabelNoiDung))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 104, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Phim", jPanel2);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 925, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 732, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Suất phim", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -370,15 +409,17 @@ public class NewFilm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(21, 21, 21))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,50 +433,19 @@ public class NewFilm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        jButtonAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_document_text_add_103511.png"))); // NOI18N
-        jButtonAdd.setText("Thêm");
-        jButtonAdd.setBorder(null);
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
-            }
-        });
-
-        jButtonClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.PNG"))); // NOI18N
-        jButtonClose.setText("Hủy bỏ");
-        jButtonClose.setBorder(null);
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCloseActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(761, 761, 761)
-                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 956, Short.MAX_VALUE)
         );
 
         pack();
@@ -459,28 +469,73 @@ public class NewFilm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
+    
+    
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        Connection con = MyConnection.getConnection();
-        String query = "insert into phim values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Film film = new Film();
         film.setMaPhim("P" + generateID());
         jTextFieldIDFilm.setText("P" + generateID());
         film.setTenPhim(jTextAreaTenPhim.getText());
         film.setTheLoai(jTextFieldTheLoai.getText());
         film.setQuocGia(jComboBoxQuocGia.getSelectedItem().toString());
-        film.setThoiLuong(jSpinner1.getValue().toString());
-        film.setKhoiChieu(jDateChooser1.getDate());
-        film.setNgonNgu(jTextFieldNgonNgu.getText());
+        film.setThoiLuong(jTextFieldThoiLuong.getText());
+        
+        //check date if datecreated is greater or not than today
+        Date today = new Date();
+        if(jDateChooser.getDate().before(today)){
+            JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
+            jDateChooser.requestFocus();
+            return;
+        }
+        film.setKhoiChieu(jDateChooser.getDate());
+        
+        film.setNgonNgu(jComboBoxNgonNgu.getSelectedItem().toString());
         film.setDaoDien(jTextFieldDaoDien.getText());
         film.setNhaSanXuat(jComboBoxNhaSanXuat.getSelectedItem().toString());
         film.setDienVienChinh(jTextAreaDienVienChinh.getText());
         film.setNoiDung(jTextAreaNoiDung.getText());
         film.setMaNhan(jComboBoxNhan.getSelectedItem().toString());
-        film.setTinhTrang(jTextFieldTinhTrang.getText());
+        film.setTinhTrang(jComboBoxTinhTrang.getSelectedItem().toString());
         
-        myExcuteQuery.insertPhim(con, query, film, path);
+        myExcuteQuery.insertPhim(film, path);
         JOptionPane.showMessageDialog(null, "Create film successfully!!!");
+        reset();
     }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAddKeyPressed
+        Film film = new Film();
+        film.setMaPhim("P" + generateID());
+        jTextFieldIDFilm.setText("P" + generateID());
+        film.setTenPhim(jTextAreaTenPhim.getText());
+        film.setTheLoai(jTextFieldTheLoai.getText());
+        film.setQuocGia(jComboBoxQuocGia.getSelectedItem().toString());
+        film.setThoiLuong(jTextFieldThoiLuong.getText());
+        
+        //check date if datecreated is greater or not than today
+        Date today = new Date();
+        if(jDateChooser.getDate().before(today)){
+            JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
+            jDateChooser.requestFocus();
+            return;
+        }
+        film.setKhoiChieu(jDateChooser.getDate());
+        
+        film.setNgonNgu(jComboBoxNgonNgu.getSelectedItem().toString());
+        film.setDaoDien(jTextFieldDaoDien.getText());
+        film.setNhaSanXuat(jComboBoxNhaSanXuat.getSelectedItem().toString());
+        film.setDienVienChinh(jTextAreaDienVienChinh.getText());
+        film.setNoiDung(jTextAreaNoiDung.getText());
+        film.setMaNhan(jComboBoxNhan.getSelectedItem().toString());
+        film.setTinhTrang(jComboBoxTinhTrang.getSelectedItem().toString());
+        
+        myExcuteQuery.insertPhim(film, path);
+        JOptionPane.showMessageDialog(null, "Create film successfully!!!");
+        reset();
+    }//GEN-LAST:event_jButtonAddKeyPressed
+
+    private void jButtonCloseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCloseKeyPressed
+        this.dispose();
+    }//GEN-LAST:event_jButtonCloseKeyPressed
 
     private ImageIcon resizeImage(String Imagepath) {
         ImageIcon myimage = new ImageIcon(Imagepath);
@@ -488,6 +543,23 @@ public class NewFilm extends javax.swing.JFrame {
         Image newimg = img.getScaledInstance(jLabelPicture.getWidth(), jLabelPicture.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newimg);
         return image;
+    }
+    
+    private void reset(){
+        jTextFieldIDFilm.setText("");
+        jTextAreaTenPhim.setText("");
+        jLabelPicture.setIcon(null);
+        jTextFieldTheLoai.setText("");
+        jComboBoxQuocGia.setSelectedIndex(0);
+        jTextFieldThoiLuong.setText("");
+        jComboBoxNgonNgu.setSelectedIndex(0);
+        jTextFieldDaoDien.setText("");
+        jComboBoxNhaSanXuat.setSelectedIndex(0);
+        jTextAreaDienVienChinh.setText("");
+        jTextAreaNoiDung.setText("");
+        jComboBoxTinhTrang.setSelectedIndex(0);
+        jComboBoxNhan.setSelectedIndex(0);
+        jTextAreaTenPhim.requestFocus();
     }
     
     
@@ -540,10 +612,12 @@ public class NewFilm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonClose;
     private javax.swing.JButton jButtonLoad;
+    private javax.swing.JComboBox<String> jComboBoxNgonNgu;
     private javax.swing.JComboBox<String> jComboBoxNhaSanXuat;
     private javax.swing.JComboBox<String> jComboBoxNhan;
     private javax.swing.JComboBox<String> jComboBoxQuocGia;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> jComboBoxTinhTrang;
+    private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -563,19 +637,16 @@ public class NewFilm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTinhTrang;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextAreaDienVienChinh;
     private javax.swing.JTextArea jTextAreaNoiDung;
     private javax.swing.JTextArea jTextAreaTenPhim;
     private javax.swing.JTextField jTextFieldDaoDien;
     private javax.swing.JTextField jTextFieldIDFilm;
-    private javax.swing.JTextField jTextFieldNgonNgu;
     private javax.swing.JTextField jTextFieldTheLoai;
-    private javax.swing.JTextField jTextFieldTinhTrang;
+    private javax.swing.JTextField jTextFieldThoiLuong;
     // End of variables declaration//GEN-END:variables
 }

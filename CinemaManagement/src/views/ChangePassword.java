@@ -5,10 +5,8 @@
  */
 package views;
 
-import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Color;
-import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -286,7 +284,6 @@ public class ChangePassword extends javax.swing.JFrame {
         } else if (String.valueOf(jTextFiledPassword1.getPassword()).equals("Enter Password")) {
             jTextFiledPassword1.requestFocus();
         } else {
-            Connection con = MyConnection.getConnection();
             String query1 = "Update account set user_password =? where username =? and user_password =?";
             String query2 = "Select * from account where username =? and user_password =?";
             String username = jTextFieldName.getText().toUpperCase();
@@ -296,8 +293,8 @@ public class ChangePassword extends javax.swing.JFrame {
             parameters.add(username);
             parameters.add(String.valueOf(old_password.hashCode()));
 
-            if (myExcuteQuery.checkAccount(con, query2, parameters)) {
-                myExcuteQuery.updatePassword(con, query1, username, String.valueOf(old_password.hashCode()), String.valueOf(new_password.hashCode()));
+            if (myExcuteQuery.checkAccount(query2, parameters)) {
+                myExcuteQuery.updatePassword(query1, username, String.valueOf(old_password.hashCode()), String.valueOf(new_password.hashCode()));
                 JOptionPane.showMessageDialog(null, "Password has changed!!!");
                 jTextFieldName.setText("");
                 jTextFiledPassword.setText("");
@@ -323,7 +320,6 @@ public class ChangePassword extends javax.swing.JFrame {
         } else if (String.valueOf(jTextFiledPassword1.getPassword()).equals("Enter Password")) {
             jTextFiledPassword1.requestFocus();
         } else {
-            Connection con = MyConnection.getConnection();
             String query1 = "Update account set user_password =? where username =? and user_password =?";
             String query2 = "Select * from account where username =? and user_password =?";
             String username = jTextFieldName.getText().toUpperCase();
@@ -333,8 +329,8 @@ public class ChangePassword extends javax.swing.JFrame {
             parameters.add(username);
             parameters.add(String.valueOf(old_password.hashCode()));
 
-            if (myExcuteQuery.checkAccount(con, query2, parameters)) {
-                myExcuteQuery.updatePassword(con, query1, username, old_password, new_password);
+            if (myExcuteQuery.checkAccount(query2, parameters)) {
+                myExcuteQuery.updatePassword(query1, username, old_password, new_password);
                 JOptionPane.showMessageDialog(null, "Password has changed!!!");
                 jTextFieldName.setText("");
                 jTextFiledPassword.setText("");

@@ -5,11 +5,13 @@
         <group>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/Login.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/PhimManagement.java</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/QueryInterface.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/MainForm.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/NewFilm.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/model/Film.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/MyExcuteQuery.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/EditFilm.java</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/model/FilmFormat.java</file>
         </group>
     </open-files>
 </project-private>

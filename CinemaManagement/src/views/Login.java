@@ -272,7 +272,6 @@ public class Login extends javax.swing.JFrame {
         } else if (String.valueOf(jTextFiledPassword.getPassword()).equals("Enter Password")) {
             jTextFiledPassword.requestFocus();
         } else {
-            Connection con = MyConnection.getConnection();
             String query = "select * from account where username =? and user_password =?";
             String queryUpdate = "update account set trang_thai = 1 where username =? and user_password =?";
             String queryGetName = "select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
@@ -281,14 +280,14 @@ public class Login extends javax.swing.JFrame {
             parameters.add(_username);
             parameters.add(String.valueOf(_password.hashCode()));
 
-            if (myExcuteQuery.checkStatus(con, query, parameters)) {
+            if (myExcuteQuery.checkStatus(query, parameters)) {
                 JOptionPane.showMessageDialog(null, "Account has been logged in already!!!");
                 System.exit(0);
             }
             
-            if (myExcuteQuery.checkAccount(con, query, parameters)) {
-                myExcuteQuery.updateStatus(con, queryUpdate, parameters);
-                nameOfUser = myExcuteQuery.getName(con, queryGetName, _username);
+            if (myExcuteQuery.checkAccount(query, parameters)) {
+                myExcuteQuery.updateStatus(queryUpdate, parameters);
+                nameOfUser = myExcuteQuery.getName(queryGetName, _username);
                 username = _username;
                 password = String.valueOf(_password.hashCode());
                 
@@ -326,14 +325,14 @@ public class Login extends javax.swing.JFrame {
             parameters.add(_username);
             parameters.add(String.valueOf(_password.hashCode()));
 
-            if (myExcuteQuery.checkStatus(con, query, parameters)) {
+            if (myExcuteQuery.checkStatus(query, parameters)) {
                 JOptionPane.showMessageDialog(null, "Account has been logged in already!!!");
                 System.exit(0);
             }
             
-            if (myExcuteQuery.checkAccount(con, query, parameters)) {
-                myExcuteQuery.updateStatus(con, queryUpdate, parameters);
-                nameOfUser = myExcuteQuery.getName(con, queryGetName, _username);
+            if (myExcuteQuery.checkAccount(query, parameters)) {
+                myExcuteQuery.updateStatus(queryUpdate, parameters);
+                nameOfUser = myExcuteQuery.getName(queryGetName, _username);
                 username = _username;
                 password = String.valueOf(_password.hashCode());
                 
