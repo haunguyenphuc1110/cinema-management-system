@@ -26,12 +26,10 @@ public class NewFilm extends javax.swing.JFrame {
     /**
      * Creates new form NewFirm
      */
-    ArrayList<String> parameters;
     MyExcuteQuery myExcuteQuery;
     String path;
     public NewFilm() {
         initComponents();
-        parameters = new ArrayList<>();
         myExcuteQuery = new MyExcuteQuery();
         jTextAreaTenPhim.requestFocus();
     }

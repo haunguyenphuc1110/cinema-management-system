@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import model.Film;
 import model.FilmFormat;
+import model.KTG;
+import model.ShowTime;
 /**
  *
  * @author HAU
@@ -53,5 +55,17 @@ public interface QueryInterface {
     
     //Delete format film
     void deleteFormatFilm(String idFilm, String idDinhDang);
+    
+    //Create showtime
+    void insertKTG(KTG ktg);
+    //Load all KTG
+    ArrayList<KTG> loadAllKTG();
+    
+    //Create show time
+    void insertShowTime(ShowTime showtime);
+    //Load all show time
+    ArrayList<ShowTime> loadAllShowTime();
+    String findNameFilmByID(String id);
+    //ArrayList<ShowTime> loadAllShowTimeMovie();
      
 }

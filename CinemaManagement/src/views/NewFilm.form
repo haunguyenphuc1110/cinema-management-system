@@ -356,7 +356,6 @@
                                   <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jButtonAdd" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                       <Component id="jButtonClose" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>

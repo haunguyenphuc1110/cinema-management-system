@@ -316,7 +316,6 @@ public class Login extends javax.swing.JFrame {
         } else if (String.valueOf(jTextFiledPassword.getPassword()).equals("Enter Password")) {
             jTextFiledPassword.requestFocus();
         } else {
-            Connection con = MyConnection.getConnection();
             String query = "Select * from account where username =? and user_password =?";
             String queryUpdate = "Update account set trang_thai = 1 where username =? and user_password =?";
             String queryGetName = "Select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";

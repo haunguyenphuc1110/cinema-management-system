@@ -5,9 +5,7 @@
  */
 package views;
 
-import control.MyConnection;
 import control.MyExcuteQuery;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -72,6 +70,7 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItemNote = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("MeRap Cinema");
         setPreferredSize(new java.awt.Dimension(1920, 1070));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -437,7 +436,7 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLogoutMouseClicked
-        String queryUpdate = "Update account set trang_thai = 0 where username =? and user_password =?";
+        String queryUpdate = "Update account set trang_thai = 0 where username =? and user_password = ?";
         parameters.add(x.getUser());
         parameters.add(x.getPassword());
         myExcuteQuery.updateStatus(queryUpdate, parameters);
@@ -457,7 +456,9 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        // TODO add your handling code here:
+        ShowTimeManagement frm = new ShowTimeManagement();
+        jDesktopPane1.add(frm);
+        frm.setVisible(true);
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked

@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 import views.Login;
 import model.Film;
 import model.FilmFormat;
+import model.KTG;
+import model.ShowTime;
 
 /**
  *
@@ -78,7 +80,6 @@ public class MyExcuteQuery implements QueryInterface {
 
             pst.setString(1, para.get(0));
             pst.setString(2, para.get(1));
-
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -272,6 +273,7 @@ public class MyExcuteQuery implements QueryInterface {
         }
     }
 
+    //Insert format film
     @Override
     public void insertFormatFilm(String idFilm, String idDinhDang) {
         PreparedStatement pst;
@@ -296,7 +298,7 @@ public class MyExcuteQuery implements QueryInterface {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new FilmFormat(String.valueOf(rs.getString(1)), rs.getString(2), rs.getString(3)));
+                list.add(new FilmFormat(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
 
         } catch (SQLException ex) {
@@ -338,6 +340,88 @@ public class MyExcuteQuery implements QueryInterface {
         } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void insertKTG(KTG ktg) {
+        PreparedStatement pst;
+        String query = "insert into KTG values(?,?,?)";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, ktg.getIdKTG());
+            pst.setDate(2, new Date(ktg.getDate().getTime()));
+            pst.setString(3, ktg.getTime());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<KTG> loadAllKTG() {
+        PreparedStatement pst;
+        ArrayList<KTG> list = new ArrayList<>();
+        String query = "select * from KTG";
+        try {
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new KTG(rs.getString(1), rs.getDate(2), rs.getString(3)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+
+    @Override
+    public void insertShowTime(ShowTime showtime) {
+        PreparedStatement pst;
+        String query = "insert into lichchieu values(?,?,?)";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, showtime.getIdKTG());
+            pst.setString(2, showtime.getIdFilm());
+            pst.setString(3, showtime.getIdRoom());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+    @Override
+    public ArrayList<ShowTime> loadAllShowTime() {
+        PreparedStatement pst;
+        ArrayList<ShowTime> list = new ArrayList<>();
+        String query = "select * from lichchieu";
+        try {
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new ShowTime(rs.getString(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public String findNameFilmByID(String id) {
+        PreparedStatement pst;
+        String query = "select tenphim from phim where ma_phim = ?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, id);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next())
+                return rs.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     

@@ -34,14 +34,12 @@ public class EditFilm extends javax.swing.JFrame {
     /**
      * Creates new form NewFirm
      */
-    ArrayList<String> parameters;
     MyExcuteQuery myExcuteQuery;
     String path;
     DefaultTableModel dftable;
 
     public EditFilm(Film film) {
         initComponents();
-        parameters = new ArrayList<>();
         myExcuteQuery = new MyExcuteQuery();
         dftable = (DefaultTableModel) jTable.getModel();
         loadSelectedRowOnForm(film);
