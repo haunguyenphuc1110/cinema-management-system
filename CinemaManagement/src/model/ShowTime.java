@@ -12,14 +12,16 @@ package model;
 public class ShowTime {
     private String idKTG;
     private String idFilm;
+    private String nameFilm;
     private String idRoom;
 
     public ShowTime() {
     }
 
-    public ShowTime(String idKTG, String idFilm, String idRoom) {
+    public ShowTime(String idKTG, String idFilm, String nameFilm, String idRoom) {
         this.idKTG = idKTG;
         this.idFilm = idFilm;
+        this.nameFilm = nameFilm;
         this.idRoom = idRoom;
     }
 
@@ -39,6 +41,14 @@ public class ShowTime {
         this.idFilm = idFilm;
     }
 
+    public String getNameFilm() {
+        return nameFilm;
+    }
+
+    public void setNameFilm(String nameFilm) {
+        this.nameFilm = nameFilm;
+    }
+
     public String getIdRoom() {
         return idRoom;
     }
@@ -49,7 +59,7 @@ public class ShowTime {
 
     @Override
     public String toString() {
-        return "ShowTime{" + "idKTG=" + idKTG + ", idFilm=" + idFilm + ", idRoom=" + idRoom + '}';
+        return "ShowTime{" + "idKTG=" + idKTG + ", idFilm=" + idFilm + ", nameFilm=" + nameFilm + ", idRoom=" + idRoom + '}';
     }
     
 }

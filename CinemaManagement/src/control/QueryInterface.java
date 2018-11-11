@@ -6,17 +6,20 @@
 package control;
 
 import java.sql.Blob;
-import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
+import model.Employee;
 import model.Film;
 import model.FilmFormat;
 import model.KTG;
 import model.ShowTime;
+import model.ShowTimeMovie;
 /**
  *
  * @author HAU
  */
 public interface QueryInterface {
+/*==============================================FOR LOGIN=================================================*/    
     //Check Status of user to prevent from logging in twice
     boolean checkStatus(String query, ArrayList<String> para);
     
@@ -30,7 +33,12 @@ public interface QueryInterface {
     
     //Get name from username
     String getName(String query, String username);
+/*----------------------------------------------------------------------------------------------------------
     
+  
+    
+/*===========================================FOR FILM MANAGEMENT==========================================*/    
+        
     //Create new film
     void insertPhim(Film film, String path);
     
@@ -55,17 +63,41 @@ public interface QueryInterface {
     
     //Delete format film
     void deleteFormatFilm(String idFilm, String idDinhDang);
+/*----------------------------------------------------------------------------------------------------------*/
+
+ 
     
+/*===========================================FOR SHOWTIME MANAGEMENT==========================================*/       
     //Create showtime
     void insertKTG(KTG ktg);
     //Load all KTG
     ArrayList<KTG> loadAllKTG();
+    
+    //Delete KTG
+    void deleteKTG(String idKTG);  
     
     //Create show time
     void insertShowTime(ShowTime showtime);
     //Load all show time
     ArrayList<ShowTime> loadAllShowTime();
     String findNameFilmByID(String id);
-    //ArrayList<ShowTime> loadAllShowTimeMovie();
-     
+    ArrayList<ShowTimeMovie> loadAllShowTimeMovie();
+    
+    //Update show time
+    void updateShowTime(ShowTime showtime_old, ShowTime showtime_new);  
+
+    
+    //Check KTG
+    boolean checkKTG(Date date, String time);
+    
+    //Check showtime
+    boolean checkShowTime(String idKTG, String idFilm, String idRoom );
+/*----------------------------------------------------------------------------------------------------------*/
+    
+    
+    
+/*===========================================FOR EMPLOYEE MANAGEMENT==========================================*/ 
+    void insertEmployee(Employee nv);
+    void updateEmployee(Employee nv);
+    ArrayList<Employee> loadAllEmployee();
 }

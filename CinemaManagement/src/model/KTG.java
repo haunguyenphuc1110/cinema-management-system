@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author HAU
  */
-public class KTG {
+public class KTG{ 
     private String idKTG;
     private Date date;
     private String time;
@@ -24,10 +24,11 @@ public class KTG {
         this.date = date;
         this.time = time;
     }
+            
 
     public String getIdKTG() {
         return idKTG;
-    }
+    } 
 
     public void setIdKTG(String idKTG) {
         this.idKTG = idKTG;
@@ -53,5 +54,6 @@ public class KTG {
     public String toString() {
         return "KTG{" + "idKTG=" + idKTG + ", date=" + date + ", time=" + time + '}';
     }
+
     
 }

@@ -6,15 +6,19 @@
 package views;
 
 import control.MyExcuteQuery;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
+import model.Film;
 import model.KTG;
 import model.ShowTime;
 
@@ -28,32 +32,60 @@ public class NewShowTime extends javax.swing.JFrame {
      * Creates new form NewFirm
      */
     MyExcuteQuery myExcuteQuery;
-    DefaultTableModel dftable;
+    DefaultTableModel dftable1;
+    DefaultTableModel dftable2;
+    DefaultTableModel dftable3;
+    ArrayList<Film> lstFilm;
 
     public NewShowTime() {
         initComponents();
         myExcuteQuery = new MyExcuteQuery();
-        dftable = (DefaultTableModel) jTable1.getModel();
+        lstFilm = new ArrayList<>();
+        dftable1 = (DefaultTableModel) jTable1.getModel();
+        dftable2 = (DefaultTableModel) jTable2.getModel();
+        dftable3 = (DefaultTableModel) jTableListFilm.getModel();
         loadAllKTG();
+        loadAllFilmOnTable();
         loadAllShowTime();
     }
 
     private void loadAllKTG() {
-        dftable.setNumRows(0);
+        dftable1.setNumRows(0);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         ArrayList<KTG> list = myExcuteQuery.loadAllKTG();
         for (KTG lst : list) {
-            Object[] obj = {lst.getIdKTG(), lst.getDate(), lst.getTime()};
-            dftable.addRow(obj);
+            Object[] obj = {lst.getIdKTG(), formatter.format(lst.getDate()), lst.getTime()};
+            dftable1.addRow(obj);
         }
     }
-    
-    private void loadAllShowTime(){
-        dftable.setNumRows(0);
+
+    private void loadAllShowTime() {
+        dftable2.setNumRows(0);
         ArrayList<ShowTime> list = myExcuteQuery.loadAllShowTime();
         for (ShowTime lst : list) {
-            String name = myExcuteQuery.findNameFilmByID(jTextFieldIdFilm.getText());
-            Object[] obj = {lst.getIdFilm(), name, lst.getIdRoom()};
-            dftable.addRow(obj);
+            Object[] obj = {lst.getIdKTG(), lst.getIdFilm(), lst.getNameFilm(), lst.getIdRoom()};
+            dftable2.addRow(obj);
+        }
+    }
+
+    private void loadAllFilmOnTable() {
+        dftable3.setRowCount(0);
+        String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim";
+        lstFilm = myExcuteQuery.loadAllPhim(query);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < lstFilm.size(); i++) {
+            String maPhim = lstFilm.get(i).getMaPhim();
+            String tenPhim = lstFilm.get(i).getTenPhim();
+            String theLoai = lstFilm.get(i).getTheLoai();
+            String quocGia = lstFilm.get(i).getQuocGia();
+            String thoiLuong = lstFilm.get(i).getThoiLuong();
+            String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
+            String ngonNgu = lstFilm.get(i).getNgonNgu();
+            String maNhan = lstFilm.get(i).getMaNhan();
+            String tinhTrang = lstFilm.get(i).getTinhTrang();
+
+            Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, maNhan, tinhTrang};
+            dftable3.addRow(ojb);
         }
     }
 
@@ -82,6 +114,7 @@ public class NewShowTime extends javax.swing.JFrame {
         Date date = new Date();
         SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         jSpinner = new javax.swing.JSpinner(sm);
+        jButtonXoa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -95,6 +128,8 @@ public class NewShowTime extends javax.swing.JFrame {
         jComboBox = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableListFilm = new javax.swing.JTable();
         jButtonClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -151,6 +186,20 @@ public class NewShowTime extends javax.swing.JFrame {
         jSpinner.setEditor(de);
         jSpinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jButtonXoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_minus_1645995.png"))); // NOI18N
+        jButtonXoa.setText("Xóa");
+        jButtonXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonXoaActionPerformed(evt);
+            }
+        });
+        jButtonXoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonXoaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -163,15 +212,16 @@ public class NewShowTime extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(119, 119, 119)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                    .addComponent(jSpinner)
-                    .addComponent(jTextFieldIdKTG))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jButtonAddTime)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonXoa))
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                        .addComponent(jSpinner)
+                        .addComponent(jTextFieldIdKTG)))
                 .addContainerGap(166, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAddTime)
-                .addGap(219, 219, 219))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,15 +237,17 @@ public class NewShowTime extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                                 .addComponent(jTextFieldIdKTG, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jButtonAddTime)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddTime)
+                    .addComponent(jButtonXoa))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -216,6 +268,11 @@ public class NewShowTime extends javax.swing.JFrame {
             }
         });
         jTable1.setRowHeight(30);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(1).setHeaderValue("Ngày chiếu");
@@ -234,8 +291,7 @@ public class NewShowTime extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Khung thời gian", jPanel3);
@@ -273,7 +329,7 @@ public class NewShowTime extends javax.swing.JFrame {
         jTextFieldIdFilm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rạp 1", "Rạp 2", "Rạp 3", "Rạp 4", "Rạp 5", "Rạp 6" }));
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RAP01", "RAP02", "RAP03", "RAP04", "RAP05", "RAP06" }));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -287,18 +343,18 @@ public class NewShowTime extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel8))
-                        .addGap(119, 119, 119)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldIdFilm)
-                            .addComponent(jComboBox, 0, 199, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(jButtonAddShowTime)
-                                .addGap(51, 51, 51))))
+                            .addComponent(jLabel8)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(jLabel10)))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox, 0, 199, Short.MAX_VALUE)
+                    .addComponent(jTextFieldIdFilm, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jButtonAddShowTime)))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,11 +363,11 @@ public class NewShowTime extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(jTextFieldIdFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(8, 8, 8)
                         .addComponent(jLabel10)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -320,9 +376,9 @@ public class NewShowTime extends javax.swing.JFrame {
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonAddShowTime)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTable2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -331,11 +387,11 @@ public class NewShowTime extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã phim", "Tên phim", "Rạp"
+                "Mã KTG", "Mã phim", "Tên phim", "Rạp"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -345,20 +401,48 @@ public class NewShowTime extends javax.swing.JFrame {
         jTable2.setRowHeight(30);
         jScrollPane2.setViewportView(jTable2);
 
+        jTableListFilm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableListFilm.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã phim", "Tên phim", "Thể loại", "Quốc gia", "Thời lượng", "Khởi chiếu", "Ngôn ngữ", "Nhãn", "Tình trạng"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableListFilm.setRowHeight(30);
+        jTableListFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListFilmMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableListFilm);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane3)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Suất chiếu", jPanel4);
@@ -391,8 +475,8 @@ public class NewShowTime extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(332, 332, 332))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
         );
 
         jButtonClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -409,19 +493,18 @@ public class NewShowTime extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -429,24 +512,6 @@ public class NewShowTime extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddTimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAddTimeKeyPressed
-        KTG ktg = new KTG();
-        jTextFieldIdKTG.setText("KTG" + generateID());
-        ktg.setIdKTG(jTextFieldIdKTG.getText());
-
-        //check date if datecreated is greater or not than today
-        Date today = new Date();
-        if (jDateChooser.getDate().before(today)) {
-            JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
-            jDateChooser.requestFocus();
-            return;
-        }
-        ktg.setDate(jDateChooser.getDate());
-        ktg.setTime(jSpinner.getValue().toString());
-        myExcuteQuery.insertKTG(ktg);
-        loadAllKTG();
-    }//GEN-LAST:event_jButtonAddTimeKeyPressed
-
-    private void jButtonAddTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddTimeActionPerformed
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         KTG ktg = new KTG();
         jTextFieldIdKTG.setText("KTG" + generateID());
@@ -459,6 +524,41 @@ public class NewShowTime extends javax.swing.JFrame {
             jDateChooser.requestFocus();
             return;
         }
+        
+        //Check whether datecreated and time have existed 
+        if(myExcuteQuery.checkKTG(jDateChooser.getDate(), formatter.format(jSpinner.getValue()))){
+            JOptionPane.showMessageDialog(null, "Date or time has been existed already!!!");
+            jDateChooser.requestFocus();
+            return;
+        }
+        
+        ktg.setDate(jDateChooser.getDate());
+        ktg.setTime(jSpinner.getValue().toString());
+        myExcuteQuery.insertKTG(ktg);
+        loadAllKTG();
+    }//GEN-LAST:event_jButtonAddTimeKeyPressed
+
+    private void jButtonAddTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddTimeActionPerformed
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        KTG ktg = new KTG();
+        jTextFieldIdKTG.setText("KTG" + generateID());
+        ktg.setIdKTG(jTextFieldIdKTG.getText());
+
+        //check whether datecreated is greater or not than today
+        Date today = new Date();
+        if (jDateChooser.getDate().before(today)) {
+            JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
+            jDateChooser.requestFocus();
+            return;
+        }
+        
+        //Check whether datecreated and time have existed 
+        if(myExcuteQuery.checkKTG(jDateChooser.getDate(), formatter.format(jSpinner.getValue()))){
+            JOptionPane.showMessageDialog(null, "Date or time has been existed already!!!");
+            jDateChooser.requestFocus();
+            return;
+        }
+        
         ktg.setDate(jDateChooser.getDate());
         ktg.setTime(formatter.format(jSpinner.getValue()));
         myExcuteQuery.insertKTG(ktg);
@@ -470,6 +570,14 @@ public class NewShowTime extends javax.swing.JFrame {
         showtime.setIdKTG(jTextFieldIdKTG.getText());
         showtime.setIdFilm(jTextFieldIdFilm.getText());
         showtime.setIdRoom(jComboBox.getSelectedItem().toString());
+        
+        //Check whether showtime has existed 
+        if(myExcuteQuery.checkShowTime(showtime.getIdKTG(), showtime.getIdFilm(), showtime.getIdRoom())){
+            JOptionPane.showMessageDialog(null, "Showtime has been existed already!!!");
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
+        
         myExcuteQuery.insertShowTime(showtime);
         loadAllShowTime();
     }//GEN-LAST:event_jButtonAddShowTimeActionPerformed
@@ -479,6 +587,14 @@ public class NewShowTime extends javax.swing.JFrame {
         showtime.setIdKTG(jTextFieldIdKTG.getText());
         showtime.setIdFilm(jTextFieldIdFilm.getText());
         showtime.setIdRoom(jComboBox.getSelectedItem().toString());
+        
+        //Check whether showtime has existed 
+        if(myExcuteQuery.checkShowTime(showtime.getIdKTG(), showtime.getIdFilm(), showtime.getIdRoom())){
+            JOptionPane.showMessageDialog(null, "Showtime has been existed already!!!");
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
+        
         myExcuteQuery.insertShowTime(showtime);
         loadAllShowTime();
     }//GEN-LAST:event_jButtonAddShowTimeKeyPressed
@@ -486,6 +602,34 @@ public class NewShowTime extends javax.swing.JFrame {
     private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonCloseActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
+            int selectedIndexRow = jTable1.getSelectedRow();
+            jTextFieldIdKTG.setText(dftable1.getValueAt(selectedIndexRow, 0).toString());
+            jDateChooser.setDate(formatter.parse(dftable1.getValueAt(selectedIndexRow, 1).toString()));
+            jSpinner.setValue(formatter1.parse(dftable1.getValueAt(selectedIndexRow, 2).toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewShowTime.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTableListFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListFilmMouseClicked
+        int selectedIndexRow = jTableListFilm.getSelectedRow();
+        jTextFieldIdFilm.setText(dftable3.getValueAt(selectedIndexRow, 0).toString());
+    }//GEN-LAST:event_jTableListFilmMouseClicked
+
+    private void jButtonXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonXoaActionPerformed
+        myExcuteQuery.deleteKTG(jTextFieldIdKTG.getText());
+        loadAllKTG();
+    }//GEN-LAST:event_jButtonXoaActionPerformed
+
+    private void jButtonXoaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonXoaKeyPressed
+        myExcuteQuery.deleteKTG(jTextFieldIdKTG.getText());
+        loadAllKTG();
+    }//GEN-LAST:event_jButtonXoaKeyPressed
 
     private String generateID() {
         Random rd = new Random();
@@ -538,11 +682,8 @@ public class NewShowTime extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAddShowTime;
     private javax.swing.JButton jButtonAddTime;
     private javax.swing.JButton jButtonClose;
-    private javax.swing.JButton jButtonThem;
-    private javax.swing.JButton jButtonThem1;
+    private javax.swing.JButton jButtonXoa;
     private javax.swing.JComboBox<String> jComboBox;
-    private javax.swing.JComboBox<String> jComboBoxDinhDang;
-    private javax.swing.JComboBox<String> jComboBoxDinhDang1;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -558,17 +699,15 @@ public class NewShowTime extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableListFilm;
     private javax.swing.JTextField jTextFieldIdFilm;
     private javax.swing.JTextField jTextFieldIdKTG;
     // End of variables declaration//GEN-END:variables

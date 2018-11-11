@@ -8,7 +8,6 @@ package views;
 import control.MyExcuteQuery;
 import java.awt.Image;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.ImageIcon;

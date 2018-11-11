@@ -66,6 +66,7 @@ public class PhimManagement extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
+        setTitle("Quản lý phim");
 
         jButtonAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_document_text_add_103511.png"))); // NOI18N

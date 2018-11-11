@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Film;
+import model.ShowTimeMovie;
 
 /**
  *
@@ -26,15 +27,34 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
      * Creates new form PhimManagement1
      */
     MyExcuteQuery myExcuteQuery;
-    ArrayList<Film> lstFilm;
+    ArrayList<ShowTimeMovie> lst;
     DefaultTableModel dftable;
 
     public ShowTimeManagement() {
         initComponents();
         myExcuteQuery = new MyExcuteQuery();
-        lstFilm = new ArrayList<>();
+        lst = new ArrayList<>();
         dftable = (DefaultTableModel) jTableListShowTime.getModel();
-        //loadAllFilmOnTable();
+        loadAllShowTimeMovie();
+    }
+
+    private void loadAllShowTimeMovie() {
+        dftable.setRowCount(0);
+        lst = myExcuteQuery.loadAllShowTimeMovie();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < lst.size(); i++) {
+            String maPhim = lst.get(i).getIdFilm();
+            String tenPhim = lst.get(i).getNameFilm();
+            String thoiLuong = lst.get(i).getDuration();
+            String dinh_dang = lst.get(i).getFormat();
+            String ngay_chieu = formatter.format(lst.get(i).getDate());
+            String gio_chieu = lst.get(i).getTime();
+            String rap = lst.get(i).getRoom();
+            String maNhan = lst.get(i).getLabel();
+
+            Object[] ojb = {maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan};
+            dftable.addRow(ojb);
+        }
     }
 
     /**
@@ -66,6 +86,7 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
+        setTitle("Quản lý suất phim");
 
         jButtonAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_document_text_add_103511.png"))); // NOI18N
@@ -290,38 +311,13 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadAllFilmOnTable() {
-        dftable.setRowCount(0);
-        String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim";
-        lstFilm = myExcuteQuery.loadAllPhim(query);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        for (int i = 0; i < lstFilm.size(); i++) {
-            String maPhim = lstFilm.get(i).getMaPhim();
-            String tenPhim = lstFilm.get(i).getTenPhim();
-            String theLoai = lstFilm.get(i).getTheLoai();
-            String quocGia = lstFilm.get(i).getQuocGia();
-            String thoiLuong = lstFilm.get(i).getThoiLuong();
-            String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
-            String ngonNgu = lstFilm.get(i).getNgonNgu();
-            String daoDien = lstFilm.get(i).getDaoDien();
-            String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
-            String dienVienChinh = lstFilm.get(i).getDienVienChinh();
-            String noiDung = lstFilm.get(i).getNoiDung();
-            String maNhan = lstFilm.get(i).getMaNhan();
-            String tinhTrang = lstFilm.get(i).getTinhTrang();
-
-            Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
-            dftable.addRow(ojb);
-        }
-    }
-
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         NewShowTime frm = new NewShowTime();
         frm.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonLoadAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadAllActionPerformed
-        
+        loadAllShowTimeMovie();
     }//GEN-LAST:event_jButtonLoadAllActionPerformed
 
     private void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFindActionPerformed
@@ -333,45 +329,35 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
             name = name.replaceAll("\\s+", " ");
             name = name.toLowerCase();
 
-            for (int i = 0; i < lstFilm.size(); i++) {
-                if (lstFilm.get(i).getTenPhim().toLowerCase().contains(name)) {
-                    String maPhim = lstFilm.get(i).getMaPhim();
-                    String tenPhim = lstFilm.get(i).getTenPhim();
-                    String theLoai = lstFilm.get(i).getTheLoai();
-                    String quocGia = lstFilm.get(i).getQuocGia();
-                    String thoiLuong = lstFilm.get(i).getThoiLuong();
-                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
-                    String ngonNgu = lstFilm.get(i).getNgonNgu();
-                    String daoDien = lstFilm.get(i).getDaoDien();
-                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
-                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
-                    String noiDung = lstFilm.get(i).getNoiDung();
-                    String maNhan = lstFilm.get(i).getMaNhan();
-                    String tinhTrang = lstFilm.get(i).getTinhTrang();
+            for (int i = 0; i < lst.size(); i++) {
+                if (lst.get(i).getNameFilm().toLowerCase().contains(name)) {
+                    String maPhim = lst.get(i).getIdFilm();
+                    String tenPhim = lst.get(i).getNameFilm();
+                    String thoiLuong = lst.get(i).getDuration();
+                    String dinh_dang = lst.get(i).getFormat();
+                    String ngay_chieu = formatter.format(lst.get(i).getDate());
+                    String gio_chieu = lst.get(i).getTime();
+                    String rap = lst.get(i).getRoom();
+                    String maNhan = lst.get(i).getLabel();
 
-                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+                    Object[] ojb = {maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan};
                     dftable.addRow(ojb);
                 }
             }
         } else if (jCheckBoxTime.isSelected() == true) {
-            for (int i = 0; i < lstFilm.size(); i++) {
-                Date date = lstFilm.get(i).getKhoiChieu();
+            for (int i = 0; i < lst.size(); i++) {
+                Date date = lst.get(i).getDate();
                 if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {
-                    String maPhim = lstFilm.get(i).getMaPhim();
-                    String tenPhim = lstFilm.get(i).getTenPhim();
-                    String theLoai = lstFilm.get(i).getTheLoai();
-                    String quocGia = lstFilm.get(i).getQuocGia();
-                    String thoiLuong = lstFilm.get(i).getThoiLuong();
-                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
-                    String ngonNgu = lstFilm.get(i).getNgonNgu();
-                    String daoDien = lstFilm.get(i).getDaoDien();
-                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
-                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
-                    String noiDung = lstFilm.get(i).getNoiDung();
-                    String maNhan = lstFilm.get(i).getMaNhan();
-                    String tinhTrang = lstFilm.get(i).getTinhTrang();
+                    String maPhim = lst.get(i).getIdFilm();
+                    String tenPhim = lst.get(i).getNameFilm();
+                    String thoiLuong = lst.get(i).getDuration();
+                    String dinh_dang = lst.get(i).getFormat();
+                    String ngay_chieu = formatter.format(lst.get(i).getDate());
+                    String gio_chieu = lst.get(i).getTime();
+                    String rap = lst.get(i).getRoom();
+                    String maNhan = lst.get(i).getLabel();
 
-                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+                    Object[] ojb = {maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan};
                     dftable.addRow(ojb);
                 }
             }
@@ -398,88 +384,12 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBoxTimeActionPerformed
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
-        try {
-            SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
-            int selectedIndexRow = jTableListShowTime.getSelectedRow();
-            if (selectedIndexRow == -1) {
-                JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
-                return;
-            }
-            Film film = new Film();
-
-            film.setMaPhim(dftable.getValueAt(selectedIndexRow, 0).toString());
-            film.setTenPhim(dftable.getValueAt(selectedIndexRow, 1).toString());
-            film.setTheLoai(dftable.getValueAt(selectedIndexRow, 2).toString());
-            film.setQuocGia(dftable.getValueAt(selectedIndexRow, 3).toString());
-            film.setThoiLuong(dftable.getValueAt(selectedIndexRow, 4).toString());
-            film.setKhoiChieu(formater.parse(dftable.getValueAt(selectedIndexRow, 5).toString()));
-            film.setNgonNgu(dftable.getValueAt(selectedIndexRow, 6).toString());
-            film.setDaoDien(dftable.getValueAt(selectedIndexRow, 7).toString());
-            film.setNhaSanXuat(dftable.getValueAt(selectedIndexRow, 8).toString());
-            film.setDienVienChinh(dftable.getValueAt(selectedIndexRow, 9).toString());
-            film.setNoiDung(dftable.getValueAt(selectedIndexRow, 10).toString());
-            film.setMaNhan(dftable.getValueAt(selectedIndexRow, 11).toString());
-            film.setTinhTrang(dftable.getValueAt(selectedIndexRow, 12).toString());
-            EditFilm frm = new EditFilm(film);
-
-            frm.setVisible(true);
-        } catch (ParseException ex) {
-            Logger.getLogger(ShowTimeManagement.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         EditShowTime frm = new EditShowTime();
+         frm.setVisible(true);
     }//GEN-LAST:event_jButtonEditActionPerformed
 
     private void jButtonFindKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonFindKeyPressed
-        dftable.setNumRows(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String name;
-        if (jCheckBoxFilm.isSelected() == true) {
-            name = jTextFieldFind.getText().trim();
-            name = name.replaceAll("\\s+", " ");
-            name = name.toLowerCase();
-
-            for (int i = 0; i < lstFilm.size(); i++) {
-                if (lstFilm.get(i).getTenPhim().toLowerCase().contains(name)) {
-                    String maPhim = lstFilm.get(i).getMaPhim();
-                    String tenPhim = lstFilm.get(i).getTenPhim();
-                    String theLoai = lstFilm.get(i).getTheLoai();
-                    String quocGia = lstFilm.get(i).getQuocGia();
-                    String thoiLuong = lstFilm.get(i).getThoiLuong();
-                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
-                    String ngonNgu = lstFilm.get(i).getNgonNgu();
-                    String daoDien = lstFilm.get(i).getDaoDien();
-                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
-                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
-                    String noiDung = lstFilm.get(i).getNoiDung();
-                    String maNhan = lstFilm.get(i).getMaNhan();
-                    String tinhTrang = lstFilm.get(i).getTinhTrang();
-
-                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
-                    dftable.addRow(ojb);
-                }
-            }
-        } else if (jCheckBoxTime.isSelected() == true) {
-            for (int i = 0; i < lstFilm.size(); i++) {
-                Date date = lstFilm.get(i).getKhoiChieu();
-                if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {
-                    String maPhim = lstFilm.get(i).getMaPhim();
-                    String tenPhim = lstFilm.get(i).getTenPhim();
-                    String theLoai = lstFilm.get(i).getTheLoai();
-                    String quocGia = lstFilm.get(i).getQuocGia();
-                    String thoiLuong = lstFilm.get(i).getThoiLuong();
-                    String khoiChieu = formatter.format(lstFilm.get(i).getKhoiChieu());
-                    String ngonNgu = lstFilm.get(i).getNgonNgu();
-                    String daoDien = lstFilm.get(i).getDaoDien();
-                    String nhaSanXuat = lstFilm.get(i).getNhaSanXuat();
-                    String dienVienChinh = lstFilm.get(i).getDienVienChinh();
-                    String noiDung = lstFilm.get(i).getNoiDung();
-                    String maNhan = lstFilm.get(i).getMaNhan();
-                    String tinhTrang = lstFilm.get(i).getTinhTrang();
-
-                    Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
-                    dftable.addRow(ojb);
-                }
-            }
-        }
+        
     }//GEN-LAST:event_jButtonFindKeyPressed
 
     private void jButtonResetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonResetKeyPressed
@@ -488,7 +398,7 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonResetKeyPressed
 
     private void jButtonAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAddKeyPressed
-        NewFilm frm = new NewFilm();
+        NewShowTime frm = new NewShowTime();
         frm.setVisible(true);
     }//GEN-LAST:event_jButtonAddKeyPressed
 
@@ -524,7 +434,7 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEditKeyPressed
 
     private void jButtonLoadAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonLoadAllKeyPressed
-        loadAllFilmOnTable();
+        loadAllShowTimeMovie();
     }//GEN-LAST:event_jButtonLoadAllKeyPressed
 
 
