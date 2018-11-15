@@ -12,6 +12,8 @@ import java.util.Date;
  * @author HAU
  */
 public class Employee {
+
+    private int stt;
     private String idEmployee;
     private String nameEmployee;
     private Date birth;
@@ -27,7 +29,8 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String idEmployee, String nameEmployee, Date birth, String gender, String email, String phone, String address, String status, String username, String job, Date addmission) {
+    public Employee(int stt, String idEmployee, String nameEmployee, Date birth, String gender, String email, String phone, String address, String status, String username, String job, Date addmission) {
+        this.stt = stt;
         this.idEmployee = idEmployee;
         this.nameEmployee = nameEmployee;
         this.birth = birth;
@@ -39,6 +42,14 @@ public class Employee {
         this.username = username;
         this.job = job;
         this.addmission = addmission;
+    }
+
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
     public String getIdEmployee() {
@@ -131,8 +142,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "idEmployee=" + idEmployee + ", nameEmployee=" + nameEmployee + ", birth=" + birth + ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address + ", status=" + status + ", username=" + username + ", job=" + job + ", addmission=" + addmission + '}';
+        return "Employee{" + "stt=" + stt + ", idEmployee=" + idEmployee + ", nameEmployee=" + nameEmployee + ", birth=" + birth + ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address + ", status=" + status + ", username=" + username + ", job=" + job + ", addmission=" + addmission + '}';
     }
-    
-    
+
 }

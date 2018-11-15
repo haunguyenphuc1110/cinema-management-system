@@ -22,8 +22,10 @@ import views.Login;
 import model.Film;
 import model.FilmFormat;
 import model.KTG;
+import model.Member;
 import model.ShowTime;
 import model.ShowTimeMovie;
+import model.Ticket;
 
 /**
  *
@@ -35,7 +37,8 @@ public class MyExcuteQuery implements QueryInterface {
     public MyExcuteQuery(){
         con = MyConnection.getConnection();
     }
-    
+
+/*==============================================FOR LOGIN=================================================*/     
     //Check status of user account to prevent from logging in twice
     @Override
     public boolean checkStatus(String query, ArrayList<String> para) {
@@ -128,6 +131,8 @@ public class MyExcuteQuery implements QueryInterface {
         return null;
     }
 
+    
+/*===========================================FOR FILM MANAGEMENT==========================================*/        
     //Create new film
     @Override
     public void insertPhim(Film film, String path) {
@@ -164,8 +169,9 @@ public class MyExcuteQuery implements QueryInterface {
 
     //List all phim from database
     @Override
-    public ArrayList<Film> loadAllPhim(String query) {
+    public ArrayList<Film> loadAllPhim() {
         PreparedStatement pst;
+        String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim order by tenphim";
         ArrayList<Film> lstFilm = new ArrayList<>();
         Film film;
         try {
@@ -299,7 +305,7 @@ public class MyExcuteQuery implements QueryInterface {
     public ArrayList<FilmFormat> loadAllFilmFormat() {
         PreparedStatement pst;
         ArrayList<FilmFormat> list = new ArrayList<>();
-        String query = "select a.ma_phim, b.tenphim, a.ma_dinh_dang from phim_dinhdang a, phim b where a.ma_phim = b.ma_phim";
+        String query = "select a.ma_phim, b.tenphim, a.ma_dinh_dang from phim_dinhdang a, phim b where a.ma_phim = b.ma_phim order by a.ma_dinh_dang";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -348,6 +354,9 @@ public class MyExcuteQuery implements QueryInterface {
         }
     }
 
+/*===========================================FOR SHOWTIME MANAGEMENT==========================================*/ 
+    
+    
     @Override
     public void insertKTG(KTG ktg) {
         PreparedStatement pst;
@@ -367,7 +376,7 @@ public class MyExcuteQuery implements QueryInterface {
     public ArrayList<KTG> loadAllKTG() {
         PreparedStatement pst;
         ArrayList<KTG> list = new ArrayList<>();
-        String query = "select * from KTG";
+        String query = "select * from KTG order by ngay_chieu, gio_chieu";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -414,7 +423,8 @@ public class MyExcuteQuery implements QueryInterface {
     public ArrayList<ShowTime> loadAllShowTime() {
         PreparedStatement pst;
         ArrayList<ShowTime> list = new ArrayList<>();
-        String query = "select * from lichchieu";
+        String query = "select e.ma_ktg, b.ma_phim, f.ma_rap from lichchieu a, phim b, phim_dinhdang c, dinhdang d, ktg e, rap f "
+                      +"where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by f.ma_rap";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -447,14 +457,14 @@ public class MyExcuteQuery implements QueryInterface {
     public ArrayList<ShowTimeMovie> loadAllShowTimeMovie() {
         PreparedStatement pst;
         ArrayList<ShowTimeMovie> list = new ArrayList<>();
-        String query = "select b.ma_phim, b.tenphim, b.thoi_luong, d.ma_dinh_dang, e.ngay_chieu, e.gio_chieu, f.ma_rap, b.ma_nhan "
+        String query = "select b.ma_phim, b.tenphim, b.thoi_luong, d.ma_dinh_dang, e.ngay_chieu, e.gio_chieu, f.ma_rap, b.ma_nhan, e.ma_ktg "
                      + "from lichchieu a, phim b, phim_dinhdang c, dinhdang d, ktg e, rap f "
-                     + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang";
+                     + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by e.ngay_chieu, e.gio_chieu";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ShowTimeMovie(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                list.add(new ShowTimeMovie(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
@@ -513,8 +523,11 @@ public class MyExcuteQuery implements QueryInterface {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }    
-
+    }  
+    
+    
+/*===========================================FOR EMPLOYEE MANAGEMENT==========================================*/ 
+    
     @Override
     public void insertEmployee(Employee nv) {
         PreparedStatement pst;
@@ -574,23 +587,165 @@ public class MyExcuteQuery implements QueryInterface {
             ResultSet rs = pst.executeQuery();          
             while(rs.next()){
                 nv = new Employee();
-                nv.setIdEmployee(rs.getString(1));
-                nv.setNameEmployee(rs.getString(2));
-                nv.setBirth(rs.getDate(3));
-                nv.setGender(rs.getString(4));
-                nv.setEmail(rs.getString(5));
-                nv.setPhone(rs.getString(6));
-                nv.setAddress(rs.getString(7));
-                nv.setStatus(rs.getString(8));
-                nv.setUsername(rs.getString(9));
-                nv.setJob(rs.getString(10));
-                nv.setAddmission(rs.getDate(11));
+                nv.setStt(rs.getInt(1));
+                nv.setIdEmployee(rs.getString(2));
+                nv.setNameEmployee(rs.getString(3));
+                nv.setBirth(rs.getDate(4));
+                nv.setGender(rs.getString(5));
+                nv.setEmail(rs.getString(6));
+                nv.setPhone(rs.getString(7));
+                nv.setAddress(rs.getString(8));
+                nv.setStatus(rs.getString(9));
+                nv.setUsername(rs.getString(10));
+                nv.setJob(rs.getString(11));
+                nv.setAddmission(rs.getDate(12));
                 list.add(nv);
             }
         } catch (SQLException ex){
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    
+/*===========================================FOR MEMBER MANAGEMENT==========================================*/    
+
+    @Override
+    public void insertMember(Member member) {
+        PreparedStatement pst;
+        String query = "insert into thanhvien values (?,?,?,?,?,?,?,?)";
+        try{
+            pst = con.prepareStatement(query);
+            pst.setString(1, member.getIdMember());
+            pst.setString(2, member.getNameMember());
+            pst.setDate(3, new Date(member.getBirth().getTime()));
+            pst.setString(4, member.getGender());
+            pst.setString(5, member.getEmail());
+            pst.setString(6, member.getPhone());
+            pst.setString(7, member.getAddress());
+            pst.setString(8, member.getType());
+            pst.executeUpdate();
+        } catch (SQLException ex){
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateMember(Member member) {
+        PreparedStatement pst;
+        String query = "update thanhvien set hoten = ?, ngaysinh = ?, gioitinh = ?, email = ?, "
+                     + "sdt = ?, diachi= ?, loai = ? "
+                     + "where ma_thanh_vien = ?";
+        try{
+            pst = con.prepareStatement(query);
+            pst.setString(8, member.getIdMember());
+            pst.setString(1, member.getNameMember());
+            pst.setDate(2, new Date(member.getBirth().getTime()));
+            pst.setString(3, member.getGender());
+            pst.setString(4, member.getEmail());
+            pst.setString(5, member.getPhone());
+            pst.setString(6, member.getAddress());
+            pst.setString(7, member.getType());
+            pst.executeUpdate();
+        } catch (SQLException ex){
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<Member> loadAllMember() {
+        PreparedStatement pst;
+        String query = "select * from thanhvien order by stt";
+        ArrayList<Member> list = new ArrayList<>();
+        Member member;
+        try{
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();          
+            while(rs.next()){
+                member = new Member();
+                member.setStt(rs.getInt(1));
+                member.setIdMember(rs.getString(2));
+                member.setNameMember(rs.getString(3));
+                member.setBirth(rs.getDate(4));
+                member.setGender(rs.getString(5));
+                member.setEmail(rs.getString(6));
+                member.setPhone(rs.getString(7));
+                member.setAddress(rs.getString(8));
+                member.setType(rs.getString(9));
+                list.add(member);
+            }
+        } catch (SQLException ex){
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    
+    
+    /*===========================================FOR TICKET MANAGEMENT==========================================*/ 
+
+    @Override
+    public ArrayList<Ticket> loadAllTicket() {
+        PreparedStatement pst;
+        String query = "select * from ve order by ma_rap";
+        ArrayList<Ticket> list = new ArrayList<>();
+        Ticket ticket;
+        KTG ktg;
+        try{
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();          
+            while(rs.next()){
+                ticket = new Ticket();
+                ticket.setIdTicket(rs.getString(1));
+                ticket.setIdFilm(rs.getString(2));
+                ticket.setNameFilm(findNameFilmByID(rs.getString(2)));
+                ticket.setRoom(rs.getString(3));
+                ticket.setSeat(rs.getString(4));
+                ktg = findKTG(rs.getString(5));
+                ticket.setDate(ktg.getDate());
+                ticket.setTime(ktg.getTime());
+                ticket.setTotal(findPrice(rs.getString(6)));
+                list.add(ticket);
+            }
+        } catch (SQLException ex){
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public KTG findKTG(String idKTG) {
+        PreparedStatement pst;
+        KTG ktg;
+        String query = "select * from KTG where ma_ktg = ?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idKTG);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ktg = new KTG(rs.getString(1), rs.getDate(2), rs.getString(3));
+                return ktg;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public int findPrice(String idPrice) {
+        PreparedStatement pst;
+        String query = "select dongia from gia where ma_gia = ?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idPrice);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
     
     

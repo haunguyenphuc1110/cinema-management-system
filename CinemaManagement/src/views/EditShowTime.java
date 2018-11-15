@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Film;
 import model.ShowTime;
+import model.ShowTimeMovie;
 
 /**
  *
@@ -27,7 +28,7 @@ public class EditShowTime extends javax.swing.JFrame {
     DefaultTableModel dftable1;
     ArrayList<Film> lstFilm;
 
-    public EditShowTime() {
+    public EditShowTime(ShowTimeMovie showTime) {
         initComponents();
         myExcuteQuery = new MyExcuteQuery();
         lstFilm = new ArrayList<>();
@@ -35,13 +36,19 @@ public class EditShowTime extends javax.swing.JFrame {
         dftable1 = (DefaultTableModel) jTable.getModel();
         loadAllFilmOnTable();
         loadAllShowTime();
+        jTextFieldIdKTG.setText(showTime.getIdKTG());
+        jTextFieldIdFilm.setText(showTime.getIdFilm());
+        jComboBox.setSelectedItem(showTime.getRoom());
+    }
+
+    private EditShowTime() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
     private void loadAllFilmOnTable() {
         dftable.setRowCount(0);
-        String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim";
-        lstFilm = myExcuteQuery.loadAllPhim(query);
+        lstFilm = myExcuteQuery.loadAllPhim();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lstFilm.size(); i++) {
             String maPhim = lstFilm.get(i).getMaPhim();

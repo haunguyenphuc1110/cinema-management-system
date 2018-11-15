@@ -12,8 +12,10 @@ import model.Employee;
 import model.Film;
 import model.FilmFormat;
 import model.KTG;
+import model.Member;
 import model.ShowTime;
 import model.ShowTimeMovie;
+import model.Ticket;
 /**
  *
  * @author HAU
@@ -43,7 +45,7 @@ public interface QueryInterface {
     void insertPhim(Film film, String path);
     
     //List all phim from database
-    ArrayList<Film> loadAllPhim(String query);
+    ArrayList<Film> loadAllPhim();
     
     //Get image by film's id from database
     Blob getImageByID(String query);
@@ -100,4 +102,21 @@ public interface QueryInterface {
     void insertEmployee(Employee nv);
     void updateEmployee(Employee nv);
     ArrayList<Employee> loadAllEmployee();
+/*----------------------------------------------------------------------------------------------------------*/
+    
+
+
+/*===========================================FOR MEMBER MANAGEMENT==========================================*/ 
+    void insertMember(Member member);
+    void updateMember(Member member);
+    ArrayList<Member> loadAllMember();
+/*----------------------------------------------------------------------------------------------------------*/    
+    
+    
+
+/*===========================================FOR TICKET MANAGEMENT==========================================*/ 
+    ArrayList<Ticket>loadAllTicket();
+    KTG findKTG(String idKTG);
+    int findPrice(String idPrice);
+/*----------------------------------------------------------------------------------------------------------*/ 
 }

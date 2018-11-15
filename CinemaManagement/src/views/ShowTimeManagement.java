@@ -43,6 +43,7 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
         lst = myExcuteQuery.loadAllShowTimeMovie();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lst.size(); i++) {
+            int id = i + 1;
             String maPhim = lst.get(i).getIdFilm();
             String tenPhim = lst.get(i).getNameFilm();
             String thoiLuong = lst.get(i).getDuration();
@@ -51,8 +52,9 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
             String gio_chieu = lst.get(i).getTime();
             String rap = lst.get(i).getRoom();
             String maNhan = lst.get(i).getLabel();
+            String maKTG = lst.get(i).getIdKTG();
 
-            Object[] ojb = {maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan};
+            Object[] ojb = {id, maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan, maKTG};
             dftable.addRow(ojb);
         }
     }
@@ -263,11 +265,11 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã phim", "Tên phim", "Thời lượng", "Định dạng", "Ngày chiếu", "Giờ chiếu", "Rạp", "Nhãn"
+                "STT", "Mã phim", "Tên phim", "Thời lượng", "Định dạng", "Ngày chiếu", "Giờ chiếu", "Rạp", "Nhãn", "Mã KTG"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -331,6 +333,89 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < lst.size(); i++) {
                 if (lst.get(i).getNameFilm().toLowerCase().contains(name)) {
+                    int id = i + 1;
+                    String maPhim = lst.get(i).getIdFilm();
+                    String tenPhim = lst.get(i).getNameFilm();
+                    String thoiLuong = lst.get(i).getDuration();
+                    String dinh_dang = lst.get(i).getFormat();
+                    String ngay_chieu = formatter.format(lst.get(i).getDate());
+                    String gio_chieu = lst.get(i).getTime();
+                    String rap = lst.get(i).getRoom();
+                    String maNhan = lst.get(i).getLabel();
+                    String maKTG = lst.get(i).getIdKTG();
+
+                    Object[] ojb = {id, maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan, maKTG};
+                    dftable.addRow(ojb);
+                }
+            }
+        } else if (jCheckBoxTime.isSelected() == true) {
+            for (int i = 0; i < lst.size(); i++) {
+                Date date = lst.get(i).getDate();
+                if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {
+                    int id = i + 1;
+                    String maPhim = lst.get(i).getIdFilm();
+                    String tenPhim = lst.get(i).getNameFilm();
+                    String thoiLuong = lst.get(i).getDuration();
+                    String dinh_dang = lst.get(i).getFormat();
+                    String ngay_chieu = formatter.format(lst.get(i).getDate());
+                    String gio_chieu = lst.get(i).getTime();
+                    String rap = lst.get(i).getRoom();
+                    String maNhan = lst.get(i).getLabel();
+                    String maKTG = lst.get(i).getIdKTG();
+
+                    Object[] ojb = {id, maPhim, tenPhim, thoiLuong, dinh_dang, ngay_chieu, gio_chieu, rap, maNhan, maKTG};
+                    dftable.addRow(ojb);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonFindActionPerformed
+
+    private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
+        jTextFieldFind.setText("");
+        jTextFieldFind.requestFocus();
+    }//GEN-LAST:event_jButtonResetActionPerformed
+
+    private void jCheckBoxFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFilmActionPerformed
+        jTextFieldFind.setEditable(true);
+        jCheckBoxTime.setSelected(false);
+        jDateChooser1.setEnabled(false);
+        jDateChooser2.setEnabled(false);
+    }//GEN-LAST:event_jCheckBoxFilmActionPerformed
+
+    private void jCheckBoxTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTimeActionPerformed
+        jCheckBoxFilm.setSelected(false);
+        jTextFieldFind.setEditable(false);
+        jDateChooser1.setEnabled(true);
+        jDateChooser2.setEnabled(true);
+    }//GEN-LAST:event_jCheckBoxTimeActionPerformed
+
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        int selectedIndexRow = jTableListShowTime.getSelectedRow();
+        if (selectedIndexRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+            return;
+        }
+
+        ShowTimeMovie showTime = new ShowTimeMovie();
+        showTime.setIdFilm(dftable.getValueAt(selectedIndexRow, 1).toString());
+        showTime.setIdKTG(dftable.getValueAt(selectedIndexRow, 9).toString());
+        showTime.setRoom(dftable.getValueAt(selectedIndexRow, 7).toString());
+
+        EditShowTime frm = new EditShowTime(showTime);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jButtonEditActionPerformed
+
+    private void jButtonFindKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonFindKeyPressed
+        dftable.setNumRows(0);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String name;
+        if (jCheckBoxFilm.isSelected() == true) {
+            name = jTextFieldFind.getText().trim();
+            name = name.replaceAll("\\s+", " ");
+            name = name.toLowerCase();
+
+            for (int i = 0; i < lst.size(); i++) {
+                if (lst.get(i).getNameFilm().toLowerCase().contains(name)) {
                     String maPhim = lst.get(i).getIdFilm();
                     String tenPhim = lst.get(i).getNameFilm();
                     String thoiLuong = lst.get(i).getDuration();
@@ -362,34 +447,6 @@ public class ShowTimeManagement extends javax.swing.JInternalFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButtonFindActionPerformed
-
-    private void jButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetActionPerformed
-        jTextFieldFind.setText("");
-        jTextFieldFind.requestFocus();
-    }//GEN-LAST:event_jButtonResetActionPerformed
-
-    private void jCheckBoxFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFilmActionPerformed
-        jTextFieldFind.setEditable(true);
-        jCheckBoxTime.setSelected(false);
-        jDateChooser1.setEnabled(false);
-        jDateChooser2.setEnabled(false);
-    }//GEN-LAST:event_jCheckBoxFilmActionPerformed
-
-    private void jCheckBoxTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTimeActionPerformed
-        jCheckBoxFilm.setSelected(false);
-        jTextFieldFind.setEditable(false);
-        jDateChooser1.setEnabled(true);
-        jDateChooser2.setEnabled(true);
-    }//GEN-LAST:event_jCheckBoxTimeActionPerformed
-
-    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
-         EditShowTime frm = new EditShowTime();
-         frm.setVisible(true);
-    }//GEN-LAST:event_jButtonEditActionPerformed
-
-    private void jButtonFindKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonFindKeyPressed
-        
     }//GEN-LAST:event_jButtonFindKeyPressed
 
     private void jButtonResetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonResetKeyPressed

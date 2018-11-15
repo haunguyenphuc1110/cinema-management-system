@@ -6,7 +6,9 @@
 package views;
 
 import control.MyExcuteQuery;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -26,6 +28,7 @@ public class MainForm extends javax.swing.JFrame {
         myExcuteQuery = new MyExcuteQuery();
         x = new Login();
         jLabelName.setText("Hello " + x.getUserName());
+        jLabelLogo.setIcon(resizeImage("/images/New_Line_Cinema_logo.png"));
     }
 
     /**
@@ -38,6 +41,7 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabelLogo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelChangePassword = new javax.swing.JLabel();
         jLabelLogout = new javax.swing.JLabel();
@@ -62,7 +66,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItemSaleTicket = new javax.swing.JMenuItem();
+        jMenuItemSellTicket = new javax.swing.JMenuItem();
         jMenuItemReportFilmRevenue = new javax.swing.JMenuItem();
         jMenuItemReportCustomer = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -73,15 +77,19 @@ public class MainForm extends javax.swing.JFrame {
         setTitle("MeRap Cinema");
         setPreferredSize(new java.awt.Dimension(1920, 1070));
 
+        jDesktopPane1.setLayer(jLabelLogo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 1938, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 915, Short.MAX_VALUE)
+            .addComponent(jLabelLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -354,7 +362,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 989, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelName)
@@ -388,9 +396,14 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1.setText("Nghiệp vụ");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
-        jMenuItemSaleTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/movie-tickets (1).png"))); // NOI18N
-        jMenuItemSaleTicket.setText("Bán vé");
-        jMenu1.add(jMenuItemSaleTicket);
+        jMenuItemSellTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/movie-tickets (1).png"))); // NOI18N
+        jMenuItemSellTicket.setText("Bán vé");
+        jMenuItemSellTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSellTicketActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSellTicket);
 
         jMenuItemReportFilmRevenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt.png"))); // NOI18N
         jMenuItemReportFilmRevenue.setText("Báo lợi doanh thu phim theo tháng");
@@ -468,7 +481,9 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        // TODO add your handling code here:
+        MemberManagement frm = new MemberManagement();
+        jDesktopPane1.add(frm);
+        frm.setVisible(true);
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
@@ -476,7 +491,9 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        // TODO add your handling code here:
+        TicketManagement frm = new TicketManagement();
+        jDesktopPane1.add(frm);
+        frm.setVisible(true);
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
@@ -527,12 +544,26 @@ public class MainForm extends javax.swing.JFrame {
         resetColor(jPanel7);
     }//GEN-LAST:event_jPanel7MouseExited
 
+    private void jMenuItemSellTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSellTicketActionPerformed
+        SellTicketManagement frm = new SellTicketManagement();
+        jDesktopPane1.add(frm);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSellTicketActionPerformed
+
     public void setColor(javax.swing.JPanel panel) {
         panel.setBackground(new java.awt.Color(115, 163, 239));
     }
 
     public void resetColor(javax.swing.JPanel panel) {
         panel.setBackground(new java.awt.Color(204, 204, 204));
+    }
+    
+    private ImageIcon resizeImage(String Imagepath) {
+        ImageIcon myimage = new ImageIcon(getClass().getResource(Imagepath));
+        Image img = myimage.getImage();
+        Image newimg = img.getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newimg);
+        return image;
     }
     
     
@@ -587,6 +618,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelChangePassword;
+    private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelLogout;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JMenu jMenu1;
@@ -596,7 +628,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemNote;
     private javax.swing.JMenuItem jMenuItemReportCustomer;
     private javax.swing.JMenuItem jMenuItemReportFilmRevenue;
-    private javax.swing.JMenuItem jMenuItemSaleTicket;
+    private javax.swing.JMenuItem jMenuItemSellTicket;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

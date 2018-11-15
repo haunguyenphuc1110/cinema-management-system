@@ -35,8 +35,6 @@ public class EditEmployee extends javax.swing.JFrame {
     }
     
     private void loadEmployeeOnForm(Employee employee){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        
         jTextFieldID.setText(employee.getIdEmployee());
         jTextFieldName.setText(employee.getNameEmployee());
         jDateChooserBirth.setDate(employee.getBirth());
@@ -417,7 +415,7 @@ public class EditEmployee extends javax.swing.JFrame {
         //Check valid birthday
         if(jDateChooserBirth.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Birthday is invalid!!!");
-            jDateChooserAdmission.requestFocus();
+            jDateChooserBirth.requestFocus();
             return;
         }
         
@@ -506,7 +504,7 @@ public class EditEmployee extends javax.swing.JFrame {
         //Check valid birthday
         if(jDateChooserBirth.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Birthday is invalid!!!");
-            jDateChooserAdmission.requestFocus();
+            jDateChooserBirth.requestFocus();
             return;
         }
         

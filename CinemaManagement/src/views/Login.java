@@ -5,10 +5,8 @@
  */
 package views;
 
-import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Color;
-import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

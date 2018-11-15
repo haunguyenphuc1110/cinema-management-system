@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
-import model.Film;
 
 /**
  *
@@ -42,6 +41,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
         lst = myExcuteQuery.loadAllEmployee();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lst.size(); i++) {
+            int stt = lst.get(i).getStt();
             String maNhanVien = lst.get(i).getIdEmployee();
             String tenNhanVien = lst.get(i).getNameEmployee();
             String birthday = formatter.format(lst.get(i).getBirth());
@@ -54,7 +54,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
             String chucVu = lst.get(i).getJob();
             String ngayLam = formatter.format(lst.get(i).getAddmission());
 
-            Object[] ojb = {maNhanVien, tenNhanVien, birthday, gioiTinh, email, sdt, diaChi, trangThai, username, chucVu, ngayLam};
+            Object[] ojb = {stt,maNhanVien, tenNhanVien, birthday, gioiTinh, email, sdt, diaChi, trangThai, username, chucVu, ngayLam};
             dftable.addRow(ojb);
         }
     }
@@ -239,11 +239,11 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã nhân viên", "Họ và tên", "Ngày sinh", "Giới tính", "Email", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tài khoản", "Chức vụ", "Ngày vào làm"
+                "STT", "Mã nhân viên", "Họ và tên", "Ngày sinh", "Giới tính", "Email", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tài khoản", "Chức vụ", "Ngày vào làm"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -307,6 +307,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < lst.size(); i++) {
                 if (lst.get(i).getNameEmployee().toLowerCase().contains(name)) {
+                    int stt = lst.get(i).getStt();
                     String maNhanVien = lst.get(i).getIdEmployee();
                     String tenNhanVien = lst.get(i).getNameEmployee();
                     String birthday = formatter.format(lst.get(i).getBirth());
@@ -319,7 +320,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
                     String chucVu = lst.get(i).getJob();
                     String ngayLam = formatter.format(lst.get(i).getAddmission());
 
-                    Object[] ojb = {maNhanVien, tenNhanVien, birthday, gioiTinh, email, sdt, diaChi, trangThai, username, chucVu, ngayLam};
+                    Object[] ojb = {stt, maNhanVien, tenNhanVien, birthday, gioiTinh, email, sdt, diaChi, trangThai, username, chucVu, ngayLam};
                     dftable.addRow(ojb);
                 }
             }
@@ -327,6 +328,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
             for (int i = 0; i < lst.size(); i++) {
                 String job = jComboBoxJob.getSelectedItem().toString();
                 if (lst.get(i).getJob().equals(job)) {
+                    int stt = lst.get(i).getStt();
                     String maNhanVien = lst.get(i).getIdEmployee();
                     String tenNhanVien = lst.get(i).getNameEmployee();
                     String birthday = formatter.format(lst.get(i).getBirth());
@@ -339,7 +341,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
                     String chucVu = lst.get(i).getJob();
                     String ngayLam = formatter.format(lst.get(i).getAddmission());
 
-                    Object[] ojb = {maNhanVien, tenNhanVien, birthday, gioiTinh, email, sdt, diaChi, trangThai, username, chucVu, ngayLam};
+                    Object[] ojb = {stt, maNhanVien, tenNhanVien, birthday, gioiTinh, email, sdt, diaChi, trangThai, username, chucVu, ngayLam};
                     dftable.addRow(ojb);
                 }
             }

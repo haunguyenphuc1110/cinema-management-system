@@ -20,11 +20,12 @@ public class ShowTimeMovie {
     private String time;
     private String room;
     private String label;
+    private String idKTG;
 
     public ShowTimeMovie() {
     }
 
-    public ShowTimeMovie(String idFilm, String nameFilm, String duration, String format, Date date, String time, String room, String label) {
+    public ShowTimeMovie(String idFilm, String nameFilm, String duration, String format, Date date, String time, String room, String label, String idKTG) {
         this.idFilm = idFilm;
         this.nameFilm = nameFilm;
         this.duration = duration;
@@ -33,7 +34,9 @@ public class ShowTimeMovie {
         this.time = time;
         this.room = room;
         this.label = label;
+        this.idKTG = idKTG;
     }
+
 
     public String getIdFilm() {
         return idFilm;
@@ -99,10 +102,19 @@ public class ShowTimeMovie {
         this.label = label;
     }
 
+    public String getIdKTG() {
+        return idKTG;
+    }
+
+    public void setIdKTG(String idKTG) {
+        this.idKTG = idKTG;
+    }
+
     @Override
     public String toString() {
-        return "ShowTimeMovie{" + "idFilm=" + idFilm + ", nameFilm=" + nameFilm + ", duration=" + duration + ", format=" + format + ", date=" + date + ", time=" + time + ", room=" + room + ", label=" + label + '}';
+        return "ShowTimeMovie{" + "idFilm=" + idFilm + ", nameFilm=" + nameFilm + ", duration=" + duration + ", format=" + format + ", date=" + date + ", time=" + time + ", room=" + room + ", label=" + label + ", idKTG=" + idKTG + '}';
     }
     
+        
     
 }

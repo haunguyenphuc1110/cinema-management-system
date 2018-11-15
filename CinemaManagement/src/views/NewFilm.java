@@ -470,8 +470,8 @@ public class NewFilm extends javax.swing.JFrame {
     
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         Film film = new Film();
-        film.setMaPhim("P" + generateID());
         jTextFieldIDFilm.setText("P" + generateID());
+        film.setMaPhim(jTextFieldIDFilm.getText());
         film.setTenPhim(jTextAreaTenPhim.getText());
         film.setTheLoai(jTextFieldTheLoai.getText());
         film.setQuocGia(jComboBoxQuocGia.getSelectedItem().toString());

@@ -243,11 +243,11 @@ public class PhimManagement extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã phim", "Tên phim", "Thể loại", "Quốc gia", "Thời lượng", "Khởi chiếu", "Ngôn ngữ", "Đạo diễn", "Nhà sản xuất", "Diễn viên chính", "Nội dung", "Nhãn", "Tình trạng"
+                "STT", "Mã phim", "Tên phim", "Thể loại", "Quốc gia", "Thời lượng", "Khởi chiếu", "Ngôn ngữ", "Đạo diễn", "Nhà sản xuất", "Diễn viên chính", "Nội dung", "Nhãn", "Tình trạng"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -293,10 +293,10 @@ public class PhimManagement extends javax.swing.JInternalFrame {
 
     private void loadAllFilmOnTable() {
         dftable.setRowCount(0);
-        String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim";
-        lstFilm = myExcuteQuery.loadAllPhim(query);
+        lstFilm = myExcuteQuery.loadAllPhim();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lstFilm.size(); i++) {
+            int id = i+1;
             String maPhim = lstFilm.get(i).getMaPhim();
             String tenPhim = lstFilm.get(i).getTenPhim();
             String theLoai = lstFilm.get(i).getTheLoai();
@@ -311,7 +311,7 @@ public class PhimManagement extends javax.swing.JInternalFrame {
             String maNhan = lstFilm.get(i).getMaNhan();
             String tinhTrang = lstFilm.get(i).getTinhTrang();
 
-            Object[] ojb = {maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
+            Object[] ojb = {id, maPhim, tenPhim, theLoai, quocGia, thoiLuong, khoiChieu, ngonNgu, daoDien, nhaSanXuat, dienVienChinh, noiDung, maNhan, tinhTrang};
             dftable.addRow(ojb);
         }
     }
@@ -408,19 +408,19 @@ public class PhimManagement extends javax.swing.JInternalFrame {
             }
             Film film = new Film();
 
-            film.setMaPhim(dftable.getValueAt(selectedIndexRow, 0).toString());
-            film.setTenPhim(dftable.getValueAt(selectedIndexRow, 1).toString());
-            film.setTheLoai(dftable.getValueAt(selectedIndexRow, 2).toString());
-            film.setQuocGia(dftable.getValueAt(selectedIndexRow, 3).toString());
-            film.setThoiLuong(dftable.getValueAt(selectedIndexRow, 4).toString());
-            film.setKhoiChieu(formater.parse(dftable.getValueAt(selectedIndexRow, 5).toString()));
-            film.setNgonNgu(dftable.getValueAt(selectedIndexRow, 6).toString());
-            film.setDaoDien(dftable.getValueAt(selectedIndexRow, 7).toString());
-            film.setNhaSanXuat(dftable.getValueAt(selectedIndexRow, 8).toString());
-            film.setDienVienChinh(dftable.getValueAt(selectedIndexRow, 9).toString());
-            film.setNoiDung(dftable.getValueAt(selectedIndexRow, 10).toString());
-            film.setMaNhan(dftable.getValueAt(selectedIndexRow, 11).toString());
-            film.setTinhTrang(dftable.getValueAt(selectedIndexRow, 12).toString());
+            film.setMaPhim(dftable.getValueAt(selectedIndexRow, 1).toString());
+            film.setTenPhim(dftable.getValueAt(selectedIndexRow, 2).toString());
+            film.setTheLoai(dftable.getValueAt(selectedIndexRow, 3).toString());
+            film.setQuocGia(dftable.getValueAt(selectedIndexRow, 4).toString());
+            film.setThoiLuong(dftable.getValueAt(selectedIndexRow, 5).toString());
+            film.setKhoiChieu(formater.parse(dftable.getValueAt(selectedIndexRow, 6).toString()));
+            film.setNgonNgu(dftable.getValueAt(selectedIndexRow, 7).toString());
+            film.setDaoDien(dftable.getValueAt(selectedIndexRow, 8).toString());
+            film.setNhaSanXuat(dftable.getValueAt(selectedIndexRow, 9).toString());
+            film.setDienVienChinh(dftable.getValueAt(selectedIndexRow, 10).toString());
+            film.setNoiDung(dftable.getValueAt(selectedIndexRow, 11).toString());
+            film.setMaNhan(dftable.getValueAt(selectedIndexRow, 12).toString());
+            film.setTinhTrang(dftable.getValueAt(selectedIndexRow, 13).toString());
             EditFilm frm = new EditFilm(film);
 
             frm.setVisible(true);

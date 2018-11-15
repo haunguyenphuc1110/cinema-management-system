@@ -70,8 +70,7 @@ public class NewShowTime extends javax.swing.JFrame {
 
     private void loadAllFilmOnTable() {
         dftable3.setRowCount(0);
-        String query = "select ma_phim, tenphim, the_loai, quoc_gia, thoi_luong, khoi_chieu, ngon_ngu, dao_dien, nha_san_xuat, dien_vien_chinh, noidung, ma_nhan, tinh_trang from phim";
-        lstFilm = myExcuteQuery.loadAllPhim(query);
+        lstFilm = myExcuteQuery.loadAllPhim();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lstFilm.size(); i++) {
             String maPhim = lstFilm.get(i).getMaPhim();
@@ -567,6 +566,11 @@ public class NewShowTime extends javax.swing.JFrame {
 
     private void jButtonAddShowTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddShowTimeActionPerformed
         ShowTime showtime = new ShowTime();
+        
+        if(jTextFieldIdFilm.getText().equals("")){
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
         showtime.setIdKTG(jTextFieldIdKTG.getText());
         showtime.setIdFilm(jTextFieldIdFilm.getText());
         showtime.setIdRoom(jComboBox.getSelectedItem().toString());

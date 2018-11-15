@@ -308,11 +308,10 @@ public class ChangePassword extends javax.swing.JFrame {
                 jTextFieldName.requestFocus();
             }
         }
-
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void btnChangeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnChangeKeyPressed
-        parameters.clear();
+                parameters.clear();
         if (jTextFieldName.getText().equals("Enter User Name")) {
             jTextFieldName.requestFocus();
         } else if (String.valueOf(jTextFiledPassword.getPassword()).equals("Enter Password")) {
@@ -330,7 +329,7 @@ public class ChangePassword extends javax.swing.JFrame {
             parameters.add(String.valueOf(old_password.hashCode()));
 
             if (myExcuteQuery.checkAccount(query2, parameters)) {
-                myExcuteQuery.updatePassword(query1, username, old_password, new_password);
+                myExcuteQuery.updatePassword(query1, username, String.valueOf(old_password.hashCode()), String.valueOf(new_password.hashCode()));
                 JOptionPane.showMessageDialog(null, "Password has changed!!!");
                 jTextFieldName.setText("");
                 jTextFiledPassword.setText("");
