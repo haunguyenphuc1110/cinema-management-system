@@ -58,6 +58,25 @@ public class MyExcuteQuery implements QueryInterface {
         return false;
     }
 
+    @Override
+    public boolean checkDisable(String query, ArrayList<String> para) {
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            for (int i = 0; i < para.size(); i++) {
+                pst.setString(i + 1, para.get(i));
+            }
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getBoolean(4);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+
     //Verify the account
     @Override
     public boolean checkAccount(String query, ArrayList<String> para) {
@@ -747,8 +766,26 @@ public class MyExcuteQuery implements QueryInterface {
         }
         return 0;
     }
-    
-    
+
+    @Override
+    public ArrayList<String> loadAllSeat(String idFilm, String idRoom, String idKTG) {
+        PreparedStatement pst;
+        String query = "select ma_ghe from ve where ma_phim = ? and ma_rap = ? and ma_ktg = ? order by ma_ghe";
+        ArrayList<String> list = new ArrayList<>();
+        try{
+            pst = con.prepareStatement(query);
+            pst.setString(1,idFilm);
+            pst.setString(2,idRoom);
+            pst.setString(3,idKTG);
+            ResultSet rs = pst.executeQuery();          
+            while(rs.next()){
+                list.add(rs.getString(1));
+            }
+        } catch (SQLException ex){
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
     
     
 }

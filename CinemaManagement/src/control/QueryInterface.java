@@ -25,6 +25,9 @@ public interface QueryInterface {
     //Check Status of user to prevent from logging in twice
     boolean checkStatus(String query, ArrayList<String> para);
     
+    //Check disable of user to sure that account is activated
+    boolean checkDisable(String query, ArrayList<String> para);
+    
     //Verify the account is exist
     boolean checkAccount(String query, ArrayList<String> para);
     
@@ -118,5 +121,6 @@ public interface QueryInterface {
     ArrayList<Ticket>loadAllTicket();
     KTG findKTG(String idKTG);
     int findPrice(String idPrice);
+    ArrayList<String>loadAllSeat(String idFilm, String idRoom, String idKTG);
 /*----------------------------------------------------------------------------------------------------------*/ 
 }

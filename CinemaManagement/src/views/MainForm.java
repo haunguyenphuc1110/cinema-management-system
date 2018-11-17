@@ -396,6 +396,7 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1.setText("Nghiệp vụ");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
+        jMenuItemSellTicket.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemSellTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/movie-tickets (1).png"))); // NOI18N
         jMenuItemSellTicket.setText("Bán vé");
         jMenuItemSellTicket.addActionListener(new java.awt.event.ActionListener() {
@@ -405,10 +406,12 @@ public class MainForm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemSellTicket);
 
+        jMenuItemReportFilmRevenue.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemReportFilmRevenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt.png"))); // NOI18N
         jMenuItemReportFilmRevenue.setText("Báo lợi doanh thu phim theo tháng");
         jMenu1.add(jMenuItemReportFilmRevenue);
 
+        jMenuItemReportCustomer.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemReportCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newspaper.png"))); // NOI18N
         jMenuItemReportCustomer.setText("Báo cáo doanh thu theo khách hàng");
         jMenu1.add(jMenuItemReportCustomer);
@@ -418,10 +421,12 @@ public class MainForm extends javax.swing.JFrame {
         jMenu2.setText("Công cụ");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
+        jMenuItemCalculator.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calc.png"))); // NOI18N
         jMenuItemCalculator.setText("Calculator");
         jMenu2.add(jMenuItemCalculator);
 
+        jMenuItemNote.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notepad.png"))); // NOI18N
         jMenuItemNote.setText("Notepad");
         jMenu2.add(jMenuItemNote);

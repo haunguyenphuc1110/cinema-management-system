@@ -95,7 +95,7 @@ public class SellTicketManagement extends javax.swing.JInternalFrame {
 
         jButtonFind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_search_magnifying.png"))); // NOI18N
-        jButtonFind.setText("Tìm kiêm");
+        jButtonFind.setText("Tìm kiếm");
         jButtonFind.setBorder(null);
         jButtonFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,15 +134,13 @@ public class SellTicketManagement extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonFind, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
+                        .addComponent(jButtonFind, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +201,18 @@ public class SellTicketManagement extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseActionPerformed
+        ArrayList<String> list;
         int selectedIndexRow = jTableListShowTime.getSelectedRow();
+        if (selectedIndexRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+            return;
+        }
+        String idFilm = dftable.getValueAt(selectedIndexRow, 1).toString();
+        String idRoom = dftable.getValueAt(selectedIndexRow, 7).toString();
+        String idKTG = dftable.getValueAt(selectedIndexRow, 9).toString();
+        list = myExcuteQuery.loadAllSeat(idFilm, idRoom, idKTG);
+        SellTicket frm = new SellTicket(list, idFilm, idRoom, idKTG);
+        frm.setVisible(true);
     }//GEN-LAST:event_jButtonChooseActionPerformed
 
     private void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFindActionPerformed
@@ -211,6 +220,10 @@ public class SellTicketManagement extends javax.swing.JInternalFrame {
         int selectedIndexRow = jTableListFilm.getSelectedRow();
         if (selectedIndexRow == -1) {
             JOptionPane.showMessageDialog(null, "Please choose film!!!");
+            return;
+        }
+        if (jDateChooser.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Please choose date!!!");
             return;
         }
         String name = dftable1.getValueAt(selectedIndexRow, 1).toString();

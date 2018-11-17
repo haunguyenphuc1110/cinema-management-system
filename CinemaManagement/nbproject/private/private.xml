@@ -6,11 +6,12 @@
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/model/Ticket.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/Login.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/QueryInterface.java</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/SellTicketManagement.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/MainForm.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/TicketManagement.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/MyConnection.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/MyExcuteQuery.java</file>
-            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/reports/report1.jrxml</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/SellTicket.java</file>
         </group>
     </open-files>
 </project-private>

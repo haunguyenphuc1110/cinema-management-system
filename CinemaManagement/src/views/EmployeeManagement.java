@@ -375,17 +375,17 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
             }
             
             Employee employee = new Employee();
-            employee.setIdEmployee(dftable.getValueAt(selectedIndexRow, 0).toString());
-            employee.setNameEmployee(dftable.getValueAt(selectedIndexRow, 1).toString());
-            employee.setBirth(formatter.parse(dftable.getValueAt(selectedIndexRow, 2).toString()));
-            employee.setGender(dftable.getValueAt(selectedIndexRow, 3).toString());
-            employee.setEmail(dftable.getValueAt(selectedIndexRow, 4).toString());
-            employee.setPhone(dftable.getValueAt(selectedIndexRow, 5).toString());
-            employee.setAddress(dftable.getValueAt(selectedIndexRow, 6).toString());
-            employee.setStatus(dftable.getValueAt(selectedIndexRow, 7).toString());
-            employee.setUsername(dftable.getValueAt(selectedIndexRow, 8).toString());
-            employee.setJob(dftable.getValueAt(selectedIndexRow, 9).toString());
-            employee.setAddmission(formatter.parse(dftable.getValueAt(selectedIndexRow, 10).toString()));
+            employee.setIdEmployee(dftable.getValueAt(selectedIndexRow, 1).toString());
+            employee.setNameEmployee(dftable.getValueAt(selectedIndexRow, 2).toString());
+            employee.setBirth(formatter.parse(dftable.getValueAt(selectedIndexRow, 3).toString()));
+            employee.setGender(dftable.getValueAt(selectedIndexRow, 4).toString());
+            employee.setEmail(dftable.getValueAt(selectedIndexRow, 5).toString());
+            employee.setPhone(dftable.getValueAt(selectedIndexRow, 6).toString());
+            employee.setAddress(dftable.getValueAt(selectedIndexRow, 7).toString());
+            employee.setStatus(dftable.getValueAt(selectedIndexRow, 8).toString());
+            employee.setUsername(dftable.getValueAt(selectedIndexRow, 9).toString());
+            employee.setJob(dftable.getValueAt(selectedIndexRow, 10).toString());
+            employee.setAddmission(formatter.parse(dftable.getValueAt(selectedIndexRow, 11).toString()));
             
             EditEmployee frm = new EditEmployee(employee);
             frm.setVisible(true);
@@ -464,17 +464,17 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
             }
             
             Employee employee = new Employee();
-            employee.setIdEmployee(dftable.getValueAt(selectedIndexRow, 0).toString());
-            employee.setNameEmployee(dftable.getValueAt(selectedIndexRow, 1).toString());
-            employee.setBirth(formatter.parse(dftable.getValueAt(selectedIndexRow, 2).toString()));
-            employee.setGender(dftable.getValueAt(selectedIndexRow, 3).toString());
-            employee.setEmail(dftable.getValueAt(selectedIndexRow, 4).toString());
-            employee.setPhone(dftable.getValueAt(selectedIndexRow, 5).toString());
-            employee.setAddress(dftable.getValueAt(selectedIndexRow, 6).toString());
-            employee.setStatus(dftable.getValueAt(selectedIndexRow, 7).toString());
-            employee.setUsername(dftable.getValueAt(selectedIndexRow, 8).toString());
-            employee.setJob(dftable.getValueAt(selectedIndexRow, 9).toString());
-            employee.setAddmission(formatter.parse(dftable.getValueAt(selectedIndexRow, 10).toString()));
+            employee.setIdEmployee(dftable.getValueAt(selectedIndexRow, 1).toString());
+            employee.setNameEmployee(dftable.getValueAt(selectedIndexRow, 2).toString());
+            employee.setBirth(formatter.parse(dftable.getValueAt(selectedIndexRow, 3).toString()));
+            employee.setGender(dftable.getValueAt(selectedIndexRow, 4).toString());
+            employee.setEmail(dftable.getValueAt(selectedIndexRow, 5).toString());
+            employee.setPhone(dftable.getValueAt(selectedIndexRow, 6).toString());
+            employee.setAddress(dftable.getValueAt(selectedIndexRow, 7).toString());
+            employee.setStatus(dftable.getValueAt(selectedIndexRow, 8).toString());
+            employee.setUsername(dftable.getValueAt(selectedIndexRow, 9).toString());
+            employee.setJob(dftable.getValueAt(selectedIndexRow, 10).toString());
+            employee.setAddmission(formatter.parse(dftable.getValueAt(selectedIndexRow, 11).toString()));
             
             EditEmployee frm = new EditEmployee(employee);
             frm.setVisible(true);

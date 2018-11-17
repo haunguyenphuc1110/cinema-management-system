@@ -283,6 +283,14 @@ public class Login extends javax.swing.JFrame {
                 System.exit(0);
             }
             
+            if (myExcuteQuery.checkDisable(query, parameters)) {
+                JOptionPane.showMessageDialog(null, "Account is not activated!!!");
+                jTextFieldName.setText("");
+                jTextFiledPassword.setText("");
+                jTextFieldName.requestFocus();
+                return;
+            }
+            
             if (myExcuteQuery.checkAccount(query, parameters)) {
                 myExcuteQuery.updateStatus(queryUpdate, parameters);
                 nameOfUser = myExcuteQuery.getName(queryGetName, _username);
@@ -325,6 +333,14 @@ public class Login extends javax.swing.JFrame {
             if (myExcuteQuery.checkStatus(query, parameters)) {
                 JOptionPane.showMessageDialog(null, "Account has been logged in already!!!");
                 System.exit(0);
+            }
+            
+            if (myExcuteQuery.checkDisable(query, parameters)) {
+                JOptionPane.showMessageDialog(null, "Account is not activated!!!");
+                jTextFieldName.setText("");
+                jTextFiledPassword.setText("");
+                jTextFieldName.requestFocus();
+                return;
             }
             
             if (myExcuteQuery.checkAccount(query, parameters)) {

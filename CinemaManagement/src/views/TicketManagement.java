@@ -133,13 +133,13 @@ public class TicketManagement extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Từ ngày");
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
+        jDateChooser1.setDateFormatString("dd-MM-yyyy");
         jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Đến ngày");
 
-        jDateChooser2.setDateFormatString("dd/MM/yyyy");
+        jDateChooser2.setDateFormatString("dd-MM-yyyy");
         jDateChooser2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButtonFind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -359,7 +359,7 @@ public class TicketManagement extends javax.swing.JInternalFrame {
                     String time = lstTicket.get(i).getTime();
                     int total = lstTicket.get(i).getTotal();
 
-                    Object[] ojb = {stt, maVe, maPhim, tenPhim, maPhong, maGhe, date, time, total};
+                    Object[] ojb = {stt, maVe, maPhim, tenPhim, maPhong, maGhe, formatter.format(date), time, total};
                     dftable.addRow(ojb);
                 }
             }
@@ -406,7 +406,7 @@ public class TicketManagement extends javax.swing.JInternalFrame {
                     String time = lstTicket.get(i).getTime();
                     int total = lstTicket.get(i).getTotal();
 
-                    Object[] ojb = {stt, maVe, maPhim, tenPhim, maPhong, maGhe, date, time, total};
+                    Object[] ojb = {stt, maVe, maPhim, tenPhim, maPhong, maGhe, formatter.format(date), time, total};
                     dftable.addRow(ojb);
                 }
             }

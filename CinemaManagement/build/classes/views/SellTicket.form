@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
@@ -27,31 +27,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="124" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanelK13" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jPanelK12" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelD11" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelK14" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelK11" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jPanelJ0" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -73,9 +50,9 @@
                               <Component id="jPanelJ8" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               <Component id="jPanelJ9" min="-2" pref="34" max="-2" attributes="0"/>
-                              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanelJ10" min="-2" pref="34" max="-2" attributes="0"/>
-                              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanelJ00" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -210,7 +187,7 @@
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               <Component id="jPanelC2" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="77" pref="77" max="-2" attributes="0"/>
-                              <Component id="jPanelBC3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jPanelC3" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               <Component id="jPanelC4" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
@@ -291,7 +268,7 @@
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               <Component id="jPanelA5" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                              <Component id="jPanel6" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jPanelA6" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               <Component id="jPanelA7" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
@@ -304,18 +281,49 @@
                               <Component id="jPanelA00" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jPanelK13" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jPanelK12" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanelD11" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanelK14" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanelSW" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
-              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jButtonSave" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonPrint" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonClose" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -324,178 +332,189 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <Component id="jPanelK11" max="32767" attributes="0"/>
-                      <Component id="jPanelK12" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel1" max="32767" attributes="0"/>
+                              <Component id="jPanelSW" max="32767" attributes="0"/>
+                              <Component id="jPanelK12" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanelK13" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanelK14" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanelD11" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelK0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelK00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelJ0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelJ00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelH0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelH00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelG0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelG00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelF0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelF00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelE0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelE00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelD0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelD00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelC00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelB0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB6" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB7" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB10" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelB00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanelA0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA6" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA9" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA10" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelA00" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanelK13" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanelK14" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jPanelD11" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelK0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelK00" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonPrint" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonClose" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelJ0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelJ00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelH0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelH00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelG0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelG00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelF0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelF00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelE0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelE00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelD0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelD00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelBC3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelC00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelB0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB4" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB5" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB6" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB7" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB8" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB10" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelB00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelA0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA4" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA5" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA7" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA8" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA9" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA10" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanelA00" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1257,10 +1276,15 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="name" type="java.lang.String" value="A1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1301,10 +1325,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1345,10 +1373,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1389,10 +1421,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1433,10 +1469,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1465,7 +1505,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel6">
+    <Container class="javax.swing.JPanel" name="jPanelA6">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1477,10 +1517,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1521,10 +1565,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1565,10 +1613,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1609,10 +1661,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1653,10 +1709,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="A10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelA10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1697,10 +1757,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1741,10 +1805,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1785,10 +1853,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1829,10 +1901,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1873,10 +1949,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1917,10 +1997,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1961,10 +2045,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2005,10 +2093,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2049,10 +2141,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2093,10 +2189,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="B10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelB10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2137,10 +2237,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2181,10 +2285,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2213,7 +2321,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanelBC3">
+    <Container class="javax.swing.JPanel" name="jPanelC3">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2225,10 +2333,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2269,10 +2381,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2313,10 +2429,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2357,10 +2477,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2401,10 +2525,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2445,10 +2573,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2489,10 +2621,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2533,10 +2669,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="C10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelC10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2577,10 +2717,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2621,10 +2765,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2665,10 +2813,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2709,10 +2861,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2753,10 +2909,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2797,10 +2957,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2841,10 +3005,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2885,10 +3053,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2929,10 +3101,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2973,10 +3149,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="D10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelD10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3017,10 +3197,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3061,10 +3245,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3105,10 +3293,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3149,10 +3341,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3193,10 +3389,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3237,10 +3437,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3281,10 +3485,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3325,10 +3533,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3372,10 +3584,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3416,10 +3632,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="E10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelE10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3460,10 +3680,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3504,10 +3728,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3548,10 +3776,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3592,10 +3824,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3636,10 +3872,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3680,10 +3920,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3724,10 +3968,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3768,10 +4016,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3812,10 +4064,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3856,10 +4112,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="F10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelF10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3900,10 +4160,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3944,10 +4208,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -3988,10 +4256,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4032,10 +4304,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4076,10 +4352,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4120,10 +4400,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4164,10 +4448,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4208,10 +4496,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4252,10 +4544,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4296,10 +4592,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="G10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelG10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4340,10 +4640,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4384,10 +4688,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4428,10 +4736,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4472,10 +4784,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4516,10 +4832,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4560,10 +4880,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4604,10 +4928,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4648,10 +4976,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4692,10 +5024,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4736,10 +5072,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="H10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelH10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4780,10 +5120,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4824,10 +5168,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4868,10 +5216,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4912,10 +5264,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ4MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -4956,10 +5312,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5000,10 +5360,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ6MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5044,10 +5408,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5088,10 +5456,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ8MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5132,10 +5504,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5176,10 +5552,14 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="J10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelJ10MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5187,7 +5567,6 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelJ10" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -5213,10 +5592,14 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K1" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelK1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5250,6 +5633,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K2" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
@@ -5287,10 +5671,14 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K3" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelK3MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5324,6 +5712,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K4" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
@@ -5361,10 +5750,14 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K5" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelK5MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5398,6 +5791,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K6" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
@@ -5435,10 +5829,14 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K7" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelK7MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5472,6 +5870,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K8" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
@@ -5509,10 +5908,14 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K9" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelK9MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5546,6 +5949,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="K10" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
         </Property>
@@ -5578,7 +5982,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanelK11">
+    <Container class="javax.swing.JPanel" name="jPanelSW">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="ff" type="rgb"/>
@@ -5643,7 +6047,7 @@
     <Container class="javax.swing.JPanel" name="jPanelK13">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+          <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 30]"/>
@@ -5750,14 +6154,14 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+          <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="654" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="622" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -5777,6 +6181,256 @@
         </Property>
         <Property name="text" type="java.lang.String" value="SCREEN"/>
       </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSeparator4" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabelPrice" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jLabelTotal" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabelSeat" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabelRoom" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabelDate" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                                          <Component id="jLabelTime" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelName" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelPicture" min="-2" pref="287" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jButtonCheck" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jLabelPicture" min="-2" pref="215" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabelName" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelRoom" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelSeat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonCheck" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabelName">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="T&#xea;n phim"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelPicture">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator2">
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator3">
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator4">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelPrice">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="T&#x1ed5;ng:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="16" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="R&#x1ea1;p:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel10">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="16" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Su&#x1ea5;t chi&#x1ebf;u:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="16" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Gh&#x1ebf;:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelRoom">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Room"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelDate">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Date"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelTime">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Time"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelSeat">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Seat"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelTotal">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="24" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="T&#x1ed5;ng ti&#x1ec1;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonCheck">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Check"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCheckActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="jButtonSave">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonPrint">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="In v&#xe9;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonClose">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCloseActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
