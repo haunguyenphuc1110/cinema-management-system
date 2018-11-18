@@ -5,10 +5,22 @@
  */
 package views;
 
+import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Image;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -66,10 +78,12 @@ public class MainForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItemSellTicket = new javax.swing.JMenuItem();
         jMenuItemReportFilmRevenue = new javax.swing.JMenuItem();
         jMenuItemReportCustomer = new javax.swing.JMenuItem();
+        jMenuItemSellTicket = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItemAccount = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jMenuItemCalculator = new javax.swing.JMenuItem();
         jMenuItemNote = new javax.swing.JMenuItem();
 
@@ -396,6 +410,26 @@ public class MainForm extends javax.swing.JFrame {
         jMenu1.setText("Nghiệp vụ");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
+        jMenuItemReportFilmRevenue.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jMenuItemReportFilmRevenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt.png"))); // NOI18N
+        jMenuItemReportFilmRevenue.setText("Báo lợi doanh thu phim theo tháng");
+        jMenuItemReportFilmRevenue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemReportFilmRevenueActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemReportFilmRevenue);
+
+        jMenuItemReportCustomer.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jMenuItemReportCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newspaper.png"))); // NOI18N
+        jMenuItemReportCustomer.setText("Báo cáo doanh thu theo khách hàng");
+        jMenuItemReportCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemReportCustomerActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemReportCustomer);
+
         jMenuItemSellTicket.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemSellTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/movie-tickets (1).png"))); // NOI18N
         jMenuItemSellTicket.setText("Bán vé");
@@ -406,32 +440,37 @@ public class MainForm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemSellTicket);
 
-        jMenuItemReportFilmRevenue.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jMenuItemReportFilmRevenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt.png"))); // NOI18N
-        jMenuItemReportFilmRevenue.setText("Báo lợi doanh thu phim theo tháng");
-        jMenu1.add(jMenuItemReportFilmRevenue);
-
-        jMenuItemReportCustomer.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jMenuItemReportCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newspaper.png"))); // NOI18N
-        jMenuItemReportCustomer.setText("Báo cáo doanh thu theo khách hàng");
-        jMenu1.add(jMenuItemReportCustomer);
-
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Công cụ");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jMenu2.setText("Hệ thống");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+
+        jMenuItemAccount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItemAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_goa-account-msn_79748.png"))); // NOI18N
+        jMenuItemAccount.setText("Quản lý tài khoản");
+        jMenuItemAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAccountActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemAccount);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Công cụ");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemCalculator.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calc.png"))); // NOI18N
         jMenuItemCalculator.setText("Calculator");
-        jMenu2.add(jMenuItemCalculator);
+        jMenu3.add(jMenuItemCalculator);
 
         jMenuItemNote.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notepad.png"))); // NOI18N
         jMenuItemNote.setText("Notepad");
-        jMenu2.add(jMenuItemNote);
+        jMenu3.add(jMenuItemNote);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -492,7 +531,9 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        // TODO add your handling code here:
+        BillManagement frm = new BillManagement();
+        jDesktopPane1.add(frm);
+        frm.setVisible(true);
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
@@ -554,6 +595,49 @@ public class MainForm extends javax.swing.JFrame {
         jDesktopPane1.add(frm);
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItemSellTicketActionPerformed
+
+    private void jMenuItemReportFilmRevenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReportFilmRevenueActionPerformed
+        try{
+            Connection con = MyConnection.getConnection();
+            JasperDesign jd = JRXmlLoader.load("H:\\MyProject\\cinema-management-system\\CinemaManagement\\src\\reports\\report2.jrxml");
+            String sql = "select c.tenphim as Phim, sum(b.dongia) as 'Doanh thu'\n" +
+                         "from ve a, gia b, phim c\n" +
+                         "where a.ma_phim = c.ma_phim and a.ma_gia = b.ma_gia\n" +
+                         "group by c.tenphim";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (JRException e ){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jMenuItemReportFilmRevenueActionPerformed
+
+    private void jMenuItemReportCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReportCustomerActionPerformed
+        try{
+            Connection con = MyConnection.getConnection();
+            JasperDesign jd = JRXmlLoader.load("H:\\MyProject\\cinema-management-system\\CinemaManagement\\src\\reports\\report3.jrxml");
+            String sql = "select d.hoten as 'Tên thành viên', sum(c.dongia) as 'Thành tiền'\n" +
+                         "from ds_ve_dat a, ve b, gia c, thanhvien d\n" +
+                         "where a.ma_thanh_vien = d.ma_thanh_vien and a.ma_ve = b.ma_ve and b.ma_gia = c.ma_gia group by d.hoten";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (JRException e ){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jMenuItemReportCustomerActionPerformed
+
+    private void jMenuItemAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAccountActionPerformed
+        AccountManagement frm = new AccountManagement();
+        jDesktopPane1.add(frm);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAccountActionPerformed
 
     public void setColor(javax.swing.JPanel panel) {
         panel.setBackground(new java.awt.Color(115, 163, 239));
@@ -628,7 +712,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelName;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAccount;
     private javax.swing.JMenuItem jMenuItemCalculator;
     private javax.swing.JMenuItem jMenuItemNote;
     private javax.swing.JMenuItem jMenuItemReportCustomer;

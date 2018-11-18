@@ -412,6 +412,7 @@ public class NewEmployee extends javax.swing.JFrame {
         }
         employee.setBirth(jDateChooserBirth.getDate());
 
+        myExcuteQuery.insertAccount(jTextFieldID.getText());
         myExcuteQuery.insertEmployee(employee);
         JOptionPane.showMessageDialog(null, "Create employee successfully!!!");
         reset();
@@ -501,6 +502,7 @@ public class NewEmployee extends javax.swing.JFrame {
         }
         employee.setBirth(jDateChooserBirth.getDate());
 
+        myExcuteQuery.insertAccount(jTextFieldID.getText());
         myExcuteQuery.insertEmployee(employee);
         JOptionPane.showMessageDialog(null, "Create employee successfully!!!");
         reset();  

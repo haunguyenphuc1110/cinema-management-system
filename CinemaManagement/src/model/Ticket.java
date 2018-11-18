@@ -12,26 +12,31 @@ import java.util.Date;
  * @author HAU
  */
 public class Ticket {
+
     private String idTicket;
     private String idFilm;
     private String nameFilm;
     private String room;
     private String seat;
+    private String idKTG;
     private Date date;
     private String time;
+    private String idPrice;
     private int total;
 
     public Ticket() {
     }
 
-    public Ticket(String idTicket, String idFilm, String nameFilm, String room, String seat, Date date, String time, int total) {
+    public Ticket(String idTicket, String idFilm, String nameFilm, String room, String seat, String idKTG, Date date, String time, String idPrice, int total) {
         this.idTicket = idTicket;
         this.idFilm = idFilm;
         this.nameFilm = nameFilm;
         this.room = room;
         this.seat = seat;
+        this.idKTG = idKTG;
         this.date = date;
         this.time = time;
+        this.idPrice = idPrice;
         this.total = total;
     }
 
@@ -75,6 +80,14 @@ public class Ticket {
         this.seat = seat;
     }
 
+    public String getIdKTG() {
+        return idKTG;
+    }
+
+    public void setIdKTG(String idKTG) {
+        this.idKTG = idKTG;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -91,6 +104,14 @@ public class Ticket {
         this.time = time;
     }
 
+    public String getIdPrice() {
+        return idPrice;
+    }
+
+    public void setIdPrice(String idPrice) {
+        this.idPrice = idPrice;
+    }
+
     public int getTotal() {
         return total;
     }
@@ -101,8 +122,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "idTicket=" + idTicket + ", idFilm=" + idFilm + ", nameFilm=" + nameFilm + ", room=" + room + ", seat=" + seat + ", date=" + date + ", time=" + time + ", total=" + total + '}';
+        return "Ticket{" + "idTicket=" + idTicket + ", idFilm=" + idFilm + ", nameFilm=" + nameFilm + ", room=" + room + ", seat=" + seat + ", idKTG=" + idKTG + ", date=" + date + ", time=" + time + ", idPrice=" + idPrice + ", total=" + total + '}';
     }
-    
-    
+
 }

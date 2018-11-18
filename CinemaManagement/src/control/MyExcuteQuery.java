@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Account;
+import model.Bill;
 import model.Employee;
 import views.Login;
 import model.Film;
@@ -34,11 +36,12 @@ import model.Ticket;
 public class MyExcuteQuery implements QueryInterface {
 
     static Connection con;
-    public MyExcuteQuery(){
+
+    public MyExcuteQuery() {
         con = MyConnection.getConnection();
     }
 
-/*==============================================FOR LOGIN=================================================*/     
+    /*==============================================FOR LOGIN=================================================*/
     //Check status of user account to prevent from logging in twice
     @Override
     public boolean checkStatus(String query, ArrayList<String> para) {
@@ -75,7 +78,6 @@ public class MyExcuteQuery implements QueryInterface {
         }
         return false;
     }
-    
 
     //Verify the account
     @Override
@@ -111,8 +113,7 @@ public class MyExcuteQuery implements QueryInterface {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     //Change password
     @Override
     public void updatePassword(String query, String username, String old_password, String new_password) {
@@ -150,8 +151,62 @@ public class MyExcuteQuery implements QueryInterface {
         return null;
     }
 
-    
-/*===========================================FOR FILM MANAGEMENT==========================================*/        
+    @Override
+    public ArrayList<Account> loadAllAccount() {
+        PreparedStatement pst;
+        String query = "select * from account";
+        String queryGetName = "select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
+        ArrayList<Account> list = new ArrayList<>();
+        Account account;
+        try {
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                account = new Account();
+                account.setUsername(rs.getString(1));
+                account.setIdEmployee(rs.getString(1));
+                account.setName(getName(queryGetName, rs.getString(1)));
+                account.setStatus(rs.getBoolean(4));
+                list.add(account);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public void updateEnable(String username, boolean enable) {
+        PreparedStatement pst;
+        String query = "update account set vo_hieu_hoa = ? where username = ?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setBoolean(1, enable);
+            pst.setString(2, username);
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void setDefaultPassword(String username) {
+        PreparedStatement pst;
+        String query = "Update account set user_password =? where username =?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, String.valueOf(username.hashCode()));
+            pst.setString(2, username);
+
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*===========================================FOR FILM MANAGEMENT==========================================*/
     //Create new film
     @Override
     public void insertPhim(Film film, String path) {
@@ -347,8 +402,8 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setString(1, idFilm);
             pst.setString(2, idDinhDang);
             ResultSet rs = pst.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 return true;
             }
 
@@ -373,9 +428,7 @@ public class MyExcuteQuery implements QueryInterface {
         }
     }
 
-/*===========================================FOR SHOWTIME MANAGEMENT==========================================*/ 
-    
-    
+    /*===========================================FOR SHOWTIME MANAGEMENT==========================================*/
     @Override
     public void insertKTG(KTG ktg) {
         PreparedStatement pst;
@@ -420,8 +473,7 @@ public class MyExcuteQuery implements QueryInterface {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     @Override
     public void insertShowTime(ShowTime showtime) {
         PreparedStatement pst;
@@ -437,13 +489,12 @@ public class MyExcuteQuery implements QueryInterface {
         }
     }
 
-    
     @Override
     public ArrayList<ShowTime> loadAllShowTime() {
         PreparedStatement pst;
         ArrayList<ShowTime> list = new ArrayList<>();
         String query = "select e.ma_ktg, b.ma_phim, f.ma_rap from lichchieu a, phim b, phim_dinhdang c, dinhdang d, ktg e, rap f "
-                      +"where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by f.ma_rap";
+                + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by f.ma_rap";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -464,8 +515,9 @@ public class MyExcuteQuery implements QueryInterface {
             pst = con.prepareStatement(query);
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
-            if(rs.next())
+            if (rs.next()) {
                 return rs.getString(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -477,8 +529,8 @@ public class MyExcuteQuery implements QueryInterface {
         PreparedStatement pst;
         ArrayList<ShowTimeMovie> list = new ArrayList<>();
         String query = "select b.ma_phim, b.tenphim, b.thoi_luong, d.ma_dinh_dang, e.ngay_chieu, e.gio_chieu, f.ma_rap, b.ma_nhan, e.ma_ktg "
-                     + "from lichchieu a, phim b, phim_dinhdang c, dinhdang d, ktg e, rap f "
-                     + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by e.ngay_chieu, e.gio_chieu";
+                + "from lichchieu a, phim b, phim_dinhdang c, dinhdang d, ktg e, rap f "
+                + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by e.ngay_chieu, e.gio_chieu";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -507,7 +559,6 @@ public class MyExcuteQuery implements QueryInterface {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     @Override
     public boolean checkKTG(java.util.Date date, String time) {
@@ -518,8 +569,9 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setDate(1, new Date(date.getTime()));
             pst.setString(2, time);
             ResultSet rs = pst.executeQuery();
-            if(rs.next())
+            if (rs.next()) {
                 return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -536,22 +588,21 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setString(2, idFilm);
             pst.setString(3, idRoom);
             ResultSet rs = pst.executeQuery();
-            if(rs.next())
+            if (rs.next()) {
                 return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }  
-    
-    
-/*===========================================FOR EMPLOYEE MANAGEMENT==========================================*/ 
-    
+    }
+
+    /*===========================================FOR EMPLOYEE MANAGEMENT==========================================*/
     @Override
     public void insertEmployee(Employee nv) {
         PreparedStatement pst;
         String query = "insert into nhanvien values (?,?,?,?,?,?,?,?,?,?,?)";
-        try{
+        try {
             pst = con.prepareStatement(query);
             pst.setString(1, nv.getIdEmployee());
             pst.setString(2, nv.getNameEmployee());
@@ -565,7 +616,7 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setString(10, nv.getJob());
             pst.setDate(11, new Date(nv.getAddmission().getTime()));
             pst.executeUpdate();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -574,9 +625,9 @@ public class MyExcuteQuery implements QueryInterface {
     public void updateEmployee(Employee nv) {
         PreparedStatement pst;
         String query = "update nhanvien set hoten = ?, ngaysinh = ?, gioitinh = ?, email = ?, "
-                     + "sdt = ?, diachi= ?, trangthai = ?, username = ?, chucvu = ?, admission = ? "
-                     + "where ma_nhan_vien = ?";
-        try{
+                + "sdt = ?, diachi= ?, trangthai = ?, username = ?, chucvu = ?, admission = ? "
+                + "where ma_nhan_vien = ?";
+        try {
             pst = con.prepareStatement(query);
             pst.setString(11, nv.getIdEmployee());
             pst.setString(1, nv.getNameEmployee());
@@ -590,7 +641,7 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setString(9, nv.getJob());
             pst.setDate(10, new Date(nv.getAddmission().getTime()));
             pst.executeUpdate();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -601,10 +652,10 @@ public class MyExcuteQuery implements QueryInterface {
         String query = "select * from nhanvien";
         ArrayList<Employee> list = new ArrayList<>();
         Employee nv;
-        try{
+        try {
             pst = con.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();          
-            while(rs.next()){
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
                 nv = new Employee();
                 nv.setStt(rs.getInt(1));
                 nv.setIdEmployee(rs.getString(2));
@@ -620,19 +671,34 @@ public class MyExcuteQuery implements QueryInterface {
                 nv.setAddmission(rs.getDate(12));
                 list.add(nv);
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
-    
-/*===========================================FOR MEMBER MANAGEMENT==========================================*/    
 
+    @Override
+    public void insertAccount(String idEmployee) {
+        PreparedStatement pst;
+        String query = "insert into account values (?,?,?,?)";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idEmployee);
+            pst.setString(2, String.valueOf(idEmployee.hashCode()));
+            pst.setBoolean(3, false);
+            pst.setBoolean(4, false);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*===========================================FOR MEMBER MANAGEMENT==========================================*/
     @Override
     public void insertMember(Member member) {
         PreparedStatement pst;
         String query = "insert into thanhvien values (?,?,?,?,?,?,?,?)";
-        try{
+        try {
             pst = con.prepareStatement(query);
             pst.setString(1, member.getIdMember());
             pst.setString(2, member.getNameMember());
@@ -643,7 +709,7 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setString(7, member.getAddress());
             pst.setString(8, member.getType());
             pst.executeUpdate();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -652,9 +718,9 @@ public class MyExcuteQuery implements QueryInterface {
     public void updateMember(Member member) {
         PreparedStatement pst;
         String query = "update thanhvien set hoten = ?, ngaysinh = ?, gioitinh = ?, email = ?, "
-                     + "sdt = ?, diachi= ?, loai = ? "
-                     + "where ma_thanh_vien = ?";
-        try{
+                + "sdt = ?, diachi= ?, loai = ? "
+                + "where ma_thanh_vien = ?";
+        try {
             pst = con.prepareStatement(query);
             pst.setString(8, member.getIdMember());
             pst.setString(1, member.getNameMember());
@@ -665,7 +731,7 @@ public class MyExcuteQuery implements QueryInterface {
             pst.setString(6, member.getAddress());
             pst.setString(7, member.getType());
             pst.executeUpdate();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -676,10 +742,10 @@ public class MyExcuteQuery implements QueryInterface {
         String query = "select * from thanhvien order by stt";
         ArrayList<Member> list = new ArrayList<>();
         Member member;
-        try{
+        try {
             pst = con.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();          
-            while(rs.next()){
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
                 member = new Member();
                 member.setStt(rs.getInt(1));
                 member.setIdMember(rs.getString(2));
@@ -692,16 +758,13 @@ public class MyExcuteQuery implements QueryInterface {
                 member.setType(rs.getString(9));
                 list.add(member);
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
-    
-    
-    
-    /*===========================================FOR TICKET MANAGEMENT==========================================*/ 
 
+    /*===========================================FOR TICKET MANAGEMENT==========================================*/
     @Override
     public ArrayList<Ticket> loadAllTicket() {
         PreparedStatement pst;
@@ -709,10 +772,10 @@ public class MyExcuteQuery implements QueryInterface {
         ArrayList<Ticket> list = new ArrayList<>();
         Ticket ticket;
         KTG ktg;
-        try{
+        try {
             pst = con.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();          
-            while(rs.next()){
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
                 ticket = new Ticket();
                 ticket.setIdTicket(rs.getString(1));
                 ticket.setIdFilm(rs.getString(2));
@@ -725,7 +788,7 @@ public class MyExcuteQuery implements QueryInterface {
                 ticket.setTotal(findPrice(rs.getString(6)));
                 list.add(ticket);
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
@@ -772,20 +835,149 @@ public class MyExcuteQuery implements QueryInterface {
         PreparedStatement pst;
         String query = "select ma_ghe from ve where ma_phim = ? and ma_rap = ? and ma_ktg = ? order by ma_ghe";
         ArrayList<String> list = new ArrayList<>();
-        try{
+        try {
             pst = con.prepareStatement(query);
-            pst.setString(1,idFilm);
-            pst.setString(2,idRoom);
-            pst.setString(3,idKTG);
-            ResultSet rs = pst.executeQuery();          
-            while(rs.next()){
+            pst.setString(1, idFilm);
+            pst.setString(2, idRoom);
+            pst.setString(3, idKTG);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
                 list.add(rs.getString(1));
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
-    
-    
+
+    @Override
+    public void insertTicket(Ticket ticket) {
+        PreparedStatement pst;
+        String query = "insert into ve values (?,?,?,?,?,?)";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, ticket.getIdTicket());
+            pst.setString(2, ticket.getIdFilm());
+            pst.setString(3, ticket.getRoom());
+            pst.setString(4, ticket.getSeat());
+            pst.setString(5, ticket.getIdKTG());
+            pst.setString(6, ticket.getIdPrice());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void insertDSTicket(String idTicket, String idMember, String idEmployee, java.util.Date datecreated) {
+        PreparedStatement pst;
+        String query = "insert into ds_ve_dat values (?,?,?,?)";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idTicket);
+            pst.setString(2, idMember);
+            pst.setString(3, idEmployee);
+            pst.setDate(4, new Date(datecreated.getTime()));
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public int getTotalByIDMember(String idMember) {
+        PreparedStatement pst;
+        String query = "select a.ma_thanh_vien, sum(c.dongia) as ThanhTien "
+                + "from ds_ve_dat a, ve b, gia c "
+                + "where a.ma_thanh_vien = ? and a.ma_ve = b.ma_ve and b.ma_gia = c.ma_gia group by a.ma_thanh_vien";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idMember);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public ArrayList<Bill> loadAllBill() {
+        PreparedStatement pst;
+        String query = "select * from ds_ve_dat order by ngay_lap";
+        ArrayList<Bill> list = new ArrayList<>();
+        Bill bill;
+        try {
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                bill = new Bill();
+                bill.setIdTicket(rs.getString(1));
+                bill.setIdMember(rs.getString(2));
+                bill.setNameMember(findNameMemberByID(rs.getString(2)));
+                bill.setIdEmployee(rs.getString(3));
+                bill.setNameEmployee(findNameEmployeeByID(rs.getString(3)));
+                bill.setDatecreated(rs.getDate(4));
+                bill.setPrice(getPriceBill(rs.getString(1)));
+                list.add(bill);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public String findNameMemberByID(String idMember) {
+        PreparedStatement pst;
+        String query = "select hoten from thanhvien where ma_thanh_vien = ?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idMember);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public String findNameEmployeeByID(String idEmployee) {
+        PreparedStatement pst;
+        String query = "select hoten from nhanvien where ma_nhan_vien = ?";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idEmployee);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public int getPriceBill(String idTicket) {
+        PreparedStatement pst;
+        String query = "select c.dongia from ds_ve_dat a, ve b, gia c where a.ma_ve = ? and a.ma_ve = b.ma_ve and b.ma_gia = c.ma_gia";
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, idTicket);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
 }

@@ -41,7 +41,7 @@ public class EmployeeManagement extends javax.swing.JInternalFrame {
         lst = myExcuteQuery.loadAllEmployee();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < lst.size(); i++) {
-            int stt = lst.get(i).getStt();
+            int stt = i+1;
             String maNhanVien = lst.get(i).getIdEmployee();
             String tenNhanVien = lst.get(i).getNameEmployee();
             String birthday = formatter.format(lst.get(i).getBirth());

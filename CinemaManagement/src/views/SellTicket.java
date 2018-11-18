@@ -5,6 +5,7 @@
  */
 package views;
 
+import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Color;
 import java.awt.Image;
@@ -12,15 +13,29 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Blob;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.KTG;
+import model.Ticket;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -33,18 +48,26 @@ public class SellTicket extends javax.swing.JFrame {
      * @param listSeat
      */
     MyExcuteQuery myExcuteQuery;
+    Login login;
     ArrayList<JPanel> listSeat;
     ArrayList<String> listChosen;
+    String idFilmLocal;
+    String idRoomLocal;
+    String idKTGLocal;
     Color colorDefault;
     Color colorDefaultSW;
     Color colorChosen;
     public SellTicket(ArrayList<String> list, String idFilm, String idRoom, String idKTG) {
         initComponents();
         myExcuteQuery = new MyExcuteQuery();
+        login = new Login();
         colorDefault = new Color(255,255,255);
         colorChosen = new Color(204,0,0);
         colorDefaultSW = new Color(255,0,204);
         listChosen = new ArrayList<>();
+        idFilmLocal = idFilm;
+        idRoomLocal = idRoom;
+        idKTGLocal = idKTG;
         addAllJPanel();
         loadExistSeat(list);
         loadSelectedRowOnForm(idFilm, idRoom, idKTG);
@@ -388,6 +411,7 @@ public class SellTicket extends javax.swing.JFrame {
         jLabelSeat = new javax.swing.JLabel();
         jLabelTotal = new javax.swing.JLabel();
         jButtonCheck = new javax.swing.JButton();
+        jTextFieldIDMember = new javax.swing.JTextField();
         jButtonSave = new javax.swing.JButton();
         jButtonPrint = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
@@ -3611,6 +3635,18 @@ public class SellTicket extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldIDMember.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldIDMember.setForeground(new java.awt.Color(204, 204, 204));
+        jTextFieldIDMember.setText("Mã thành viên");
+        jTextFieldIDMember.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldIDMemberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldIDMemberFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -3643,19 +3679,20 @@ public class SellTicket extends javax.swing.JFrame {
                                         .addComponent(jLabelDate)
                                         .addGap(95, 95, 95)
                                         .addComponent(jLabelTime)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldIDMember, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 83, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButtonCheck)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelName)
                                     .addComponent(jLabelPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(83, 83, 83))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButtonCheck)
-                                .addContainerGap())))))
+                                .addGap(83, 83, 83))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3666,7 +3703,8 @@ public class SellTicket extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabelRoom))
+                    .addComponent(jLabelRoom)
+                    .addComponent(jTextFieldIDMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
@@ -3693,9 +3731,19 @@ public class SellTicket extends javax.swing.JFrame {
 
         jButtonSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSave.setText("Lưu");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
 
         jButtonPrint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonPrint.setText("In vé");
+        jButtonPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrintActionPerformed(evt);
+            }
+        });
 
         jButtonClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClose.setText("Đóng");
@@ -4161,7 +4209,7 @@ public class SellTicket extends javax.swing.JFrame {
                     .addComponent(jButtonSave)
                     .addComponent(jButtonPrint)
                     .addComponent(jButtonClose))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -5133,8 +5181,81 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
-        // TODO add your handling code here:
+        String str = "";
+        for(String lst : listChosen)
+            str+=lst+ " ";
+        jLabelSeat.setText(str);
     }//GEN-LAST:event_jButtonCheckActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        Ticket ticket = new Ticket();
+        for(String lst : listChosen){
+            ticket.setIdTicket("VE" + generateID());
+            ticket.setIdFilm(idFilmLocal);
+            ticket.setRoom(idRoomLocal);
+            ticket.setSeat(lst);
+            ticket.setIdKTG(idKTGLocal);
+            if(idRoomLocal.equals("RAP01") || idRoomLocal.equals("RAP03") || idRoomLocal.equals("RAP05")){
+                if(lst.contains("A") || lst.contains("B") || lst.contains("C") || lst.contains("D"))
+                    ticket.setIdPrice("BT2DTHUONG");
+                else if(lst.contains("E") || lst.contains("F") || lst.contains("G") || lst.contains("H") || lst.contains("J"))
+                    ticket.setIdPrice("VIP2DTHUONG");
+                else
+                    ticket.setIdPrice("SW2DTHUONG");
+            }
+            else if(idRoomLocal.equals("RAP02") || idRoomLocal.equals("RAP04")){
+                if(lst.contains("A") || lst.contains("B") || lst.contains("C") || lst.contains("D"))
+                    ticket.setIdPrice("BT3DTHUONG");
+                else if(lst.contains("E") || lst.contains("F") || lst.contains("G") || lst.contains("H") || lst.contains("J"))
+                    ticket.setIdPrice("VIP3DTHUONG");
+                else
+                    ticket.setIdPrice("SW3DTHUONG");
+            }
+            else ticket.setIdPrice("4DTHUONG");
+            
+            myExcuteQuery.insertTicket(ticket);
+            
+            if(jTextFieldIDMember.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please enter id member!");
+                return;
+            }
+            myExcuteQuery.insertDSTicket(ticket.getIdTicket(), jTextFieldIDMember.getText(), login.getUser(), new Date());
+        }
+        jLabelTotal.setText(String.valueOf(myExcuteQuery.getTotalByIDMember(jTextFieldIDMember.getText())) + " VND");
+        JOptionPane.showMessageDialog(null, "Save ticket successfully!!!");
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jTextFieldIDMemberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldIDMemberFocusGained
+        if (jTextFieldIDMember.getText().trim().equals("Mã thành viên")) {
+            jTextFieldIDMember.setText("");
+        }
+        jTextFieldIDMember.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jTextFieldIDMemberFocusGained
+
+    private void jTextFieldIDMemberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldIDMemberFocusLost
+        if (jTextFieldIDMember.getText().trim().equals("")) {
+            jTextFieldIDMember.setText("Mã thành viên");
+        }
+        jTextFieldIDMember.setForeground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jTextFieldIDMemberFocusLost
+
+    private void jButtonPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintActionPerformed
+        try{
+            Connection con = MyConnection.getConnection();
+            JasperDesign jd = JRXmlLoader.load("H:\\MyProject\\cinema-management-system\\CinemaManagement\\src\\reports\\report1.jrxml");
+            String sql = "select distinct d.hoten as 'Tên khách hàng', c.ma_nhan_vien as 'Mã nhân viên', c.hoten as 'Tên nhân viên', e.tenphim as 'Tên phim',  a.ma_ghe as 'Ghế', a.ma_rap as 'Rạp', f.ngay_chieu as 'Ngày chiếu', f.gio_chieu as 'Giờ chiếu', g.dongia as 'Giá tiền'\n" +
+                         "from ve a, ds_ve_dat b, nhanvien c, thanhvien d, phim e, ktg f, gia g\n" +
+                         "where b.ma_ve = a.ma_ve and b.ma_nhan_vien = c.ma_nhan_vien and b.ma_thanh_vien = d.ma_thanh_vien and a.ma_phim = e.ma_phim and a.ma_ktg = f.ma_ktg and a.ma_gia = g.ma_gia and b.ma_thanh_vien = '"+ jTextFieldIDMember.getText() +"'";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp,false);
+        } catch (JRException e ){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButtonPrintActionPerformed
 
     public void setColorExist(javax.swing.JPanel panel) {
         panel.setBackground(new java.awt.Color(153,153,153));
@@ -5157,6 +5278,15 @@ public class SellTicket extends javax.swing.JFrame {
         Image newimg = img.getScaledInstance(jLabelPicture.getWidth(), jLabelPicture.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newimg);
         return image;
+    }
+    
+    private String generateID(){
+        Random rd = new Random();
+        String id = "";
+        for(int i = 0 ; i < 10 ; i++){
+            id += rd.nextInt(10);
+        }
+        return id;
     }
     /**
      * @param args the command line arguments
@@ -5465,5 +5595,6 @@ public class SellTicket extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextField jTextFieldIDMember;
     // End of variables declaration//GEN-END:variables
 }
