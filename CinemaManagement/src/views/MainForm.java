@@ -33,10 +33,8 @@ public class MainForm extends javax.swing.JFrame {
      */
     MyExcuteQuery myExcuteQuery;
     Login x;
-    ArrayList<String> parameters;
     public MainForm() {
         initComponents();
-        parameters = new ArrayList<>(); 
         myExcuteQuery = new MyExcuteQuery();
         x = new Login();
         jLabelName.setText("Hello " + x.getUserName());
@@ -493,10 +491,7 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLogoutMouseClicked
-        String queryUpdate = "Update account set trang_thai = 0 where username =? and user_password = ?";
-        parameters.add(x.getUser());
-        parameters.add(x.getPassword());
-        myExcuteQuery.updateStatus(queryUpdate, parameters);
+        myExcuteQuery.updateStatus(false, x.getUser());
         x.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabelLogoutMouseClicked

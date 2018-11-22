@@ -36,12 +36,15 @@ public interface QueryInterface {
     boolean checkAccount(String query, ArrayList<String> para);
 
     //Status = 1 that account is logging in and = 0 is not
-    void updateStatus(String query, ArrayList<String> para);
+    void updateStatus(boolean status, String username);
 
     void updatePassword(String query, String username, String old_password, String new_password);
 
     //Get name from username
     String getName(String query, String username);
+    
+    //Get job position from username
+    String getJob(String query, String username);
     
     //Load all account
     ArrayList<Account> loadAllAccount();

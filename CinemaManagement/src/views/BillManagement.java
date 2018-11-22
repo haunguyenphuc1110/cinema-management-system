@@ -55,7 +55,6 @@ public class BillManagement extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonPrint = new javax.swing.JButton();
         jButtonLoadAll = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -75,21 +74,6 @@ public class BillManagement extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setResizable(true);
         setTitle("Quản lý hóa đơn");
-
-        jButtonPrint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_emblem-print_24705.png"))); // NOI18N
-        jButtonPrint.setText("In vé");
-        jButtonPrint.setBorder(null);
-        jButtonPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPrintActionPerformed(evt);
-            }
-        });
-        jButtonPrint.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButtonPrintKeyPressed(evt);
-            }
-        });
 
         jButtonLoadAll.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLoadAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/if_ic_find_replace_48px_352364.png"))); // NOI18N
@@ -257,11 +241,8 @@ public class BillManagement extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonLoadAll, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonLoadAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1545, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
@@ -270,12 +251,10 @@ public class BillManagement extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLoadAll, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonLoadAll, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -299,23 +278,6 @@ public class BillManagement extends javax.swing.JInternalFrame {
             dftable.addRow(ojb);
         }
     }
-
-    private void jButtonPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintActionPerformed
-        try {
-            Connection con = MyConnection.getConnection();
-            JasperDesign jd = JRXmlLoader.load("H:\\MyProject\\cinema-management-system\\CinemaManagement\\src\\reports\\report1.jrxml");
-            String sql = "select * from thanhvien order by stt";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(sql);
-            jd.setQuery(newQuery);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp, false);
-        } catch (JRException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-    }//GEN-LAST:event_jButtonPrintActionPerformed
 
     private void jButtonLoadAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadAllActionPerformed
         loadAllBillOnTable();
@@ -433,10 +395,6 @@ public class BillManagement extends javax.swing.JInternalFrame {
         jTextFieldFind.requestFocus();
     }//GEN-LAST:event_jButtonResetKeyPressed
 
-    private void jButtonPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonPrintKeyPressed
-
-    }//GEN-LAST:event_jButtonPrintKeyPressed
-
     private void jButtonLoadAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonLoadAllKeyPressed
         loadAllBillOnTable();
     }//GEN-LAST:event_jButtonLoadAllKeyPressed
@@ -445,7 +403,6 @@ public class BillManagement extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFind;
     private javax.swing.JButton jButtonLoadAll;
-    private javax.swing.JButton jButtonPrint;
     private javax.swing.JButton jButtonReset;
     private javax.swing.JCheckBox jCheckBoxName;
     private javax.swing.JCheckBox jCheckBoxTime;

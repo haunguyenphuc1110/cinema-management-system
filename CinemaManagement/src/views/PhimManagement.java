@@ -141,13 +141,13 @@ public class PhimManagement extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Từ ngày");
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
+        jDateChooser1.setDateFormatString("dd-MM-yyyy");
         jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Đến ngày");
 
-        jDateChooser2.setDateFormatString("dd/MM/yyyy");
+        jDateChooser2.setDateFormatString("dd-MM-yyyy");
         jDateChooser2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButtonFind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -355,6 +355,10 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                 }
             }
         } else if (jCheckBoxTime.isSelected() == true) {
+            if(jDateChooser1.getDate()==null || jDateChooser2.getDate()==null){
+                JOptionPane.showMessageDialog(null, "Please choose date!!!");
+                return;
+            }
             for (int i = 0; i < lstFilm.size(); i++) {
                 Date date = lstFilm.get(i).getKhoiChieu();
                 if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {
@@ -459,6 +463,10 @@ public class PhimManagement extends javax.swing.JInternalFrame {
                 }
             }
         } else if (jCheckBoxTime.isSelected() == true) {
+            if(jDateChooser1.getDate()==null || jDateChooser2.getDate()==null){
+                JOptionPane.showMessageDialog(null, "Please choose date!!!");
+                return;
+            }
             for (int i = 0; i < lstFilm.size(); i++) {
                 Date date = lstFilm.get(i).getKhoiChieu();
                 if (date.after(jDateChooser1.getDate()) && date.before(jDateChooser2.getDate())) {

@@ -14,15 +14,17 @@ public class Account {
     private String username;
     private String idEmployee;
     private String name;
+    private String position;
     private boolean status;
 
     public Account() {
     }
 
-    public Account(String username, String idEmployee, String name, boolean status) {
+    public Account(String username, String idEmployee, String name, String position, boolean status) {
         this.username = username;
         this.idEmployee = idEmployee;
         this.name = name;
+        this.position = position;
         this.status = status;
     }
 
@@ -50,6 +52,14 @@ public class Account {
         this.name = name;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     public boolean isStatus() {
         return status;
     }
@@ -60,7 +70,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "username=" + username + ", idEmployee=" + idEmployee + ", name=" + name + ", status=" + status + '}';
+        return "Account{" + "username=" + username + ", idEmployee=" + idEmployee + ", name=" + name + ", position=" + position + ", status=" + status + '}';
     }
 
 }

@@ -271,7 +271,6 @@ public class Login extends javax.swing.JFrame {
             jTextFiledPassword.requestFocus();
         } else {
             String query = "select * from account where username =? and user_password =?";
-            String queryUpdate = "update account set trang_thai = 1 where username =? and user_password =?";
             String queryGetName = "select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
             String _username = jTextFieldName.getText().toUpperCase();
             String _password = String.valueOf(jTextFiledPassword.getPassword()).toUpperCase();
@@ -292,7 +291,7 @@ public class Login extends javax.swing.JFrame {
             }
             
             if (myExcuteQuery.checkAccount(query, parameters)) {
-                myExcuteQuery.updateStatus(queryUpdate, parameters);
+                myExcuteQuery.updateStatus(true, _username);
                 nameOfUser = myExcuteQuery.getName(queryGetName, _username);
                 username = _username;
                 password = String.valueOf(_password.hashCode());
@@ -323,7 +322,6 @@ public class Login extends javax.swing.JFrame {
             jTextFiledPassword.requestFocus();
         } else {
             String query = "Select * from account where username =? and user_password =?";
-            String queryUpdate = "Update account set trang_thai = 1 where username =? and user_password =?";
             String queryGetName = "Select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
             String _username = jTextFieldName.getText().toUpperCase();
             String _password = String.valueOf(jTextFiledPassword.getPassword()).toUpperCase();
@@ -344,7 +342,7 @@ public class Login extends javax.swing.JFrame {
             }
             
             if (myExcuteQuery.checkAccount(query, parameters)) {
-                myExcuteQuery.updateStatus(queryUpdate, parameters);
+                myExcuteQuery.updateStatus(true, _username);
                 nameOfUser = myExcuteQuery.getName(queryGetName, _username);
                 username = _username;
                 password = String.valueOf(_password.hashCode());

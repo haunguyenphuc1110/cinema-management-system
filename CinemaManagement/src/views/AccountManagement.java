@@ -41,9 +41,10 @@ public class AccountManagement extends javax.swing.JInternalFrame {
             String username = lst.get(i).getUsername();
             String id = lst.get(i).getIdEmployee();
             String name = lst.get(i).getName();
+            String position = lst.get(i).getPosition();
             String status = lst.get(i).isStatus() ? "tạm ngưng" : "kích hoạt";
 
-            Object[] ojb = {stt, username, id, name, status};
+            Object[] ojb = {stt, username, id, name, position, status};
             dftable.addRow(ojb);
         }
     }
@@ -147,19 +148,17 @@ public class AccountManagement extends javax.swing.JInternalFrame {
                 .addGap(0, 57, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButtonSetDefaultPassword)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonEnable)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonSetDefaultPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jRadioButtonDisable)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonEnable)
+                            .addComponent(jLabel3))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRadioButtonDisable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,11 +187,11 @@ public class AccountManagement extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "STT", "Tên đăng nhập", "Mã nhân viên", "Tên nhân viên", "Trạng thái"
+                "STT", "Tên đăng nhập", "Mã nhân viên", "Tên nhân viên", "Chức vụ", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -231,7 +230,7 @@ public class AccountManagement extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLoadAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonLoadAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
@@ -242,7 +241,7 @@ public class AccountManagement extends javax.swing.JInternalFrame {
                 .addComponent(jButtonLoadAll, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -271,14 +270,22 @@ public class AccountManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonResetKeyPressed
 
     private void jButtonSetDefaultPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetDefaultPasswordActionPerformed
-        int selectedIndexRow = jTableListAccount.getSelectedRow();        
+        int selectedIndexRow = jTableListAccount.getSelectedRow();
+        if (selectedIndexRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+            return;
+        }  
         String username = dftable.getValueAt(selectedIndexRow, 1).toString();
-        myExcuteQuery.setDefaultPassword(username);
+        myExcuteQuery.setDefaultPassword(username.trim());
         JOptionPane.showMessageDialog(null, "Change successfully!!!");
     }//GEN-LAST:event_jButtonSetDefaultPasswordActionPerformed
 
     private void jButtonSetDefaultPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonSetDefaultPasswordKeyPressed
-        int selectedIndexRow = jTableListAccount.getSelectedRow();        
+        int selectedIndexRow = jTableListAccount.getSelectedRow();
+        if (selectedIndexRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+            return;
+        }        
         String username = dftable.getValueAt(selectedIndexRow, 1).toString();
         myExcuteQuery.setDefaultPassword(username);
         JOptionPane.showMessageDialog(null, "Change successfully!!!");
@@ -291,7 +298,7 @@ public class AccountManagement extends javax.swing.JInternalFrame {
             return;
         }
         
-        String status = dftable.getValueAt(selectedIndexRow, 4).toString();
+        String status = dftable.getValueAt(selectedIndexRow, 5).toString();
         if(status.equals("kích hoạt"))
             jRadioButtonEnable.setSelected(true);
         else jRadioButtonDisable.setSelected(true);

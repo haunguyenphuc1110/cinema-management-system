@@ -100,13 +100,14 @@ public class MyExcuteQuery implements QueryInterface {
 
     //Status = 1 that account is being logged in and = 0 is not
     @Override
-    public void updateStatus(String query, ArrayList<String> para) {
+    public void updateStatus(boolean status, String username) {
         PreparedStatement pst;
+        String queryUpdate = "Update account set trang_thai = ? where username =?";
         try {
-            pst = con.prepareStatement(query);
+            pst = con.prepareStatement(queryUpdate);
 
-            pst.setString(1, para.get(0));
-            pst.setString(2, para.get(1));
+            pst.setBoolean(1, status);
+            pst.setString(2, username);
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -152,10 +153,31 @@ public class MyExcuteQuery implements QueryInterface {
     }
 
     @Override
+    public String getJob(String query, String username) {
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, username);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
+
+    @Override
     public ArrayList<Account> loadAllAccount() {
         PreparedStatement pst;
         String query = "select * from account";
         String queryGetName = "select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
+        String queryGetJob = "select a.chucvu from nhanvien a, account b where a.username = b.username and b.username =?";
         ArrayList<Account> list = new ArrayList<>();
         Account account;
         try {
@@ -166,6 +188,7 @@ public class MyExcuteQuery implements QueryInterface {
                 account.setUsername(rs.getString(1));
                 account.setIdEmployee(rs.getString(1));
                 account.setName(getName(queryGetName, rs.getString(1)));
+                account.setPosition(getJob(queryGetJob, rs.getString(1)));
                 account.setStatus(rs.getBoolean(4));
                 list.add(account);
             }
@@ -530,7 +553,7 @@ public class MyExcuteQuery implements QueryInterface {
         ArrayList<ShowTimeMovie> list = new ArrayList<>();
         String query = "select b.ma_phim, b.tenphim, b.thoi_luong, d.ma_dinh_dang, e.ngay_chieu, e.gio_chieu, f.ma_rap, b.ma_nhan, e.ma_ktg "
                 + "from lichchieu a, phim b, phim_dinhdang c, dinhdang d, ktg e, rap f "
-                + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang order by e.ngay_chieu, e.gio_chieu";
+                + "where a.ma_ktg = e.ma_ktg and a.ma_phim = b.ma_phim and a.ma_rap = f.ma_rap and b.ma_phim = c.ma_phim and d.ma_dinh_dang = c.ma_dinh_dang and d.ma_dinh_dang = f.ma_dinh_dang and b.tinh_trang <> N'Đã chiếu' order by e.ngay_chieu, e.gio_chieu";
         try {
             pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
