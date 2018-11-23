@@ -230,11 +230,6 @@ public class NewFilm extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -242,21 +237,6 @@ public class NewFilm extends javax.swing.JFrame {
                         .addComponent(jLabelPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(jButtonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabelNhan)
-                                .addGap(48, 48, 48)
-                                .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabelTinhTrang)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabelNoiDung)
-                                .addGap(25, 25, 25)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -304,8 +284,27 @@ public class NewFilm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextFieldThoiLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(154, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabelNhan)
+                                    .addGap(48, 48, 48)
+                                    .addComponent(jComboBoxNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(60, 60, 60)
+                                    .addComponent(jLabelTinhTrang)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabelNoiDung)
+                                    .addGap(25, 25, 25)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,18 +383,14 @@ public class NewFilm extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabelNoiDung))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 104, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabelNoiDung))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Phim", jPanel2);
@@ -430,8 +425,8 @@ public class NewFilm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -442,7 +437,7 @@ public class NewFilm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 956, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -472,13 +467,33 @@ public class NewFilm extends javax.swing.JFrame {
         Film film = new Film();
         jTextFieldIDFilm.setText("P" + generateID());
         film.setMaPhim(jTextFieldIDFilm.getText());
+        
+        if(jTextAreaTenPhim.getText().equals("")){
+            jTextAreaTenPhim.requestFocus();
+        }
         film.setTenPhim(jTextAreaTenPhim.getText());
+        
+        if(jTextFieldTheLoai.getText().equals("")){
+            jTextFieldTheLoai.requestFocus();
+        }
         film.setTheLoai(jTextFieldTheLoai.getText());
+        
         film.setQuocGia(jComboBoxQuocGia.getSelectedItem().toString());
+        
+        if(jTextFieldThoiLuong.getText().equals("")){
+            jTextFieldThoiLuong.requestFocus();
+        }
         film.setThoiLuong(jTextFieldThoiLuong.getText());
         
         //check date if datecreated is greater or not than today
         Date today = new Date();
+        
+        if(jDateChooser.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Please choose date!!!");
+            jDateChooser.requestFocus();
+            return;
+        }
+        
         if(jDateChooser.getDate().before(today)){
             JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
             jDateChooser.requestFocus();
@@ -494,6 +509,10 @@ public class NewFilm extends javax.swing.JFrame {
         film.setMaNhan(jComboBoxNhan.getSelectedItem().toString());
         film.setTinhTrang(jComboBoxTinhTrang.getSelectedItem().toString());
         
+        if(path == null){
+            JOptionPane.showMessageDialog(null, "Please choose avatar for film!!!");
+            return;
+        }
         myExcuteQuery.insertPhim(film, path);
         JOptionPane.showMessageDialog(null, "Create film successfully!!!");
         reset();
@@ -503,13 +522,33 @@ public class NewFilm extends javax.swing.JFrame {
         Film film = new Film();
         film.setMaPhim("P" + generateID());
         jTextFieldIDFilm.setText("P" + generateID());
+        
+        if(jTextAreaTenPhim.getText().equals("")){
+            jTextAreaTenPhim.requestFocus();
+        }
         film.setTenPhim(jTextAreaTenPhim.getText());
+        
+        if(jTextFieldTheLoai.getText().equals("")){
+            jTextFieldTheLoai.requestFocus();
+        }
         film.setTheLoai(jTextFieldTheLoai.getText());
+        
         film.setQuocGia(jComboBoxQuocGia.getSelectedItem().toString());
+        
+        if(jTextFieldThoiLuong.getText().equals("")){
+            jTextFieldThoiLuong.requestFocus();
+        }
         film.setThoiLuong(jTextFieldThoiLuong.getText());
         
         //check date if datecreated is greater or not than today
         Date today = new Date();
+        
+        if(jDateChooser.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Please choose date!!!");
+            jDateChooser.requestFocus();
+            return;
+        }
+        
         if(jDateChooser.getDate().before(today)){
             JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
             jDateChooser.requestFocus();
@@ -525,6 +564,10 @@ public class NewFilm extends javax.swing.JFrame {
         film.setMaNhan(jComboBoxNhan.getSelectedItem().toString());
         film.setTinhTrang(jComboBoxTinhTrang.getSelectedItem().toString());
         
+        if(path == null){
+            JOptionPane.showMessageDialog(null, "Please choose avatar for film!!!");
+            return;
+        }
         myExcuteQuery.insertPhim(film, path);
         JOptionPane.showMessageDialog(null, "Create film successfully!!!");
         reset();

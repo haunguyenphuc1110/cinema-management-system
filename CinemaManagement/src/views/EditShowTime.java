@@ -403,31 +403,52 @@ public class EditShowTime extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableListFilmMouseClicked
 
     private void jButtonUpdateShowTimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonUpdateShowTimeKeyPressed
-        ShowTime showtime = new ShowTime();
-        showtime.setIdKTG(jTextFieldIdKTG.getText());
-        showtime.setIdFilm(jTextFieldIdFilm.getText());
-        showtime.setIdRoom(jComboBox.getSelectedItem().toString());
-
-        //Check whether showtime has existed
-        if(myExcuteQuery.checkShowTime(showtime.getIdKTG(), showtime.getIdFilm(), showtime.getIdRoom())){
-            JOptionPane.showMessageDialog(null, "Showtime has been existed already!!!");
+        ShowTime showtime_old = new ShowTime();
+        ShowTime showtime_new = new ShowTime();
+        
+        if(jTextFieldIdFilm.getText().equals("")){
             jTextFieldIdFilm.requestFocus();
             return;
         }
-
-        myExcuteQuery.insertShowTime(showtime);
-        loadAllShowTime();
-    }//GEN-LAST:event_jButtonUpdateShowTimeKeyPressed
-
-    private void jButtonUpdateShowTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateShowTimeActionPerformed
-        ShowTime showtime_old = new ShowTime();
-        ShowTime showtime_new = new ShowTime();
+        
         showtime_old.setIdKTG(jTextFieldIdKTG.getText());
         showtime_old.setIdFilm(jTextFieldIdFilm.getText());
         showtime_old.setIdRoom(jComboBox.getSelectedItem().toString());
         
         showtime_new.setIdFilm(jTextFieldIdFilm1.getText());
         showtime_new.setIdRoom(jComboBox1.getSelectedItem().toString());
+        
+        if(myExcuteQuery.checkShowTime(showtime_old.getIdKTG(), showtime_new.getIdFilm(), showtime_new.getIdRoom())){
+            JOptionPane.showMessageDialog(null, "Showtime has been existed already!!!");
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
+
+        myExcuteQuery.updateShowTime(showtime_old, showtime_new);
+        loadAllShowTime();
+    }//GEN-LAST:event_jButtonUpdateShowTimeKeyPressed
+
+    private void jButtonUpdateShowTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateShowTimeActionPerformed
+        ShowTime showtime_old = new ShowTime();
+        ShowTime showtime_new = new ShowTime();
+        
+        if(jTextFieldIdFilm.getText().equals("")){
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
+        
+        showtime_old.setIdKTG(jTextFieldIdKTG.getText());
+        showtime_old.setIdFilm(jTextFieldIdFilm.getText());
+        showtime_old.setIdRoom(jComboBox.getSelectedItem().toString());
+        
+        showtime_new.setIdFilm(jTextFieldIdFilm1.getText());
+        showtime_new.setIdRoom(jComboBox1.getSelectedItem().toString());
+        
+        if(myExcuteQuery.checkShowTime(showtime_old.getIdKTG(), showtime_new.getIdFilm(), showtime_new.getIdRoom())){
+            JOptionPane.showMessageDialog(null, "Showtime has been existed already!!!");
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
 
         myExcuteQuery.updateShowTime(showtime_old, showtime_new);
         loadAllShowTime();

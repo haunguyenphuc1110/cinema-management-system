@@ -273,7 +273,7 @@ public class Login extends javax.swing.JFrame {
             String query = "select * from account where username =? and user_password =?";
             String queryGetName = "select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
             String _username = jTextFieldName.getText().toUpperCase();
-            String _password = String.valueOf(jTextFiledPassword.getPassword()).toUpperCase();
+            String _password = String.valueOf(jTextFiledPassword.getPassword());
             parameters.add(_username);
             parameters.add(String.valueOf(_password.hashCode()));
 
@@ -324,7 +324,7 @@ public class Login extends javax.swing.JFrame {
             String query = "Select * from account where username =? and user_password =?";
             String queryGetName = "Select a.hoten from nhanvien a, account b where a.username = b.username and b.username =?";
             String _username = jTextFieldName.getText().toUpperCase();
-            String _password = String.valueOf(jTextFiledPassword.getPassword()).toUpperCase();
+            String _password = String.valueOf(jTextFiledPassword.getPassword());
             parameters.add(_username);
             parameters.add(String.valueOf(_password.hashCode()));
 
@@ -384,8 +384,6 @@ public class Login extends javax.swing.JFrame {
         return password;
     }
     
-    
-
     /**
      * @param args the command line arguments
      */
@@ -414,10 +412,8 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
 

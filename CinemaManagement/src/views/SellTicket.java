@@ -5182,6 +5182,10 @@ public class SellTicket extends javax.swing.JFrame {
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
         String str = "";
+        if(listChosen.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please choose seats!!!");
+            return;
+        }  
         for(String lst : listChosen)
             str+=lst+ " ";
         jLabelSeat.setText(str);
@@ -5189,6 +5193,10 @@ public class SellTicket extends javax.swing.JFrame {
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         Ticket ticket = new Ticket();
+        if(listChosen.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please choose seats!!!");
+            return;
+        }           
         for(String lst : listChosen){
             ticket.setIdTicket("VE" + generateID());
             ticket.setIdFilm(idFilmLocal);

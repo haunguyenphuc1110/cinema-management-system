@@ -248,7 +248,11 @@ public class AccountManagement extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        int selectedIndexRow = jTableListAccount.getSelectedRow();        
+        int selectedIndexRow = jTableListAccount.getSelectedRow();
+        if (selectedIndexRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+            return;
+        }         
         String username = dftable.getValueAt(selectedIndexRow, 1).toString();
         myExcuteQuery.updateEnable(username, !jRadioButtonEnable.isSelected());
         JOptionPane.showMessageDialog(null, "Save successfully!!!");
@@ -259,7 +263,11 @@ public class AccountManagement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonResetActionPerformed
 
     private void jButtonSaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonSaveKeyPressed
-        int selectedIndexRow = jTableListAccount.getSelectedRow();        
+        int selectedIndexRow = jTableListAccount.getSelectedRow();
+        if (selectedIndexRow == -1) {
+            JOptionPane.showMessageDialog(null, "Please choose one row of table!!!");
+            return;
+        }         
         String username = dftable.getValueAt(selectedIndexRow, 1).toString();
         myExcuteQuery.updateEnable(username, !jRadioButtonEnable.isSelected());
         JOptionPane.showMessageDialog(null, "Save successfully!!!");

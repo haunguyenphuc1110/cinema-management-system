@@ -571,6 +571,13 @@ public class NewShowTime extends javax.swing.JFrame {
             jTextFieldIdFilm.requestFocus();
             return;
         }
+        
+        if(jTextFieldIdKTG.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please choose date and time for showtime!!!");
+            jTextFieldIdKTG.requestFocus();
+            return;
+        }
+        
         showtime.setIdKTG(jTextFieldIdKTG.getText());
         showtime.setIdFilm(jTextFieldIdFilm.getText());
         showtime.setIdRoom(jComboBox.getSelectedItem().toString());
@@ -588,6 +595,18 @@ public class NewShowTime extends javax.swing.JFrame {
 
     private void jButtonAddShowTimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAddShowTimeKeyPressed
         ShowTime showtime = new ShowTime();
+        
+        if(jTextFieldIdFilm.getText().equals("")){
+            jTextFieldIdFilm.requestFocus();
+            return;
+        }
+        
+        if(jTextFieldIdKTG.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please choose date and time for showtime!!!");
+            jTextFieldIdKTG.requestFocus();
+            return;
+        }
+        
         showtime.setIdKTG(jTextFieldIdKTG.getText());
         showtime.setIdFilm(jTextFieldIdFilm.getText());
         showtime.setIdRoom(jComboBox.getSelectedItem().toString());

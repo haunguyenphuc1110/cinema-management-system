@@ -5,17 +5,20 @@
             <url>src/views/AccountManagement.java</url>
             <bookmark id="1">
                 <name/>
-                <line>253</line>
+                <line>257</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/NewShowTime.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/Login.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/QueryInterface.java</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/ShowTimeManagement.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/MainForm.java</file>
-            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/BillManagement.java</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/AccountManagement.java</file>
+            <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/views/EditShowTime.java</file>
             <file>file:/H:/MyProject/cinema-management-system/CinemaManagement/src/control/MyExcuteQuery.java</file>
         </group>
     </open-files>
