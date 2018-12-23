@@ -98,6 +98,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Calculator"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCalculatorActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemNote">
               <Properties>
@@ -109,6 +112,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Notepad"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemNoteActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

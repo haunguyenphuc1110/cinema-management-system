@@ -152,7 +152,7 @@ public interface QueryInterface {
 
     void insertDSTicket(String idTicket, String idMember, String idEmployee, Date datecreated);
 
-    int getTotalByIDMember(String idMember);
+    int getTotalByIDPrice(String idPrice);
     /*----------------------------------------------------------------------------------------------------------*/
 
  /*===========================================FOR BILL MANAGEMENT==========================================*/

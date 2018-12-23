@@ -494,11 +494,6 @@ public class NewFilm extends javax.swing.JFrame {
             return;
         }
         
-        if(jDateChooser.getDate().before(today)){
-            JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
-            jDateChooser.requestFocus();
-            return;
-        }
         film.setKhoiChieu(jDateChooser.getDate());
         
         film.setNgonNgu(jComboBoxNgonNgu.getSelectedItem().toString());
@@ -549,11 +544,6 @@ public class NewFilm extends javax.swing.JFrame {
             return;
         }
         
-        if(jDateChooser.getDate().before(today)){
-            JOptionPane.showMessageDialog(null, "Date is not allowed less than today");
-            jDateChooser.requestFocus();
-            return;
-        }
         film.setKhoiChieu(jDateChooser.getDate());
         
         film.setNgonNgu(jComboBoxNgonNgu.getSelectedItem().toString());

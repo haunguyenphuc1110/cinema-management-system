@@ -45,6 +45,7 @@ public class SellTicket extends javax.swing.JFrame {
 
     /**
      * Creates new form SellTicket
+     *
      * @param listSeat
      */
     MyExcuteQuery myExcuteQuery;
@@ -57,13 +58,14 @@ public class SellTicket extends javax.swing.JFrame {
     Color colorDefault;
     Color colorDefaultSW;
     Color colorChosen;
+
     public SellTicket(ArrayList<String> list, String idFilm, String idRoom, String idKTG) {
         initComponents();
         myExcuteQuery = new MyExcuteQuery();
         login = new Login();
-        colorDefault = new Color(255,255,255);
-        colorChosen = new Color(204,0,0);
-        colorDefaultSW = new Color(255,0,204);
+        colorDefault = new Color(255, 255, 255);
+        colorChosen = new Color(204, 0, 0);
+        colorDefaultSW = new Color(255, 0, 204);
         listChosen = new ArrayList<>();
         idFilmLocal = idFilm;
         idRoomLocal = idRoom;
@@ -76,43 +78,123 @@ public class SellTicket extends javax.swing.JFrame {
     private SellTicket() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    private void loadExistSeat(ArrayList<String> list){
-        for(int i = 0 ; i < list.size() ; i++){
+
+    private void loadExistSeat(ArrayList<String> list) {
+        for (int i = 0; i < list.size(); i++) {
             String seat = list.get(i);
-            for(int k = 0 ; k < listSeat.size() ; k++){
-                if(listSeat.get(k).getName().equals(seat.trim())){
+            for (int k = 0; k < listSeat.size(); k++) {
+                if (listSeat.get(k).getName().equals(seat.trim())) {
                     setColorExist(listSeat.get(k));
                     break;
                 }
             }
         }
     }
-   
-    private void addAllJPanel(){
+
+    private void addAllJPanel() {
         listSeat = new ArrayList<>();
-        listSeat.add(jPanelA1); listSeat.add(jPanelA2); listSeat.add(jPanelA3); listSeat.add(jPanelA4); listSeat.add(jPanelA5); 
-        listSeat.add(jPanelA6); listSeat.add(jPanelA7); listSeat.add(jPanelA8); listSeat.add(jPanelA9); listSeat.add(jPanelA10);
-        listSeat.add(jPanelB1); listSeat.add(jPanelB2); listSeat.add(jPanelB3); listSeat.add(jPanelB4); listSeat.add(jPanelB5);
-        listSeat.add(jPanelB6); listSeat.add(jPanelB7); listSeat.add(jPanelB8); listSeat.add(jPanelB9); listSeat.add(jPanelB10);
-        listSeat.add(jPanelC1); listSeat.add(jPanelB2); listSeat.add(jPanelC3); listSeat.add(jPanelC4); listSeat.add(jPanelC5);
-        listSeat.add(jPanelC6); listSeat.add(jPanelC7); listSeat.add(jPanelC8); listSeat.add(jPanelC9); listSeat.add(jPanelC10);
-        listSeat.add(jPanelD1); listSeat.add(jPanelC2); listSeat.add(jPanelD3); listSeat.add(jPanelD4); listSeat.add(jPanelD5);
-        listSeat.add(jPanelD6); listSeat.add(jPanelD7); listSeat.add(jPanelD8); listSeat.add(jPanelD9); listSeat.add(jPanelD10);
-        listSeat.add(jPanelE1); listSeat.add(jPanelD2); listSeat.add(jPanelE3); listSeat.add(jPanelE4); listSeat.add(jPanelE5);
-        listSeat.add(jPanelE6); listSeat.add(jPanelE7); listSeat.add(jPanelE8); listSeat.add(jPanelE9); listSeat.add(jPanelE10);
-        listSeat.add(jPanelF1); listSeat.add(jPanelE2); listSeat.add(jPanelF3); listSeat.add(jPanelF4); listSeat.add(jPanelF5);
-        listSeat.add(jPanelF6); listSeat.add(jPanelF7); listSeat.add(jPanelF8); listSeat.add(jPanelF9); listSeat.add(jPanelF10);
-        listSeat.add(jPanelG1); listSeat.add(jPanelF2); listSeat.add(jPanelG3); listSeat.add(jPanelG4); listSeat.add(jPanelG5);
-        listSeat.add(jPanelG6); listSeat.add(jPanelG7); listSeat.add(jPanelG8); listSeat.add(jPanelG9); listSeat.add(jPanelG10);
-        listSeat.add(jPanelH1); listSeat.add(jPanelG2); listSeat.add(jPanelH3); listSeat.add(jPanelH4); listSeat.add(jPanelH5);
-        listSeat.add(jPanelH6); listSeat.add(jPanelH7); listSeat.add(jPanelH8); listSeat.add(jPanelH9); listSeat.add(jPanelH10);
-        listSeat.add(jPanelJ1); listSeat.add(jPanelH2); listSeat.add(jPanelJ3); listSeat.add(jPanelJ4); listSeat.add(jPanelJ5);
-        listSeat.add(jPanelJ6); listSeat.add(jPanelJ7); listSeat.add(jPanelJ8); listSeat.add(jPanelJ9); listSeat.add(jPanelJ10);
-        listSeat.add(jPanelK1); listSeat.add(jPanelK2); listSeat.add(jPanelK3); listSeat.add(jPanelK4); listSeat.add(jPanelK5);
-        listSeat.add(jPanelK6); listSeat.add(jPanelK7); listSeat.add(jPanelK8); listSeat.add(jPanelK9); listSeat.add(jPanelK10);
+        listSeat.add(jPanelA1);
+        listSeat.add(jPanelA2);
+        listSeat.add(jPanelA3);
+        listSeat.add(jPanelA4);
+        listSeat.add(jPanelA5);
+        listSeat.add(jPanelA6);
+        listSeat.add(jPanelA7);
+        listSeat.add(jPanelA8);
+        listSeat.add(jPanelA9);
+        listSeat.add(jPanelA10);
+        listSeat.add(jPanelB1);
+        listSeat.add(jPanelB2);
+        listSeat.add(jPanelB3);
+        listSeat.add(jPanelB4);
+        listSeat.add(jPanelB5);
+        listSeat.add(jPanelB6);
+        listSeat.add(jPanelB7);
+        listSeat.add(jPanelB8);
+        listSeat.add(jPanelB9);
+        listSeat.add(jPanelB10);
+        listSeat.add(jPanelC1);
+        listSeat.add(jPanelB2);
+        listSeat.add(jPanelC3);
+        listSeat.add(jPanelC4);
+        listSeat.add(jPanelC5);
+        listSeat.add(jPanelC6);
+        listSeat.add(jPanelC7);
+        listSeat.add(jPanelC8);
+        listSeat.add(jPanelC9);
+        listSeat.add(jPanelC10);
+        listSeat.add(jPanelD1);
+        listSeat.add(jPanelC2);
+        listSeat.add(jPanelD3);
+        listSeat.add(jPanelD4);
+        listSeat.add(jPanelD5);
+        listSeat.add(jPanelD6);
+        listSeat.add(jPanelD7);
+        listSeat.add(jPanelD8);
+        listSeat.add(jPanelD9);
+        listSeat.add(jPanelD10);
+        listSeat.add(jPanelE1);
+        listSeat.add(jPanelD2);
+        listSeat.add(jPanelE3);
+        listSeat.add(jPanelE4);
+        listSeat.add(jPanelE5);
+        listSeat.add(jPanelE6);
+        listSeat.add(jPanelE7);
+        listSeat.add(jPanelE8);
+        listSeat.add(jPanelE9);
+        listSeat.add(jPanelE10);
+        listSeat.add(jPanelF1);
+        listSeat.add(jPanelE2);
+        listSeat.add(jPanelF3);
+        listSeat.add(jPanelF4);
+        listSeat.add(jPanelF5);
+        listSeat.add(jPanelF6);
+        listSeat.add(jPanelF7);
+        listSeat.add(jPanelF8);
+        listSeat.add(jPanelF9);
+        listSeat.add(jPanelF10);
+        listSeat.add(jPanelG1);
+        listSeat.add(jPanelF2);
+        listSeat.add(jPanelG3);
+        listSeat.add(jPanelG4);
+        listSeat.add(jPanelG5);
+        listSeat.add(jPanelG6);
+        listSeat.add(jPanelG7);
+        listSeat.add(jPanelG8);
+        listSeat.add(jPanelG9);
+        listSeat.add(jPanelG10);
+        listSeat.add(jPanelH1);
+        listSeat.add(jPanelG2);
+        listSeat.add(jPanelH3);
+        listSeat.add(jPanelH4);
+        listSeat.add(jPanelH5);
+        listSeat.add(jPanelH6);
+        listSeat.add(jPanelH7);
+        listSeat.add(jPanelH8);
+        listSeat.add(jPanelH9);
+        listSeat.add(jPanelH10);
+        listSeat.add(jPanelJ1);
+        listSeat.add(jPanelH2);
+        listSeat.add(jPanelJ3);
+        listSeat.add(jPanelJ4);
+        listSeat.add(jPanelJ5);
+        listSeat.add(jPanelJ6);
+        listSeat.add(jPanelJ7);
+        listSeat.add(jPanelJ8);
+        listSeat.add(jPanelJ9);
+        listSeat.add(jPanelJ10);
+        listSeat.add(jPanelK1);
+        listSeat.add(jPanelK2);
+        listSeat.add(jPanelK3);
+        listSeat.add(jPanelK4);
+        listSeat.add(jPanelK5);
+        listSeat.add(jPanelK6);
+        listSeat.add(jPanelK7);
+        listSeat.add(jPanelK8);
+        listSeat.add(jPanelK9);
+        listSeat.add(jPanelK10);
     }
-    
+
     private void loadSelectedRowOnForm(String idFilm, String idRoom, String idKTG) {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -125,15 +207,16 @@ public class SellTicket extends javax.swing.JFrame {
             jLabelPicture.setIcon(reImage(jkl));
             jLabelName.setText(myExcuteQuery.findNameFilmByID(idFilm));
             jLabelRoom.setText(idRoom);
-            
+
             KTG ktg = myExcuteQuery.findKTG(idKTG);
             jLabelDate.setText(formatter.format(ktg.getDate()));
             jLabelTime.setText(ktg.getTime());
-            
+
         } catch (SQLException | IOException ex) {
             Logger.getLogger(EditFilm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -4217,9 +4300,9 @@ public class SellTicket extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanelA1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA1MouseClicked
-        if(jPanelA1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA1);
-           listChosen.add(jPanelA1.getName());
+        if (jPanelA1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA1);
+            listChosen.add(jPanelA1.getName());
         } else if (jPanelA1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA1);
             listChosen.remove(jPanelA1.getName());
@@ -4227,9 +4310,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA1MouseClicked
 
     private void jPanelA2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA2MouseClicked
-        if(jPanelA2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA2);
-           listChosen.add(jPanelA2.getName());
+        if (jPanelA2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA2);
+            listChosen.add(jPanelA2.getName());
         } else if (jPanelA2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA2);
             listChosen.remove(jPanelA2.getName());
@@ -4237,9 +4320,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA2MouseClicked
 
     private void jPanelA3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA3MouseClicked
-        if(jPanelA3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA3);
-           listChosen.add(jPanelA3.getName());
+        if (jPanelA3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA3);
+            listChosen.add(jPanelA3.getName());
         } else if (jPanelA3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA3);
             listChosen.remove(jPanelA3.getName());
@@ -4247,9 +4330,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA3MouseClicked
 
     private void jPanelA4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA4MouseClicked
-        if(jPanelA4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA4);
-           listChosen.add(jPanelA4.getName());
+        if (jPanelA4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA4);
+            listChosen.add(jPanelA4.getName());
         } else if (jPanelA4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA4);
             listChosen.remove(jPanelA4.getName());
@@ -4257,9 +4340,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA4MouseClicked
 
     private void jPanelA5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA5MouseClicked
-        if(jPanelA5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA5);
-           listChosen.add(jPanelA5.getName());
+        if (jPanelA5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA5);
+            listChosen.add(jPanelA5.getName());
         } else if (jPanelA5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA5);
             listChosen.remove(jPanelA5.getName());
@@ -4267,9 +4350,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA5MouseClicked
 
     private void jPanelA6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA6MouseClicked
-        if(jPanelA6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA6);
-           listChosen.add(jPanelA6.getName());
+        if (jPanelA6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA6);
+            listChosen.add(jPanelA6.getName());
         } else if (jPanelA6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA6);
             listChosen.remove(jPanelA6.getName());
@@ -4277,9 +4360,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA6MouseClicked
 
     private void jPanelA7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA7MouseClicked
-        if(jPanelA7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA7);
-           listChosen.add(jPanelA7.getName());
+        if (jPanelA7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA7);
+            listChosen.add(jPanelA7.getName());
         } else if (jPanelA7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA7);
             listChosen.remove(jPanelA7.getName());
@@ -4287,9 +4370,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA7MouseClicked
 
     private void jPanelA8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA8MouseClicked
-        if(jPanelA8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA8);
-           listChosen.add(jPanelA8.getName());
+        if (jPanelA8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA8);
+            listChosen.add(jPanelA8.getName());
         } else if (jPanelA8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA8);
             listChosen.remove(jPanelA8.getName());
@@ -4297,9 +4380,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA8MouseClicked
 
     private void jPanelA9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA9MouseClicked
-        if(jPanelA9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA9);
-           listChosen.add(jPanelA9.getName());
+        if (jPanelA9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA9);
+            listChosen.add(jPanelA9.getName());
         } else if (jPanelA9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA9);
             listChosen.remove(jPanelA9.getName());
@@ -4307,9 +4390,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA9MouseClicked
 
     private void jPanelA10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelA10MouseClicked
-        if(jPanelA10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelA10);
-           listChosen.add(jPanelA10.getName());
+        if (jPanelA10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelA10);
+            listChosen.add(jPanelA10.getName());
         } else if (jPanelA10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelA10);
             listChosen.remove(jPanelA10.getName());
@@ -4317,9 +4400,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelA10MouseClicked
 
     private void jPanelB1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB1MouseClicked
-        if(jPanelB1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB1);
-           listChosen.add(jPanelB1.getName());
+        if (jPanelB1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB1);
+            listChosen.add(jPanelB1.getName());
         } else if (jPanelB1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB1);
             listChosen.remove(jPanelB1.getName());
@@ -4327,9 +4410,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB1MouseClicked
 
     private void jPanelB2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB2MouseClicked
-        if(jPanelB2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB2);
-           listChosen.add(jPanelB2.getName());
+        if (jPanelB2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB2);
+            listChosen.add(jPanelB2.getName());
         } else if (jPanelB2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB2);
             listChosen.remove(jPanelB2.getName());
@@ -4337,9 +4420,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB2MouseClicked
 
     private void jPanelB3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB3MouseClicked
-        if(jPanelB3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB3);
-           listChosen.add(jPanelA1.getName());
+        if (jPanelB3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB3);
+            listChosen.add(jPanelA1.getName());
         } else if (jPanelB3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB3);
             listChosen.remove(jPanelB3.getName());
@@ -4347,9 +4430,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB3MouseClicked
 
     private void jPanelB4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB4MouseClicked
-        if(jPanelB4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB4);
-           listChosen.add(jPanelB4.getName());
+        if (jPanelB4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB4);
+            listChosen.add(jPanelB4.getName());
         } else if (jPanelB4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB4);
             listChosen.remove(jPanelB4.getName());
@@ -4357,9 +4440,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB4MouseClicked
 
     private void jPanelB5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB5MouseClicked
-        if(jPanelB5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB5);
-           listChosen.add(jPanelB5.getName());
+        if (jPanelB5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB5);
+            listChosen.add(jPanelB5.getName());
         } else if (jPanelB5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB5);
             listChosen.remove(jPanelB5.getName());
@@ -4367,9 +4450,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB5MouseClicked
 
     private void jPanelB6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB6MouseClicked
-        if(jPanelB6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB6);
-           listChosen.add(jPanelB6.getName());
+        if (jPanelB6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB6);
+            listChosen.add(jPanelB6.getName());
         } else if (jPanelB6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB6);
             listChosen.remove(jPanelB6.getName());
@@ -4377,9 +4460,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB6MouseClicked
 
     private void jPanelB7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB7MouseClicked
-        if(jPanelB7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB7);
-           listChosen.add(jPanelB7.getName());
+        if (jPanelB7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB7);
+            listChosen.add(jPanelB7.getName());
         } else if (jPanelB7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB7);
             listChosen.remove(jPanelB7.getName());
@@ -4387,9 +4470,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB7MouseClicked
 
     private void jPanelB8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB8MouseClicked
-        if(jPanelB8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB8);
-           listChosen.add(jPanelB8.getName());
+        if (jPanelB8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB8);
+            listChosen.add(jPanelB8.getName());
         } else if (jPanelB8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB8);
             listChosen.remove(jPanelB8.getName());
@@ -4397,9 +4480,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB8MouseClicked
 
     private void jPanelB9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB9MouseClicked
-        if(jPanelB9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB9);
-           listChosen.add(jPanelB9.getName());
+        if (jPanelB9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB9);
+            listChosen.add(jPanelB9.getName());
         } else if (jPanelB9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB9);
             listChosen.remove(jPanelB9.getName());
@@ -4407,9 +4490,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB9MouseClicked
 
     private void jPanelB10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelB10MouseClicked
-        if(jPanelB10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelB10);
-           listChosen.add(jPanelB10.getName());
+        if (jPanelB10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelB10);
+            listChosen.add(jPanelB10.getName());
         } else if (jPanelB10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelB10);
             listChosen.remove(jPanelB10.getName());
@@ -4417,9 +4500,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelB10MouseClicked
 
     private void jPanelC1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC1MouseClicked
-        if(jPanelC1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC1);
-           listChosen.add(jPanelC1.getName());
+        if (jPanelC1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC1);
+            listChosen.add(jPanelC1.getName());
         } else if (jPanelC1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC1);
             listChosen.remove(jPanelC1.getName());
@@ -4427,9 +4510,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC1MouseClicked
 
     private void jPanelC2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC2MouseClicked
-        if(jPanelC2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC2);
-           listChosen.add(jPanelC2.getName());
+        if (jPanelC2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC2);
+            listChosen.add(jPanelC2.getName());
         } else if (jPanelC2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC2);
             listChosen.remove(jPanelC2.getName());
@@ -4437,9 +4520,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC2MouseClicked
 
     private void jPanelC3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC3MouseClicked
-        if(jPanelC3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC3);
-           listChosen.add(jPanelC3.getName());
+        if (jPanelC3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC3);
+            listChosen.add(jPanelC3.getName());
         } else if (jPanelC3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC3);
             listChosen.remove(jPanelC3.getName());
@@ -4447,9 +4530,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC3MouseClicked
 
     private void jPanelC4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC4MouseClicked
-        if(jPanelC4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC4);
-           listChosen.add(jPanelC4.getName());
+        if (jPanelC4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC4);
+            listChosen.add(jPanelC4.getName());
         } else if (jPanelC4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC4);
             listChosen.remove(jPanelC4.getName());
@@ -4457,9 +4540,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC4MouseClicked
 
     private void jPanelC5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC5MouseClicked
-        if(jPanelC5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC5);
-           listChosen.add(jPanelC5.getName());
+        if (jPanelC5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC5);
+            listChosen.add(jPanelC5.getName());
         } else if (jPanelC5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC5);
             listChosen.remove(jPanelC5.getName());
@@ -4467,9 +4550,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC5MouseClicked
 
     private void jPanelC6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC6MouseClicked
-        if(jPanelC6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC6);
-           listChosen.add(jPanelC6.getName());
+        if (jPanelC6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC6);
+            listChosen.add(jPanelC6.getName());
         } else if (jPanelC6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC6);
             listChosen.remove(jPanelA1.getName());
@@ -4477,9 +4560,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC6MouseClicked
 
     private void jPanelC7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC7MouseClicked
-        if(jPanelC7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC7);
-           listChosen.add(jPanelC7.getName());
+        if (jPanelC7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC7);
+            listChosen.add(jPanelC7.getName());
         } else if (jPanelC7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC7);
             listChosen.remove(jPanelC7.getName());
@@ -4487,9 +4570,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC7MouseClicked
 
     private void jPanelC8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC8MouseClicked
-        if(jPanelC8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC8);
-           listChosen.add(jPanelC8.getName());
+        if (jPanelC8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC8);
+            listChosen.add(jPanelC8.getName());
         } else if (jPanelC8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC8);
             listChosen.remove(jPanelC8.getName());
@@ -4497,9 +4580,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC8MouseClicked
 
     private void jPanelC9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC9MouseClicked
-        if(jPanelC9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC9);
-           listChosen.add(jPanelC9.getName());
+        if (jPanelC9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC9);
+            listChosen.add(jPanelC9.getName());
         } else if (jPanelC9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC9);
             listChosen.remove(jPanelC9.getName());
@@ -4507,9 +4590,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC9MouseClicked
 
     private void jPanelC10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelC10MouseClicked
-        if(jPanelC10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelC10);
-           listChosen.add(jPanelC10.getName());
+        if (jPanelC10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelC10);
+            listChosen.add(jPanelC10.getName());
         } else if (jPanelC10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelC10);
             listChosen.remove(jPanelC10.getName());
@@ -4517,9 +4600,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelC10MouseClicked
 
     private void jPanelD1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD1MouseClicked
-        if(jPanelD1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD1);
-           listChosen.add(jPanelD1.getName());
+        if (jPanelD1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD1);
+            listChosen.add(jPanelD1.getName());
         } else if (jPanelD1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD1);
             listChosen.remove(jPanelD1.getName());
@@ -4527,9 +4610,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD1MouseClicked
 
     private void jPanelD2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD2MouseClicked
-        if(jPanelD2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD2);
-           listChosen.add(jPanelD2.getName());
+        if (jPanelD2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD2);
+            listChosen.add(jPanelD2.getName());
         } else if (jPanelD2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD2);
             listChosen.remove(jPanelD2.getName());
@@ -4537,9 +4620,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD2MouseClicked
 
     private void jPanelD3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD3MouseClicked
-        if(jPanelD3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD3);
-           listChosen.add(jPanelD3.getName());
+        if (jPanelD3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD3);
+            listChosen.add(jPanelD3.getName());
         } else if (jPanelD3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD3);
             listChosen.remove(jPanelD3.getName());
@@ -4547,9 +4630,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD3MouseClicked
 
     private void jPanelD4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD4MouseClicked
-        if(jPanelD4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD4);
-           listChosen.add(jPanelD4.getName());
+        if (jPanelD4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD4);
+            listChosen.add(jPanelD4.getName());
         } else if (jPanelD4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD4);
             listChosen.remove(jPanelD4.getName());
@@ -4557,9 +4640,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD4MouseClicked
 
     private void jPanelD5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD5MouseClicked
-        if(jPanelD5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD5);
-           listChosen.add(jPanelD5.getName());
+        if (jPanelD5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD5);
+            listChosen.add(jPanelD5.getName());
         } else if (jPanelD5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD5);
             listChosen.remove(jPanelD5.getName());
@@ -4567,9 +4650,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD5MouseClicked
 
     private void jPanelD6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD6MouseClicked
-        if(jPanelD6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD6);
-           listChosen.add(jPanelD6.getName());
+        if (jPanelD6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD6);
+            listChosen.add(jPanelD6.getName());
         } else if (jPanelD6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD6);
             listChosen.remove(jPanelD6.getName());
@@ -4577,9 +4660,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD6MouseClicked
 
     private void jPanelD7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD7MouseClicked
-        if(jPanelD7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD7);
-           listChosen.add(jPanelD7.getName());
+        if (jPanelD7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD7);
+            listChosen.add(jPanelD7.getName());
         } else if (jPanelD7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD7);
             listChosen.remove(jPanelD7.getName());
@@ -4587,9 +4670,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD7MouseClicked
 
     private void jPanelD8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD8MouseClicked
-        if(jPanelD8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD8);
-           listChosen.add(jPanelD8.getName());
+        if (jPanelD8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD8);
+            listChosen.add(jPanelD8.getName());
         } else if (jPanelD8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD8);
             listChosen.remove(jPanelD8.getName());
@@ -4597,9 +4680,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD8MouseClicked
 
     private void jPanelD9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD9MouseClicked
-        if(jPanelD9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD9);
-           listChosen.add(jPanelD9.getName());
+        if (jPanelD9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD9);
+            listChosen.add(jPanelD9.getName());
         } else if (jPanelD9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD9);
             listChosen.remove(jPanelD9.getName());
@@ -4607,9 +4690,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD9MouseClicked
 
     private void jPanelD10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelD10MouseClicked
-        if(jPanelD10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelD10);
-           listChosen.add(jPanelD10.getName());
+        if (jPanelD10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelD10);
+            listChosen.add(jPanelD10.getName());
         } else if (jPanelD10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelD10);
             listChosen.remove(jPanelD10.getName());
@@ -4617,9 +4700,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelD10MouseClicked
 
     private void jPanelE1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE1MouseClicked
-        if(jPanelE1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE1);
-           listChosen.add(jPanelE1.getName());
+        if (jPanelE1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE1);
+            listChosen.add(jPanelE1.getName());
         } else if (jPanelE1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE1);
             listChosen.remove(jPanelE1.getName());
@@ -4627,9 +4710,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE1MouseClicked
 
     private void jPanelE2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE2MouseClicked
-        if(jPanelE2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE2);
-           listChosen.add(jPanelE2.getName());
+        if (jPanelE2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE2);
+            listChosen.add(jPanelE2.getName());
         } else if (jPanelE2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE2);
             listChosen.remove(jPanelE2.getName());
@@ -4637,9 +4720,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE2MouseClicked
 
     private void jPanelE3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE3MouseClicked
-        if(jPanelE3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE3);
-           listChosen.add(jPanelE3.getName());
+        if (jPanelE3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE3);
+            listChosen.add(jPanelE3.getName());
         } else if (jPanelE3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE3);
             listChosen.remove(jPanelE3.getName());
@@ -4647,9 +4730,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE3MouseClicked
 
     private void jPanelE4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE4MouseClicked
-        if(jPanelE4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE4);
-           listChosen.add(jPanelE4.getName());
+        if (jPanelE4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE4);
+            listChosen.add(jPanelE4.getName());
         } else if (jPanelE4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE4);
             listChosen.remove(jPanelE4.getName());
@@ -4657,9 +4740,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE4MouseClicked
 
     private void jPanelE5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE5MouseClicked
-        if(jPanelE5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE5);
-           listChosen.add(jPanelE5.getName());
+        if (jPanelE5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE5);
+            listChosen.add(jPanelE5.getName());
         } else if (jPanelE5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE5);
             listChosen.remove(jPanelE5.getName());
@@ -4667,9 +4750,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE5MouseClicked
 
     private void jPanelE6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE6MouseClicked
-        if(jPanelE6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE6);
-           listChosen.add(jPanelE6.getName());
+        if (jPanelE6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE6);
+            listChosen.add(jPanelE6.getName());
         } else if (jPanelE6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE6);
             listChosen.remove(jPanelE6.getName());
@@ -4677,9 +4760,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE6MouseClicked
 
     private void jPanelE7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE7MouseClicked
-        if(jPanelE7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE7);
-           listChosen.add(jPanelE7.getName());
+        if (jPanelE7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE7);
+            listChosen.add(jPanelE7.getName());
         } else if (jPanelE7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE7);
             listChosen.remove(jPanelE7.getName());
@@ -4687,9 +4770,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE7MouseClicked
 
     private void jPanelE8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE8MouseClicked
-        if(jPanelE8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE8);
-           listChosen.add(jPanelE8.getName());
+        if (jPanelE8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE8);
+            listChosen.add(jPanelE8.getName());
         } else if (jPanelE8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE8);
             listChosen.remove(jPanelE8.getName());
@@ -4697,9 +4780,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE8MouseClicked
 
     private void jPanelE9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE9MouseClicked
-        if(jPanelE9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE9);
-           listChosen.add(jPanelE9.getName());
+        if (jPanelE9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE9);
+            listChosen.add(jPanelE9.getName());
         } else if (jPanelE9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE9);
             listChosen.remove(jPanelE9.getName());
@@ -4707,9 +4790,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE9MouseClicked
 
     private void jPanelE10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelE10MouseClicked
-        if(jPanelE10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelE10);
-           listChosen.add(jPanelE10.getName());
+        if (jPanelE10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelE10);
+            listChosen.add(jPanelE10.getName());
         } else if (jPanelE10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelE10);
             listChosen.remove(jPanelE10.getName());
@@ -4717,9 +4800,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelE10MouseClicked
 
     private void jPanelF1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF1MouseClicked
-        if(jPanelF1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF1);
-           listChosen.add(jPanelF1.getName());
+        if (jPanelF1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF1);
+            listChosen.add(jPanelF1.getName());
         } else if (jPanelF1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF1);
             listChosen.remove(jPanelF1.getName());
@@ -4727,9 +4810,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF1MouseClicked
 
     private void jPanelF2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF2MouseClicked
-        if(jPanelF2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF2);
-           listChosen.add(jPanelF2.getName());
+        if (jPanelF2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF2);
+            listChosen.add(jPanelF2.getName());
         } else if (jPanelF2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF2);
             listChosen.remove(jPanelF2.getName());
@@ -4737,9 +4820,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF2MouseClicked
 
     private void jPanelF3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF3MouseClicked
-        if(jPanelF3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF3);
-           listChosen.add(jPanelF3.getName());
+        if (jPanelF3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF3);
+            listChosen.add(jPanelF3.getName());
         } else if (jPanelF3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF3);
             listChosen.remove(jPanelF3.getName());
@@ -4747,9 +4830,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF3MouseClicked
 
     private void jPanelF4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF4MouseClicked
-        if(jPanelF4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF4);
-           listChosen.add(jPanelF4.getName());
+        if (jPanelF4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF4);
+            listChosen.add(jPanelF4.getName());
         } else if (jPanelF4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF4);
             listChosen.remove(jPanelF4.getName());
@@ -4757,9 +4840,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF4MouseClicked
 
     private void jPanelF5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF5MouseClicked
-        if(jPanelF5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF5);
-           listChosen.add(jPanelF5.getName());
+        if (jPanelF5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF5);
+            listChosen.add(jPanelF5.getName());
         } else if (jPanelF5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF5);
             listChosen.remove(jPanelF5.getName());
@@ -4767,9 +4850,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF5MouseClicked
 
     private void jPanelF6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF6MouseClicked
-        if(jPanelF6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF6);
-           listChosen.add(jPanelF6.getName());
+        if (jPanelF6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF6);
+            listChosen.add(jPanelF6.getName());
         } else if (jPanelF6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF6);
             listChosen.remove(jPanelF6.getName());
@@ -4777,9 +4860,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF6MouseClicked
 
     private void jPanelF7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF7MouseClicked
-        if(jPanelF7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF7);
-           listChosen.add(jPanelF7.getName());
+        if (jPanelF7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF7);
+            listChosen.add(jPanelF7.getName());
         } else if (jPanelF7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF7);
             listChosen.remove(jPanelF7.getName());
@@ -4787,9 +4870,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF7MouseClicked
 
     private void jPanelF8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF8MouseClicked
-        if(jPanelF8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF8);
-           listChosen.add(jPanelF8.getName());
+        if (jPanelF8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF8);
+            listChosen.add(jPanelF8.getName());
         } else if (jPanelF8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF8);
             listChosen.remove(jPanelF8.getName());
@@ -4797,9 +4880,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF8MouseClicked
 
     private void jPanelF9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF9MouseClicked
-        if(jPanelF9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF9);
-           listChosen.add(jPanelF9.getName());
+        if (jPanelF9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF9);
+            listChosen.add(jPanelF9.getName());
         } else if (jPanelF9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF9);
             listChosen.remove(jPanelF9.getName());
@@ -4807,9 +4890,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF9MouseClicked
 
     private void jPanelF10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelF10MouseClicked
-        if(jPanelF10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelF10);
-           listChosen.add(jPanelF10.getName());
+        if (jPanelF10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelF10);
+            listChosen.add(jPanelF10.getName());
         } else if (jPanelF10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelF10);
             listChosen.remove(jPanelF10.getName());
@@ -4817,9 +4900,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelF10MouseClicked
 
     private void jPanelG1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG1MouseClicked
-        if(jPanelG1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG1);
-           listChosen.add(jPanelG1.getName());
+        if (jPanelG1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG1);
+            listChosen.add(jPanelG1.getName());
         } else if (jPanelG1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG1);
             listChosen.remove(jPanelG1.getName());
@@ -4827,9 +4910,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG1MouseClicked
 
     private void jPanelG2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG2MouseClicked
-        if(jPanelG2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG2);
-           listChosen.add(jPanelG2.getName());
+        if (jPanelG2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG2);
+            listChosen.add(jPanelG2.getName());
         } else if (jPanelG2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG2);
             listChosen.remove(jPanelG2.getName());
@@ -4837,9 +4920,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG2MouseClicked
 
     private void jPanelG3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG3MouseClicked
-        if(jPanelG3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG3);
-           listChosen.add(jPanelG3.getName());
+        if (jPanelG3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG3);
+            listChosen.add(jPanelG3.getName());
         } else if (jPanelG3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG3);
             listChosen.remove(jPanelG3.getName());
@@ -4847,9 +4930,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG3MouseClicked
 
     private void jPanelG4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG4MouseClicked
-        if(jPanelG4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG4);
-           listChosen.add(jPanelG4.getName());
+        if (jPanelG4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG4);
+            listChosen.add(jPanelG4.getName());
         } else if (jPanelG4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG4);
             listChosen.remove(jPanelG4.getName());
@@ -4857,9 +4940,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG4MouseClicked
 
     private void jPanelG5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG5MouseClicked
-        if(jPanelG5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG5);
-           listChosen.add(jPanelG5.getName());
+        if (jPanelG5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG5);
+            listChosen.add(jPanelG5.getName());
         } else if (jPanelG5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG5);
             listChosen.remove(jPanelG5.getName());
@@ -4867,9 +4950,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG5MouseClicked
 
     private void jPanelG6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG6MouseClicked
-        if(jPanelG6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG6);
-           listChosen.add(jPanelG6.getName());
+        if (jPanelG6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG6);
+            listChosen.add(jPanelG6.getName());
         } else if (jPanelG6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG6);
             listChosen.remove(jPanelG6.getName());
@@ -4877,9 +4960,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG6MouseClicked
 
     private void jPanelG7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG7MouseClicked
-        if(jPanelG7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG7);
-           listChosen.add(jPanelG7.getName());
+        if (jPanelG7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG7);
+            listChosen.add(jPanelG7.getName());
         } else if (jPanelG7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG7);
             listChosen.remove(jPanelG7.getName());
@@ -4887,9 +4970,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG7MouseClicked
 
     private void jPanelG8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG8MouseClicked
-        if(jPanelG8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG8);
-           listChosen.add(jPanelG8.getName());
+        if (jPanelG8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG8);
+            listChosen.add(jPanelG8.getName());
         } else if (jPanelG8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG8);
             listChosen.remove(jPanelG8.getName());
@@ -4897,9 +4980,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG8MouseClicked
 
     private void jPanelG9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG9MouseClicked
-        if(jPanelG9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG9);
-           listChosen.add(jPanelG9.getName());
+        if (jPanelG9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG9);
+            listChosen.add(jPanelG9.getName());
         } else if (jPanelG9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG9);
             listChosen.remove(jPanelG9.getName());
@@ -4907,9 +4990,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG9MouseClicked
 
     private void jPanelG10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelG10MouseClicked
-        if(jPanelG10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelG10);
-           listChosen.add(jPanelG10.getName());
+        if (jPanelG10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelG10);
+            listChosen.add(jPanelG10.getName());
         } else if (jPanelG10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelG10);
             listChosen.remove(jPanelG10.getName());
@@ -4917,9 +5000,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelG10MouseClicked
 
     private void jPanelH1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH1MouseClicked
-        if(jPanelH1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH1);
-           listChosen.add(jPanelH1.getName());
+        if (jPanelH1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH1);
+            listChosen.add(jPanelH1.getName());
         } else if (jPanelH1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH1);
             listChosen.remove(jPanelH1.getName());
@@ -4927,9 +5010,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH1MouseClicked
 
     private void jPanelH2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH2MouseClicked
-        if(jPanelH2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH2);
-           listChosen.add(jPanelH2.getName());
+        if (jPanelH2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH2);
+            listChosen.add(jPanelH2.getName());
         } else if (jPanelH2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH2);
             listChosen.remove(jPanelH2.getName());
@@ -4937,9 +5020,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH2MouseClicked
 
     private void jPanelH3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH3MouseClicked
-        if(jPanelH3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH3);
-           listChosen.add(jPanelH3.getName());
+        if (jPanelH3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH3);
+            listChosen.add(jPanelH3.getName());
         } else if (jPanelH3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH3);
             listChosen.remove(jPanelH3.getName());
@@ -4947,9 +5030,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH3MouseClicked
 
     private void jPanelH4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH4MouseClicked
-        if(jPanelH4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH4);
-           listChosen.add(jPanelH4.getName());
+        if (jPanelH4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH4);
+            listChosen.add(jPanelH4.getName());
         } else if (jPanelH4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH4);
             listChosen.remove(jPanelH4.getName());
@@ -4957,9 +5040,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH4MouseClicked
 
     private void jPanelH5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH5MouseClicked
-        if(jPanelH5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH5);
-           listChosen.add(jPanelH5.getName());
+        if (jPanelH5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH5);
+            listChosen.add(jPanelH5.getName());
         } else if (jPanelH5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH5);
             listChosen.remove(jPanelH5.getName());
@@ -4967,9 +5050,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH5MouseClicked
 
     private void jPanelH6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH6MouseClicked
-        if(jPanelH6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH6);
-           listChosen.add(jPanelH6.getName());
+        if (jPanelH6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH6);
+            listChosen.add(jPanelH6.getName());
         } else if (jPanelH6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH6);
             listChosen.remove(jPanelH6.getName());
@@ -4977,9 +5060,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH6MouseClicked
 
     private void jPanelH7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH7MouseClicked
-        if(jPanelH7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH7);
-           listChosen.add(jPanelH7.getName());
+        if (jPanelH7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH7);
+            listChosen.add(jPanelH7.getName());
         } else if (jPanelH7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH7);
             listChosen.remove(jPanelH7.getName());
@@ -4987,9 +5070,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH7MouseClicked
 
     private void jPanelH8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH8MouseClicked
-        if(jPanelH8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH8);
-           listChosen.add(jPanelH8.getName());
+        if (jPanelH8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH8);
+            listChosen.add(jPanelH8.getName());
         } else if (jPanelH8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH8);
             listChosen.remove(jPanelH8.getName());
@@ -4997,9 +5080,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH8MouseClicked
 
     private void jPanelH9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH9MouseClicked
-        if(jPanelH9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH9);
-           listChosen.add(jPanelH9.getName());
+        if (jPanelH9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH9);
+            listChosen.add(jPanelH9.getName());
         } else if (jPanelH9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH9);
             listChosen.remove(jPanelH9.getName());
@@ -5007,9 +5090,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH9MouseClicked
 
     private void jPanelH10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelH10MouseClicked
-        if(jPanelH10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelH10);
-           listChosen.add(jPanelH10.getName());
+        if (jPanelH10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelH10);
+            listChosen.add(jPanelH10.getName());
         } else if (jPanelH10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelH10);
             listChosen.remove(jPanelH10.getName());
@@ -5017,9 +5100,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelH10MouseClicked
 
     private void jPanelJ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ1MouseClicked
-        if(jPanelJ1.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ1);
-           listChosen.add(jPanelJ1.getName());
+        if (jPanelJ1.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ1);
+            listChosen.add(jPanelJ1.getName());
         } else if (jPanelJ1.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ1);
             listChosen.remove(jPanelJ1.getName());
@@ -5027,9 +5110,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ1MouseClicked
 
     private void jPanelJ2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ2MouseClicked
-        if(jPanelJ2.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ2);
-           listChosen.add(jPanelJ2.getName());
+        if (jPanelJ2.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ2);
+            listChosen.add(jPanelJ2.getName());
         } else if (jPanelJ2.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ2);
             listChosen.remove(jPanelJ2.getName());
@@ -5037,9 +5120,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ2MouseClicked
 
     private void jPanelJ3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ3MouseClicked
-        if(jPanelJ3.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ3);
-           listChosen.add(jPanelJ3.getName());
+        if (jPanelJ3.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ3);
+            listChosen.add(jPanelJ3.getName());
         } else if (jPanelJ3.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ3);
             listChosen.remove(jPanelJ3.getName());
@@ -5047,9 +5130,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ3MouseClicked
 
     private void jPanelJ4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ4MouseClicked
-        if(jPanelJ4.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ4);
-           listChosen.add(jPanelJ4.getName());
+        if (jPanelJ4.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ4);
+            listChosen.add(jPanelJ4.getName());
         } else if (jPanelJ4.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ4);
             listChosen.remove(jPanelJ4.getName());
@@ -5057,9 +5140,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ4MouseClicked
 
     private void jPanelJ5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ5MouseClicked
-        if(jPanelJ5.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ5);
-           listChosen.add(jPanelJ5.getName());
+        if (jPanelJ5.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ5);
+            listChosen.add(jPanelJ5.getName());
         } else if (jPanelJ5.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ5);
             listChosen.remove(jPanelJ5.getName());
@@ -5067,9 +5150,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ5MouseClicked
 
     private void jPanelJ6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ6MouseClicked
-        if(jPanelJ6.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ6);
-           listChosen.add(jPanelJ6.getName());
+        if (jPanelJ6.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ6);
+            listChosen.add(jPanelJ6.getName());
         } else if (jPanelJ6.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ6);
             listChosen.remove(jPanelJ6.getName());
@@ -5077,9 +5160,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ6MouseClicked
 
     private void jPanelJ7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ7MouseClicked
-        if(jPanelJ7.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ7);
-           listChosen.add(jPanelJ7.getName());
+        if (jPanelJ7.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ7);
+            listChosen.add(jPanelJ7.getName());
         } else if (jPanelJ7.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ7);
             listChosen.remove(jPanelJ7.getName());
@@ -5087,9 +5170,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ7MouseClicked
 
     private void jPanelJ8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ8MouseClicked
-        if(jPanelJ8.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ8);
-           listChosen.add(jPanelJ8.getName());
+        if (jPanelJ8.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ8);
+            listChosen.add(jPanelJ8.getName());
         } else if (jPanelJ8.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ8);
             listChosen.remove(jPanelJ8.getName());
@@ -5097,9 +5180,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ8MouseClicked
 
     private void jPanelJ9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ9MouseClicked
-        if(jPanelJ9.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ9);
-           listChosen.add(jPanelJ9.getName());
+        if (jPanelJ9.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ9);
+            listChosen.add(jPanelJ9.getName());
         } else if (jPanelJ9.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ9);
             listChosen.remove(jPanelJ9.getName());
@@ -5107,9 +5190,9 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ9MouseClicked
 
     private void jPanelJ10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelJ10MouseClicked
-        if(jPanelJ10.getBackground().equals(colorDefault)){
-           setColorChoose(jPanelJ10);
-           listChosen.add(jPanelJ10.getName());
+        if (jPanelJ10.getBackground().equals(colorDefault)) {
+            setColorChoose(jPanelJ10);
+            listChosen.add(jPanelJ10.getName());
         } else if (jPanelJ10.getBackground().equals(colorChosen)) {
             resetColorChoose(jPanelJ10);
             listChosen.remove(jPanelJ10.getName());
@@ -5117,10 +5200,10 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelJ10MouseClicked
 
     private void jPanelK1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelK1MouseClicked
-        if(jPanelK1.getBackground().equals(colorDefaultSW)){
-           setColorChoose(jPanelK1);
-           setColorChoose(jPanelK2);
-           listChosen.add(jPanelK1.getName());
+        if (jPanelK1.getBackground().equals(colorDefaultSW)) {
+            setColorChoose(jPanelK1);
+            setColorChoose(jPanelK2);
+            listChosen.add(jPanelK1.getName());
         } else if (jPanelK1.getBackground().equals(colorChosen)) {
             resetColorChooseSW(jPanelK1);
             resetColorChooseSW(jPanelK2);
@@ -5129,10 +5212,10 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelK1MouseClicked
 
     private void jPanelK3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelK3MouseClicked
-        if(jPanelK3.getBackground().equals(colorDefaultSW)){
-           setColorChoose(jPanelK3);
-           setColorChoose(jPanelK4);
-           listChosen.add(jPanelK3.getName());
+        if (jPanelK3.getBackground().equals(colorDefaultSW)) {
+            setColorChoose(jPanelK3);
+            setColorChoose(jPanelK4);
+            listChosen.add(jPanelK3.getName());
         } else if (jPanelK3.getBackground().equals(colorChosen)) {
             resetColorChooseSW(jPanelK3);
             resetColorChooseSW(jPanelK4);
@@ -5141,10 +5224,10 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelK3MouseClicked
 
     private void jPanelK5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelK5MouseClicked
-        if(jPanelK5.getBackground().equals(colorDefaultSW)){
-           setColorChoose(jPanelK5);
-           setColorChoose(jPanelK6);
-           listChosen.add(jPanelK5.getName());
+        if (jPanelK5.getBackground().equals(colorDefaultSW)) {
+            setColorChoose(jPanelK5);
+            setColorChoose(jPanelK6);
+            listChosen.add(jPanelK5.getName());
         } else if (jPanelK5.getBackground().equals(colorChosen)) {
             resetColorChooseSW(jPanelK5);
             resetColorChooseSW(jPanelK6);
@@ -5153,10 +5236,10 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelK5MouseClicked
 
     private void jPanelK7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelK7MouseClicked
-        if(jPanelK7.getBackground().equals(colorDefaultSW)){
-           setColorChoose(jPanelK7);
-           setColorChoose(jPanelK8);
-           listChosen.add(jPanelK7.getName());
+        if (jPanelK7.getBackground().equals(colorDefaultSW)) {
+            setColorChoose(jPanelK7);
+            setColorChoose(jPanelK8);
+            listChosen.add(jPanelK7.getName());
         } else if (jPanelK7.getBackground().equals(colorChosen)) {
             resetColorChooseSW(jPanelK7);
             resetColorChooseSW(jPanelK8);
@@ -5165,10 +5248,10 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelK7MouseClicked
 
     private void jPanelK9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelK9MouseClicked
-        if(jPanelK9.getBackground().equals(colorDefaultSW)){
-           setColorChoose(jPanelK9);
-           setColorChoose(jPanelK10);
-           listChosen.add(jPanelK9.getName());
+        if (jPanelK9.getBackground().equals(colorDefaultSW)) {
+            setColorChoose(jPanelK9);
+            setColorChoose(jPanelK10);
+            listChosen.add(jPanelK9.getName());
         } else if (jPanelK9.getBackground().equals(colorChosen)) {
             resetColorChooseSW(jPanelK9);
             resetColorChooseSW(jPanelK10);
@@ -5182,54 +5265,61 @@ public class SellTicket extends javax.swing.JFrame {
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
         String str = "";
-        if(listChosen.isEmpty()){
+        if (listChosen.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please choose seats!!!");
             return;
-        }  
-        for(String lst : listChosen)
-            str+=lst+ " ";
+        }
+        for (String lst : listChosen) {
+            str += lst + " ";
+        }
         jLabelSeat.setText(str);
     }//GEN-LAST:event_jButtonCheckActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         Ticket ticket = new Ticket();
-        if(listChosen.isEmpty()){
+        if (listChosen.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please choose seats!!!");
             return;
-        }           
-        for(String lst : listChosen){
+        }
+
+        if (jTextFieldIDMember.getText().equals("Mã thành viên")) {
+            JOptionPane.showMessageDialog(null, "Please enter id member!");
+            return;
+        }
+
+        int price = 0;
+        for (String lst : listChosen) {
             ticket.setIdTicket("VE" + generateID());
             ticket.setIdFilm(idFilmLocal);
             ticket.setRoom(idRoomLocal);
             ticket.setSeat(lst);
             ticket.setIdKTG(idKTGLocal);
-            if(idRoomLocal.equals("RAP01") || idRoomLocal.equals("RAP03") || idRoomLocal.equals("RAP05")){
-                if(lst.contains("A") || lst.contains("B") || lst.contains("C") || lst.contains("D"))
+            if (idRoomLocal.equals("RAP01") || idRoomLocal.equals("RAP03") || idRoomLocal.equals("RAP05")) {
+                if (lst.contains("A") || lst.contains("B") || lst.contains("C") || lst.contains("D")) {
                     ticket.setIdPrice("BT2DTHUONG");
-                else if(lst.contains("E") || lst.contains("F") || lst.contains("G") || lst.contains("H") || lst.contains("J"))
+                } else if (lst.contains("E") || lst.contains("F") || lst.contains("G") || lst.contains("H") || lst.contains("J")) {
                     ticket.setIdPrice("VIP2DTHUONG");
-                else
+                } else {
                     ticket.setIdPrice("SW2DTHUONG");
-            }
-            else if(idRoomLocal.equals("RAP02") || idRoomLocal.equals("RAP04")){
-                if(lst.contains("A") || lst.contains("B") || lst.contains("C") || lst.contains("D"))
+                }
+            } else if (idRoomLocal.equals("RAP02") || idRoomLocal.equals("RAP04")) {
+                if (lst.contains("A") || lst.contains("B") || lst.contains("C") || lst.contains("D")) {
                     ticket.setIdPrice("BT3DTHUONG");
-                else if(lst.contains("E") || lst.contains("F") || lst.contains("G") || lst.contains("H") || lst.contains("J"))
+                } else if (lst.contains("E") || lst.contains("F") || lst.contains("G") || lst.contains("H") || lst.contains("J")) {
                     ticket.setIdPrice("VIP3DTHUONG");
-                else
+                } else {
                     ticket.setIdPrice("SW3DTHUONG");
+                }
+            } else {
+                ticket.setIdPrice("4DTHUONG");
             }
-            else ticket.setIdPrice("4DTHUONG");
-            
+
             myExcuteQuery.insertTicket(ticket);
-            
-            if(jTextFieldIDMember.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Please enter id member!");
-                return;
-            }
+
+            price += myExcuteQuery.getTotalByIDPrice(ticket.getIdPrice());
             myExcuteQuery.insertDSTicket(ticket.getIdTicket(), jTextFieldIDMember.getText(), login.getUser(), new Date());
         }
-        jLabelTotal.setText(String.valueOf(myExcuteQuery.getTotalByIDMember(jTextFieldIDMember.getText())) + " VND");
+        jLabelTotal.setText(String.valueOf(price));
         JOptionPane.showMessageDialog(null, "Save ticket successfully!!!");
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
@@ -5248,54 +5338,56 @@ public class SellTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldIDMemberFocusLost
 
     private void jButtonPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintActionPerformed
-        try{
+        try {
             Connection con = MyConnection.getConnection();
             JasperDesign jd = JRXmlLoader.load("H:\\MyProject\\cinema-management-system\\CinemaManagement\\src\\reports\\report1.jrxml");
-            String sql = "select distinct d.hoten as 'Tên khách hàng', c.ma_nhan_vien as 'Mã nhân viên', c.hoten as 'Tên nhân viên', e.tenphim as 'Tên phim',  a.ma_ghe as 'Ghế', a.ma_rap as 'Rạp', f.ngay_chieu as 'Ngày chiếu', f.gio_chieu as 'Giờ chiếu', g.dongia as 'Giá tiền'\n" +
-                         "from ve a, ds_ve_dat b, nhanvien c, thanhvien d, phim e, ktg f, gia g\n" +
-                         "where b.ma_ve = a.ma_ve and b.ma_nhan_vien = c.ma_nhan_vien and b.ma_thanh_vien = d.ma_thanh_vien and a.ma_phim = e.ma_phim and a.ma_ktg = f.ma_ktg and a.ma_gia = g.ma_gia and b.ma_thanh_vien = '"+ jTextFieldIDMember.getText() +"'";
+            String sql = "select distinct d.hoten as 'Tên khách hàng', c.ma_nhan_vien as 'Mã nhân viên', c.hoten as 'Tên nhân viên', e.tenphim as 'Tên phim',  a.ma_ghe as 'Ghế', a.ma_rap as 'Rạp', f.ngay_chieu as 'Ngày chiếu', f.gio_chieu as 'Giờ chiếu', g.dongia as 'Giá tiền'\n"
+                    + "from ve a, ds_ve_dat b, nhanvien c, thanhvien d, phim e, ktg f, gia g\n"
+                    + "where b.ma_ve = a.ma_ve and b.ma_nhan_vien = c.ma_nhan_vien and b.ma_thanh_vien = d.ma_thanh_vien and a.ma_phim = e.ma_phim and a.ma_ktg = f.ma_ktg and a.ma_gia = g.ma_gia and b.ma_thanh_vien = '" + jTextFieldIDMember.getText() + "' "
+                    + "and a.ma_rap = '" + jLabelRoom.getText() + "' and a.ma_ktg = '" + idKTGLocal + "'";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd.setQuery(newQuery);
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp,false);
-        } catch (JRException e ){
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButtonPrintActionPerformed
 
     public void setColorExist(javax.swing.JPanel panel) {
-        panel.setBackground(new java.awt.Color(153,153,153));
+        panel.setBackground(new java.awt.Color(153, 153, 153));
     }
-    
+
     public void setColorChoose(javax.swing.JPanel panel) {
-        panel.setBackground(new java.awt.Color(204,0,0));
+        panel.setBackground(new java.awt.Color(204, 0, 0));
     }
-    
+
     public void resetColorChoose(javax.swing.JPanel panel) {
-        panel.setBackground(new java.awt.Color(255,255,255));
+        panel.setBackground(new java.awt.Color(255, 255, 255));
     }
-    
+
     public void resetColorChooseSW(javax.swing.JPanel panel) {
-        panel.setBackground(new java.awt.Color(255,0,204));
+        panel.setBackground(new java.awt.Color(255, 0, 204));
     }
-    
+
     private ImageIcon reImage(ImageIcon Imagepath) {
         Image img = Imagepath.getImage();
         Image newimg = img.getScaledInstance(jLabelPicture.getWidth(), jLabelPicture.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newimg);
         return image;
     }
-    
-    private String generateID(){
+
+    private String generateID() {
         Random rd = new Random();
         String id = "";
-        for(int i = 0 ; i < 10 ; i++){
+        for (int i = 0; i < 10; i++) {
             id += rd.nextInt(10);
         }
         return id;
     }
+
     /**
      * @param args the command line arguments
      */

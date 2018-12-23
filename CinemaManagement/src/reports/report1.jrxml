@@ -13,10 +13,8 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<queryString language="SQL">
-		<![CDATA[select distinct d.hoten as 'Tên khách hàng', c.ma_nhan_vien as 'Mã nhân viên', c.hoten as 'Tên nhân viên', e.tenphim as 'Tên phim',  a.ma_ghe as 'Ghế', a.ma_rap as 'Rạp', f.ngay_chieu as 'Ngày chiếu', f.gio_chieu as 'Giờ chiếu', g.dongia as 'Giá tiền'
-from ve a, ds_ve_dat b, nhanvien c, thanhvien d, phim e, ktg f, gia g
-where b.ma_ve = a.ma_ve and b.ma_nhan_vien = c.ma_nhan_vien and b.ma_thanh_vien = d.ma_thanh_vien and a.ma_phim = e.ma_phim and a.ma_ktg = f.ma_ktg and a.ma_gia = g.ma_gia and b.ma_thanh_vien = 'KH78579922']]>
+	<queryString>
+		<![CDATA[]]>
 	</queryString>
 	<field name="Tên khách hàng" class="java.lang.String"/>
 	<field name="Mã nhân viên" class="java.lang.String"/>

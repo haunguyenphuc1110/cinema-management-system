@@ -8,7 +8,10 @@ package views;
 import control.MyConnection;
 import control.MyExcuteQuery;
 import java.awt.Image;
+import java.io.IOException;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
@@ -460,11 +463,21 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItemCalculator.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calc.png"))); // NOI18N
         jMenuItemCalculator.setText("Calculator");
+        jMenuItemCalculator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCalculatorActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemCalculator);
 
         jMenuItemNote.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jMenuItemNote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notepad.png"))); // NOI18N
         jMenuItemNote.setText("Notepad");
+        jMenuItemNote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNoteActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemNote);
 
         jMenuBar1.add(jMenu3);
@@ -632,6 +645,22 @@ public class MainForm extends javax.swing.JFrame {
         jDesktopPane1.add(frm);
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItemAccountActionPerformed
+
+    private void jMenuItemCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCalculatorActionPerformed
+        try {
+            Runtime.getRuntime().exec("calc.exe");
+        } catch (IOException ex) {
+            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemCalculatorActionPerformed
+
+    private void jMenuItemNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNoteActionPerformed
+        try {
+            Runtime.getRuntime().exec("notepad.exe");
+        } catch (IOException ex) {
+            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemNoteActionPerformed
 
     public void setColor(javax.swing.JPanel panel) {
         panel.setBackground(new java.awt.Color(115, 163, 239));

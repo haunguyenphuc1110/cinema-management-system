@@ -908,17 +908,15 @@ public class MyExcuteQuery implements QueryInterface {
     }
 
     @Override
-    public int getTotalByIDMember(String idMember) {
+    public int getTotalByIDPrice(String idPrice) {
         PreparedStatement pst;
-        String query = "select a.ma_thanh_vien, sum(c.dongia) as ThanhTien "
-                + "from ds_ve_dat a, ve b, gia c "
-                + "where a.ma_thanh_vien = ? and a.ma_ve = b.ma_ve and b.ma_gia = c.ma_gia group by a.ma_thanh_vien";
+        String query = "select dongia from gia where ma_gia = ?";
         try {
             pst = con.prepareStatement(query);
-            pst.setString(1, idMember);
+            pst.setString(1, idPrice);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                return rs.getInt(2);
+                return rs.getInt(1);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MyExcuteQuery.class.getName()).log(Level.SEVERE, null, ex);
